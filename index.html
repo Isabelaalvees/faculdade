@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WanderEats</title>
-
   <link rel="stylesheet" href="estilo.css">
 </head>
 
@@ -37,30 +36,27 @@
   <div class="hero-conteudo">
     <div class="hero-texto">
       <h1 id="titulo">Para onde deseja viajar?</h1>
-
       <input id="busca" type="text" placeholder="Digite um país"
         onkeypress="if(event.key === 'Enter') buscar()"
         oninput="verificarBusca()">
-
       <br>
       <button id="botaoBusca" class="botao" onclick="buscar()">Pesquisar</button>
     </div>
   </div>
 </section>
 
-<!-- DESTINOS -->
+<!-- DESTINOS POPULARES -->
 <main id="secao-destinos" class="container destinos">
   <h2>Destinos Populares</h2>
-
   <div class="cards">
     <!-- Card do Brasil -->
     <div class="card">
       <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rio de Janeiro, Brasil">
       <h3>Brasil</h3>
-      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <div class="card-info">
         <p><strong>Continente:</strong> América do Sul</p>
         <p><strong>Pratos típicos:</strong> Feijoada, Pão de Queijo, Moqueca</p>
-        <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('brasil')">Ver detalhes</button>
+        <button class="botao" onclick="abrirModal('brasil')">Ver detalhes</button>
       </div>
     </div>
 
@@ -68,10 +64,10 @@
     <div class="card">
       <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Templo japonês com cerejeiras em flor">
       <h3>Japão</h3>
-      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <div class="card-info">
         <p><strong>Continente:</strong> Ásia</p>
         <p><strong>Pratos típicos:</strong> Sushi, Ramen, Takoyaki</p>
-        <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('japao')">Ver detalhes</button>
+        <button class="botao" onclick="abrirModal('japao')">Ver detalhes</button>
       </div>
     </div>
 
@@ -79,27 +75,27 @@
     <div class="card">
       <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTI2XZ4CE_eD48Bzgp3b5Fys2tX2v3cy5Nmh7x_LLFzlUQCX5riWVbwvfVM7p5aWD6Z-Ia_DRVS5Rw9bjkEEPAtmVs&s=19" alt="Centro histórico de Cartagena, Colômbia">
       <h3>Colômbia</h3>
-      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <div class="card-info">
         <p><strong>Continente:</strong> América do Sul</p>
         <p><strong>Pratos típicos:</strong> Arepa, Bandeja Paisa, Ajiaco</p>
-        <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('colombia')">Ver detalhes</button>
+        <button class="botao" onclick="abrirModal('colombia')">Ver detalhes</button>
       </div>
     </div>
-
   </div>
 </main>
 
 <!-- CONTINENTES -->
-<main id="secao-viaje" class="container destinos">
-  <h2>Viaje sem sair de casa</h2>
+<main id="secao-continentes" class="container destinos">
+  <h2>Destinos por Continente</h2>
+  <div class="cards">
     <!-- Card da América -->
     <div class="card">
       <img src="https://images.unsplash.com/photo-1500930287596-c1ecaa373bb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="América">
       <h3>América</h3>
-      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <div class="card-info">
         <p><strong>Países:</strong> Brasil, EUA, Argentina, México</p>
         <p><strong>Pratos típicos:</strong> Feijoada, Hambúrguer, Tacos</p>
-        <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('america')">Viajar para</button>
+        <button class="botao" onclick="abrirModal('america')">Viajar para</button>
       </div>
     </div>
 
@@ -107,10 +103,10 @@
     <div class="card">
       <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="África">
       <h3>África</h3>
-      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <div class="card-info">
         <p><strong>Países:</strong> Egito, Marrocos, África do Sul</p>
         <p><strong>Pratos típicos:</strong> Tagine, Injera, Jollof Rice</p>
-        <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('africa')">Viajar para</button>
+        <button class="botao" onclick="abrirModal('africa')">Viajar para</button>
       </div>
     </div>
 
@@ -118,55 +114,57 @@
     <div class="card">
       <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ásia">
       <h3>Ásia</h3>
-      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <div class="card-info">
         <p><strong>Países:</strong> Japão, China, Índia, Tailândia</p>
         <p><strong>Pratos típicos:</strong> Sushi, Dim Sum, Curry</p>
-        <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('asia')">Viajar para</button>
+        <button class="botao" onclick="abrirModal('asia')">Viajar para</button>
+      </div>
     </div>
   </div>
 </main>
 
-<!-- CULTURA -->
+<!-- CULTURAS -->
 <main id="secao-culturas" class="container destinos">
   <h2>Conheça as Culturas</h2>
-    <!-- Card da Ocidental -->
+  <div class="cards">
+    <!-- Card Ocidental -->
     <div class="card">
       <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultura Ocidental">
       <h3>Ocidental</h3>
-      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <div class="card-info">
         <p><strong>Região:</strong> Europa e Américas</p>
         <p><strong>Pratos típicos:</strong> Pizza, Hambúrguer, Croissant</p>
-        <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('ocidental')">Me aventurar</button>
+        <button class="botao" onclick="abrirModal('ocidental')">Me aventurar</button>
       </div>
     </div>
 
-    <!-- Card da Chinesa -->
+    <!-- Card Chinesa -->
     <div class="card">
       <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultura Chinesa">
       <h3>Chinesa</h3>
-      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <div class="card-info">
         <p><strong>Região:</strong> Ásia Oriental</p>
         <p><strong>Pratos típicos:</strong> Dim Sum, Pato Pequim, Mapo Tofu</p>
-        <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('chinesa')">Me aventurar</button>
+        <button class="botao" onclick="abrirModal('chinesa')">Me aventurar</button>
       </div>
     </div>
 
-    <!-- Card da Indiana -->
+    <!-- Card Indiana -->
     <div class="card">
       <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultura Indiana">
       <h3>Indiana</h3>
-      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <div class="card-info">
         <p><strong>Região:</strong> Sul da Ásia</p>
         <p><strong>Pratos típicos:</strong> Curry, Naan, Biryani</p>
-        <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('indiana')">Me aventurar</button>
+        <button class="botao" onclick="abrirModal('indiana')">Me aventurar</button>
       </div>
     </div>
+  </div>
 </main>
 
 <!-- RECEITAS -->
 <main id="secao-receita" class="container destinos">
   <h2>Experimente</h2>
-
   <div class="cards">
     <div class="card"><h3>Pizza</h3></div>
     <div class="card"><h3>Sushi</h3></div>
