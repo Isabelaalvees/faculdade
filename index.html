@@ -18,12 +18,13 @@
       WanderEats
     </div>
 
-  <div class="menu">
-     <a id="menuPais" href="#" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
-     <a id="menuContinente" href="#" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
-     <a id="menuCultura" href="#" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
-     <a id="menuReceita" href="#" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
-  </div>
+    <div class="menu">
+      <a id="menuPais" href="#" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
+      <a id="menuContinente" href="#" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
+      <a id="menuCultura" href="#" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
+      <a id="menuReceita" href="#" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
+    </div>
+
     <div class="bandeiras">
       <img src="https://flagcdn.com/w40/br.png" onclick="mudarIdioma('pt')">
       <img src="https://flagcdn.com/w40/us.png" onclick="mudarIdioma('en')">
@@ -47,34 +48,45 @@
   </div>
 </section>
 
+<!-- DESTINOS -->
 <main id="secao-destinos" class="container destinos">
   <h2>Destinos Populares</h2>
-    <div class="card">
-    <h3>Brasil</h3>
-  </div>
 
-  <div class="card">
-    <h3>Japão</h3>
-  </div>
-
-  <div class="card">
-    <h3>Colômbia</h3>
+  <div class="cards">
+    <div class="card"><h3>Brasil</h3></div>
+    <div class="card"><h3>Japão</h3></div>
+    <div class="card"><h3>Colômbia</h3></div>
   </div>
 </main>
 
+<!-- VIAJE -->
 <main id="secao-viaje" class="container destinos">
   <h2>Viaje sem sair de casa</h2>
-  <div class="cards"></div>
+
+  <div class="cards">
+    <div class="card"><h3>Itália</h3></div>
+    <div class="card"><h3>França</h3></div>
+  </div>
 </main>
 
+<!-- CULTURA -->
 <main id="secao-culturas" class="container destinos">
   <h2>Conheça as Culturas</h2>
-  <div class="cards"></div>
+
+  <div class="cards">
+    <div class="card"><h3>Índia</h3></div>
+    <div class="card"><h3>China</h3></div>
+  </div>
 </main>
 
+<!-- RECEITAS -->
 <main id="secao-receita" class="container destinos">
   <h2>Experimente</h2>
-  <div class="cards"></div>
+
+  <div class="cards">
+    <div class="card"><h3>Pizza</h3></div>
+    <div class="card"><h3>Sushi</h3></div>
+  </div>
 </main>
 
 <footer>
