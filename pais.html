@@ -1,175 +1,50 @@
 <main id="secao-destinos">
   <div class="cards">
 
-<!-- Card do Brasil -->
-<div class="card">
-  <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rio de Janeiro, Brasil">
-  <h3>Brasil</h3>
-  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
-    <p><strong>Continente:</strong> América do Sul</p>
-    <p><strong>Pratos típicos:</strong> Feijoada, Pão de Queijo, Moqueca</p>
-    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('brasil')">Ver detalhes</button>
+    <!-- Card do Brasil -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80">
+      <h3>Brasil</h3>
+      <button class="botao" onclick="abrirModal('brasil')">Ver detalhes</button>
+    </div>
+
+    <!-- Card do Japão -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80">
+      <h3>Japão</h3>
+      <button class="botao" onclick="abrirModal('japao')">Ver detalhes</button>
+    </div>
+
+    <!-- Card da Colômbia -->
+    <div class="card">
+      <img src="https://i.imgur.com/TlT3KGr.jpeg">
+      <h3>Colômbia</h3>
+      <button class="botao" onclick="abrirModal('colombia')">Ver detalhes</button>
+    </div>
+
   </div>
-</div>
-
-<!-- Card do Japão -->
-<div class="card">
-  <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Templo japonês com cerejeiras em flor">
-  <h3>Japão</h3>
-  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
-    <p><strong>Continente:</strong> Ásia</p>
-    <p><strong>Pratos típicos:</strong> Sushi, Ramen, Takoyaki</p>
-    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('japao')">Ver detalhes</button>
-  </div>
-</div>
-
-<!-- Card da Colômbia -->
-<div class="card">
-  <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTI2XZ4CE_eD48Bzgp3b5Fys2tX2v3cy5Nmh7x_LLFzlUQCX5riWVbwvfVM7p5aWD6Z-Ia_DRVS5Rw9bjkEEPAtmVs&s=19" alt="Centro histórico de Cartagena, Colômbia">
-  <h3>Colômbia</h3>
-  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
-    <p><strong>Continente:</strong> América do Sul</p>
-    <p><strong>Pratos típicos:</strong> Arepa, Bandeja Paisa, Ajiaco</p>
-    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('colombia')">Ver detalhes</button>
-  </div>
-</div>
-
-
-<script src="script.js"></script>
-
-</div>
 </main>
 
-<!-- Modal do Brasil -->
+<!-- MODAIS -->
+
 <div id="modal-brasil" class="modal">
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <img src="https://i.imgur.com/bsnaHcv.png" alt="WanderEats"> WanderEats
-      </div>
-      <div class="menu">
-        <a href="#" onclick="event.preventDefault(); fecharModal('brasil'); carregarPagina('pais')">País</a>
-        <a href="#" onclick="event.preventDefault(); fecharModal('brasil'); carregarPagina('continente')">Continente</a>
-        <a href="#" onclick="event.preventDefault(); fecharModal('brasil'); carregarPagina('cultura')">Cultura</a>
-        <a href="#" onclick="event.preventDefault(); fecharModal('brasil'); carregarPagina('receita')">Receitas</a>
-      </div>
-      <div class="bandeiras">
-        <img src="https://flagcdn.com/w40/br.png" alt="Português" onclick="mudarIdioma('pt')">
-        <img src="https://flagcdn.com/w40/us.png" alt="English" onclick="mudarIdioma('en')">
-        <img src="https://flagcdn.com/w40/es.png" alt="Español" onclick="mudarIdioma('es')">
-      </div>
-    </div>
-  </header>
   <div class="modal-conteudo">
-    <h2 class="modal-titulo" data-i18n="br_titulo">Brasil</h2>
-    <h3 class="modal-subtitulo" data-i18n="sub_dados">Dados gerais</h3>
-    <div class="modal-bloco">
-      <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rio de Janeiro" class="modal-img-direita">
-      <p class="modal-texto" data-i18n="br_dados_txt">O Brasil é o maior país da América do Sul e o quinto maior do mundo, com uma população de mais de 200 milhões de habitantes. Brasília é a capital federal, enquanto São Paulo é a maior cidade. É conhecido pela sua diversidade cultural, pela floresta amazônica e pelas praias paradisíacas.</p>
-    </div>
-    <h3 class="modal-subtitulo" data-i18n="br_cristo_sub">Ponto turístico: Cristo Redentor</h3>
-    <div class="modal-bloco">
-      <img src="https://images.unsplash.com/photo-1564659907532-6b5f98c8e70f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cristo Redentor" class="modal-img-esquerda">
-      <p class="modal-texto" data-i18n="br_cristo_txt">Um dos símbolos mais reconhecidos do mundo, localizado no topo do Morro do Corcovado no Rio de Janeiro, com 38 metros de altura. É uma das Sete Maravilhas do Mundo Moderno e recebe milhões de visitantes todos os anos.</p>
-    </div>
-    <h3 class="modal-subtitulo" data-i18n="br_feij_sub">Culinária: Feijoada</h3>
-    <div class="modal-bloco">
-      <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Feijoada brasileira" class="modal-img-direita">
-      <p class="modal-texto" data-i18n="br_feij_txt">Prato nacional brasileiro, feito com feijão preto e diversos cortes de carne de porco, servido com arroz, couve refogada, farofa e laranja. Tradicional aos sábados, reúne família e amigos em torno da mesa.</p>
-    </div>
-    <div class="modal-voltar">
-      <button class="botao" onclick="fecharModal('brasil')">← Voltar</button>
-    </div>
+    <h2>Brasil</h2>
+    <p>Informações sobre o Brasil...</p>
+    <button onclick="fecharModal('brasil')">Fechar</button>
   </div>
 </div>
 
-<!-- Modal do Japão -->
 <div id="modal-japao" class="modal">
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <img src="https://i.imgur.com/bsnaHcv.png" alt="WanderEats"> WanderEats
-      </div>
-      <div class="menu">
-        <a href="#" onclick="event.preventDefault(); fecharModal('japao'); carregarPagina('pais')">País</a>
-        <a href="#" onclick="event.preventDefault(); fecharModal('japao'); carregarPagina('continente')">Continente</a>
-        <a href="#" onclick="event.preventDefault(); fecharModal('japao'); carregarPagina('cultura')">Cultura</a>
-        <a href="#" onclick="event.preventDefault(); fecharModal('japao'); carregarPagina('receita')">Receitas</a>
-      </div>
-      <div class="bandeiras">
-        <img src="https://flagcdn.com/w40/br.png" alt="Português" onclick="mudarIdioma('pt')">
-        <img src="https://flagcdn.com/w40/us.png" alt="English" onclick="mudarIdioma('en')">
-        <img src="https://flagcdn.com/w40/es.png" alt="Español" onclick="mudarIdioma('es')">
-      </div>
-    </div>
-  </header>
   <div class="modal-conteudo">
-    <h2 class="modal-titulo" data-i18n="jp_titulo">Japão</h2>
-    <h3 class="modal-subtitulo" data-i18n="sub_dados">Dados gerais</h3>
-    <div class="modal-bloco">
-      <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Japão" class="modal-img-direita">
-      <p class="modal-texto" data-i18n="jp_dados_txt">Localizado no leste da Ásia, o Japão é um arquipélago desenvolvido e montanhoso com cerca de 126 milhões de habitantes. Tóquio é a capital e maior cidade, compondo a área metropolitana mais populosa do mundo. É uma monarquia constitucional, potência industrial focada em tecnologia e robótica.</p>
-    </div>
-    <h3 class="modal-subtitulo" data-i18n="jp_fuji_sub">Ponto turístico: Monte Fuji</h3>
-    <div class="modal-bloco">
-      <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Monte Fuji" class="modal-img-esquerda">
-      <p class="modal-texto" data-i18n="jp_fuji_txt">É o pico mais alto e um dos símbolos mais icônicos do Japão. Localizado na ilha de Honshu, próximo a Tóquio, é um vulcão ativo, mas adormecido. É um local de grande beleza, atração turística para escaladas no verão e historicamente um lugar de adoração sagrada.</p>
-    </div>
-    <h3 class="modal-subtitulo" data-i18n="jp_tako_sub">Culinária: Takoyaki</h3>
-    <div class="modal-bloco">
-      <img src="https://images.unsplash.com/photo-1605478371399-6007314b120e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Takoyaki" class="modal-img-direita">
-      <p class="modal-texto" data-i18n="jp_tako_txt">Popular petisco japonês em formato de bolinhas, recheado com pedaços de polvo, gengibre e cebolinha. Originário de Osaka, é grelhado em chapas especiais, finalizado com molho takoyaki, maionese, aonori e katsuobushi.</p>
-    </div>
-    <div class="modal-voltar">
-      <button class="botao" onclick="fecharModal('japao')" data-i18n="btn_voltar">← Voltar</button>
-    </div>
+    <h2>Japão</h2>
+    <button onclick="fecharModal('japao')">Fechar</button>
   </div>
 </div>
 
-<!-- Modal da Colômbia -->
 <div id="modal-colombia" class="modal">
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <img src="https://i.imgur.com/bsnaHcv.png" alt="WanderEats"> WanderEats
-      </div>
-      <div class="menu">
-        <a href="#" onclick="event.preventDefault(); fecharModal('colombia'); carregarPagina('pais')">País</a>
-        <a href="#" onclick="event.preventDefault(); fecharModal('colombia'); carregarPagina('continente')">Continente</a>
-        <a href="#" onclick="event.preventDefault(); fecharModal('colombia'); carregarPagina('cultura')">Cultura</a>
-        <a href="#" onclick="event.preventDefault(); fecharModal('colombia'); carregarPagina('receita')">Receitas</a>
-      </div>
-      <div class="bandeiras">
-        <img src="https://flagcdn.com/w40/br.png" alt="Português" onclick="mudarIdioma('pt')">
-        <img src="https://flagcdn.com/w40/us.png" alt="English" onclick="mudarIdioma('en')">
-        <img src="https://flagcdn.com/w40/es.png" alt="Español" onclick="mudarIdioma('es')">
-      </div>
-    </div>
-  </header>
   <div class="modal-conteudo">
-    <h2 class="modal-titulo" data-i18n="cl_titulo">Colômbia</h2>
-    <h3 class="modal-subtitulo" data-i18n="sub_dados">Dados gerais</h3>
-    <div class="modal-bloco">
-      <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTI2XZ4CE_eD48Bzgp3b5Fys2tX2v3cy5Nmh7x_LLFzlUQCX5riWVbwvfVM7p5aWD6Z-Ia_DRVS5Rw9bjkEEPAtmVs&s=19" alt="Colômbia" class="modal-img-direita">
-      <p class="modal-texto" data-i18n="cl_dados_txt">A Colômbia é um país localizado no noroeste da América do Sul, conhecido por sua grande diversidade cultural, natural e gastronômica. Sua capital é Bogotá, um importante centro econômico, político e cultural do país.</p>
-    </div>
-    <h3 class="modal-subtitulo" data-i18n="cl_cart_sub">Ponto turístico: Cartagena</h3>
-    <div class="modal-bloco">
-      <img src="https://i.imgur.com/TlT3KGr.jpeg" alt="Cartagena" class="modal-img-esquerda">
-      <p class="modal-texto" data-i18n="cl_col_txt">O território colombiano possui paisagens muito variadas, que incluem praias no Mar do Caribe, montanhas da Cordilheira dos Andes, florestas tropicais e cidades cheias de história. Além disso, o país é mundialmente conhecido pela produção de café de alta qualidade, considerado um dos melhores do mundo.</p>
-    </div>
-    <h3 class="modal-subtitulo" data-i18n="cl_cult_sub">cultura - Melhor época para viajar para a Colômbia</h3>
-    <div class="modal-bloco">
-      <img src="https://i.imgur.com/RyN6QEe.jpeg" alt="Festa Colômbia" class="modal-img-direita">
-      <p class="modal-texto" data-i18n="cl_colo_txt">A Colômbia pode ser visitada em qualquer época do ano, pois possui clima tropical com temperaturas relativamente estáveis. No entanto, algumas épocas podem ser mais vantajosas! Sendo as principais épocas para festas: Fevereiro (Carnaval de Barranquilla) e Agosto (Feira das Flores em Medellín).</p>
-    </div>
-    <h3 class="modal-subtitulo" data-i18n="cl_culi_sub">Culinária da Colômbia</h3>
-    <div class="modal-bloco">
-      <img src="https://i.imgur.com/ijcjMOF.jpeg" alt="Bandeja Paisa" class="modal-img-esquerda">
-      <p class="modal-texto" data-i18n="cl_culi_txt">A culinária colombiana é resultado da mistura de culturas indígenas, espanholas e africanas. Os pratos costumam usar ingredientes como milho, arroz, feijão, carnes, batata, banana-da-terra e frutas tropicais. Entre as comidas mais conhecidas estão: Bandeja Paisa, Arepas e Ajiaco.</p>
-    </div>
-    <div class="modal-voltar">
-      <button class="botao" onclick="fecharModal('colombia')">← Voltar</button>
-    </div>
+    <h2>Colômbia</h2>
+    <button onclick="fecharModal('colombia')">Fechar</button>
   </div>
 </div>
