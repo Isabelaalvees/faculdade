@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<link rel="stylesheet" href="estilo.css">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WanderEats</title>
+
+  <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
 <header>
   <div class="header-container">
     <div class="logo">
       <img src="https://i.imgur.com/bsnaHcv.png" alt="WanderEats">
       WanderEats
     </div>
-    <div class="menu">
-      <a href="#" id="menuPais" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
-      <a href="#" id="menuContinente" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
-      <a href="#" id="menuCultura" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
-      <a href="#" id="menuReceita" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
-    </div>
+
+  <div class="menu">
+     <a id="menuPais" href="#" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
+     <a id="menuContinente" href="#" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
+     <a id="menuCultura" href="#" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
+     <a id="menuReceita" href="#" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
+  </div>
     <div class="bandeiras">
-      <img src="https://flagcdn.com/w40/br.png" alt="Trocar para português" onclick="mudarIdioma('pt')">
-      <img src="https://flagcdn.com/w40/us.png" alt="Change to english" onclick="mudarIdioma('en')">
-      <img src="https://flagcdn.com/w40/es.png" alt="Cambiar a español" onclick="mudarIdioma('es')">
+      <img src="https://flagcdn.com/w40/br.png" onclick="mudarIdioma('pt')">
+      <img src="https://flagcdn.com/w40/us.png" onclick="mudarIdioma('en')">
+      <img src="https://flagcdn.com/w40/es.png" onclick="mudarIdioma('es')">
     </div>
   </div>
 </header>
-<body>
+
 <section class="hero">
   <div class="hero-conteudo">
     <div class="hero-texto">
       <h1 id="titulo">Para onde deseja viajar?</h1>
+
       <input id="busca" type="text" placeholder="Digite um país"
         onkeypress="if(event.key === 'Enter') buscar()"
         oninput="verificarBusca()">
+
       <br>
       <button id="botaoBusca" class="botao" onclick="buscar()">Pesquisar</button>
     </div>
@@ -36,38 +49,33 @@
 
 <main id="secao-destinos" class="container destinos">
   <h2>Destinos Populares</h2>
-  <div class="cards">
-    
-  </div>
+  <div class="cards"></div>
 </main>
 
 <main id="secao-viaje" class="container destinos">
   <h2>Viaje sem sair de casa</h2>
-  <div class="cards">
-    
-  </div>
+  <div class="cards"></div>
 </main>
 
 <main id="secao-culturas" class="container destinos">
-  <h2>Conheças as Culturas</h2>
-  <div class="cards">
-    
-  </div>
+  <h2>Conheça as Culturas</h2>
+  <div class="cards"></div>
 </main>
 
 <main id="secao-receita" class="container destinos">
-  <h2>Explimente</h2>
-  <div class="cards">
-    
-  </div>
+  <h2>Experimente</h2>
+  <div class="cards"></div>
 </main>
+
 <footer>
   🍴 WanderEats — UNIP - Ciências da Computação
 </footer>
 
-<button id="btnTopo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⌂</button>
-
+<button id="btnTopo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+  ⌂
+</button>
 
 <script src="script.js"></script>
+
 </body>
 </html>
