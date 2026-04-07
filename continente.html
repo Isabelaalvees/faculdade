@@ -1,191 +1,225 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>WanderEats</title>
-<link rel="stylesheet" href="estilo.css">
-</head>
-<body>
-<div class="container">
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="description" content="WanderEats: Venha viajar com a gente">
-<title>WanderEats</title>
+<!-- Card da América -->
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1500930287596-c1ecaa373bb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="América">
+  <h3>América</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>Países:</strong> Brasil, EUA, Argentina, México</p>
+    <p><strong>Pratos típicos:</strong> Feijoada, Hambúrguer, Tacos</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('america')">Viajar para</button>
+  </div>
+</div>
 
+<!-- Card da África -->
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="África">
+  <h3>África</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>Países:</strong> Egito, Marrocos, África do Sul</p>
+    <p><strong>Pratos típicos:</strong> Tagine, Injera, Jollof Rice</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('africa')">Viajar para</button>
+  </div>
+</div>
 
+<!-- Card da Ásia -->
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ásia">
+  <h3>Ásia</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>Países:</strong> Japão, China, Índia, Tailândia</p>
+    <p><strong>Pratos típicos:</strong> Sushi, Dim Sum, Curry</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('asia')">Viajar para</button>
+  </div>
+</div>
 
-</head>
-<body>
+<!-- Card da Europa -->
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Europa">
+  <h3>Europa</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>Países:</strong> França, Itália, Espanha, Portugal</p>
+    <p><strong>Pratos típicos:</strong> Croissant, Pizza, Paella</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('europa')">Viajar para</button>
+  </div>
+</div>
 
-<header>
-  <div class="header-container">
-    <div class="logo">
-      <img src="https://i.imgur.com/bsnaHcv.png" alt="WanderEats">
-      WanderEats
+<!-- Card da Oceania -->
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Oceania">
+  <h3>Oceania</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>Países:</strong> Austrália, Nova Zelândia, Fiji</p>
+    <p><strong>Pratos típicos:</strong> Meat Pie, Pavlova, Vegemite</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('oceania')">Viajar para</button>
+  </div>
+</div>
+
+<!-- Card da Antártica -->
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Antártica">
+  <h3>Antártica</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>Característica:</strong> Continente gelado</p>
+    <p><strong>Curiosidade:</strong> Sem população permanente</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('antartica')">Viajar para</button>
+  </div>
+</div>
+
+<!-- Modal América -->
+<div id="modal-america" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">América</h2>
+    <h3 class="modal-subtitulo">Sobre o continente</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1500930287596-c1ecaa373bb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="América">
+      <p class="modal-texto">O continente americano é o maior em extensão norte-sul, indo do Ártico à Antártica. Dividido em América do Norte, Central e do Sul, abriga diversas culturas, idiomas e paisagens, desde florestas tropicais até desertos e geleiras.</p>
     </div>
-    <div class="menu">
-      <a href="#" id="menuPais" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
-      <a href="#" id="menuContinente" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
-      <a href="#" id="menuCultura" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
-      <a href="#" id="menuReceita" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
+    <h3 class="modal-subtitulo">Destaque: Grand Canyon</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-esquerda" alt="Grand Canyon">
+      <p class="modal-texto">Localizado no Arizona, EUA, o Grand Canyon é uma das maravilhas naturais do mundo. Com 446 km de extensão e até 1.800 metros de profundidade, é um dos destinos mais visitados das Américas.</p>
     </div>
-    <div class="bandeiras">
-      <img src="https://flagcdn.com/w40/br.png" alt="Trocar para português" onclick="mudarIdioma('pt')">
-      <img src="https://flagcdn.com/w40/us.png" alt="Change to english" onclick="mudarIdioma('en')">
-      <img src="https://flagcdn.com/w40/es.png" alt="Cambiar a español" onclick="mudarIdioma('es')">
+    <h3 class="modal-subtitulo">Culinária: Tacos</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Tacos">
+      <p class="modal-texto">Originário do México, o taco é uma tortilha de milho recheada com carne, frango ou vegetais, acompanhada de coentro, cebola, limão e molho picante. É um dos pratos mais populares das Américas.</p>
     </div>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="hero-conteudo">
-    <div class="hero-texto">
-      <h1 id="titulo">Para onde deseja viajar?</h1>
-      <input id="busca" type="text" placeholder="Digite um país"
-        onkeypress="if(event.key === 'Enter') buscar()"
-        oninput="verificarBusca()">
-      <br>
-      <button id="botaoBusca" class="botao" onclick="buscar()">Pesquisar</button>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('america')">← Voltar</button>
     </div>
   </div>
-</section>
+</div>
 
-<main id="secao-destinos" class="container destinos">
-  <h2>Destinos Populares</h2>
-  <div class="cards">
-    
+<!-- Modal África -->
+<div id="modal-africa" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">África</h2>
+    <h3 class="modal-subtitulo">Sobre o continente</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="África">
+      <p class="modal-texto">A África é o segundo maior continente do mundo, com 54 países e mais de 1,4 bilhão de habitantes. É o berço da humanidade, com uma diversidade cultural, linguística e natural sem igual, abrigando savanas, desertos, selvas e montanhas nevadas.</p>
+    </div>
+    <h3 class="modal-subtitulo">Destaque: Serengeti</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-esquerda" alt="Serengeti">
+      <p class="modal-texto">O Serengeti, na Tanzânia, é um dos ecossistemas mais famosos do mundo. Lar da maior migração de animais do planeta, com mais de 1,5 milhão de gnus, zebras e gazelas cruzando as planícies anualmente.</p>
+    </div>
+    <h3 class="modal-subtitulo">Culinária: Tagine</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Tagine">
+      <p class="modal-texto">O Tagine é um prato típico do Marrocos, cozido lentamente em um recipiente de barro cônico. Feito com carne de cordeiro ou frango, especiarias aromáticas, frutas secas e ervas, é servido com pão árabe ou cuscuz.</p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('africa')">← Voltar</button>
+    </div>
   </div>
-</main>
+</div>
 
-<main id="secao-viaje" class="container destinos">
-  <h2>Viaje sem sair de casa</h2>
-  <div class="cards">
-    
+<!-- Modal Ásia -->
+<div id="modal-asia" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Ásia</h2>
+    <h3 class="modal-subtitulo">Sobre o continente</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Ásia">
+      <p class="modal-texto">A Ásia é o maior e mais populoso continente do mundo, com mais de 4,7 bilhões de habitantes. Abriga civilizações milenares, as maiores economias do mundo e uma diversidade cultural extraordinária, do Mediterrâneo ao Pacífico.</p>
+    </div>
+    <h3 class="modal-subtitulo">Destaque: Grande Muralha da China</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-esquerda" alt="Grande Muralha">
+      <p class="modal-texto">Com mais de 21.000 km de extensão, a Grande Muralha da China é uma das maiores obras de engenharia da história humana. Construída ao longo de séculos para proteger o império, hoje é Patrimônio Mundial da UNESCO.</p>
+    </div>
+    <h3 class="modal-subtitulo">Culinária: Dim Sum</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Dim Sum">
+      <p class="modal-texto">O Dim Sum é uma tradição culinária chinesa de pequenas porções servidas em cestos de bambu a vapor. Inclui bolinhos recheados, rolinhos primavera e camarões, acompanhados de chá. É muito mais que comida — é uma experiência social.</p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('asia')">← Voltar</button>
+    </div>
   </div>
-</main>
+</div>
 
-<main id="secao-culturas" class="container destinos">
-  <h2>Conheças as Culturas</h2>
-  <div class="cards">
-    
+<!-- Modal Europa -->
+<div id="modal-europa" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Europa</h2>
+    <h3 class="modal-subtitulo">Sobre o continente</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Europa">
+      <p class="modal-texto">A Europa é o berço da civilização ocidental, com mais de 700 milhões de habitantes em 44 países. Rica em história, arte e arquitetura, concentra alguns dos destinos turísticos mais visitados do mundo, de Paris a Roma, de Lisboa a Praga.</p>
+    </div>
+    <h3 class="modal-subtitulo">Destaque: Torre Eiffel</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-esquerda" alt="Torre Eiffel">
+      <p class="modal-texto">Construída em 1889 em Paris, a Torre Eiffel é o monumento mais visitado do mundo, com cerca de 7 milhões de visitantes por ano. Com 330 metros de altura, é símbolo da França e da engenharia moderna.</p>
+    </div>
+    <h3 class="modal-subtitulo">Culinária: Pizza</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Pizza">
+      <p class="modal-texto">Originária de Nápoles, Itália, a pizza é hoje um dos pratos mais populares do mundo. A versão napolitana tradicional, com massa fina, molho de tomate San Marzano e mozzarella de búfala, é Patrimônio Cultural Imaterial da UNESCO.</p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('europa')">← Voltar</button>
+    </div>
   </div>
-</main>
+</div>
 
-<main id="secao-receita" class="container destinos">
-  <h2>Explimente</h2>
-  <div class="cards">
-    
+<!-- Modal Oceania -->
+<div id="modal-oceania" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Oceania</h2>
+    <h3 class="modal-subtitulo">Sobre o continente</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Oceania">
+      <p class="modal-texto">A Oceania é o menor continente do mundo, composto por Austrália, Nova Zelândia e milhares de ilhas do Pacífico. Com fauna e flora únicas, paisagens deslumbrantes e culturas indígenas riquíssimas, é um destino de sonho.</p>
+    </div>
+    <h3 class="modal-subtitulo">Destaque: Grande Barreira de Coral</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-esquerda" alt="Grande Barreira de Coral">
+      <p class="modal-texto">A Grande Barreira de Coral, na Austrália, é o maior sistema de recifes de coral do mundo, com mais de 2.300 km. Abriga milhares de espécies marinhas e é Patrimônio Mundial da UNESCO, visível até do espaço.</p>
+    </div>
+    <h3 class="modal-subtitulo">Culinária: Pavlova</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Pavlova">
+      <p class="modal-texto">A Pavlova é uma sobremesa icônica da Oceania, feita de merengue crocante por fora e macio por dentro, coberta com chantilly e frutas frescas. Disputada entre Austrália e Nova Zelândia, é presença obrigatória nas festas da região.</p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('oceania')">← Voltar</button>
+    </div>
   </div>
-</main>
-<footer>
-  🍴 WanderEats — UNIP - Ciências da Computação
-</footer>
+</div>
 
-<button id="btnTopo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⌂</button>
+<!-- Modal Antártica -->
+<div id="modal-antartica" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Antártica</h2>
+    <h3 class="modal-subtitulo">Sobre o continente</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Antártica">
+      <p class="modal-texto">A Antártica é o continente mais frio, seco e ventoso do planeta. Sem população permanente, abriga apenas estações científicas de diversos países. Cobre cerca de 14 milhões de km² e contém 70% da água doce do planeta em forma de gelo.</p>
+    </div>
+    <h3 class="modal-subtitulo">Destaque: Pinguins-imperadores</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1551986782-d0169b3f8fa7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-esquerda" alt="Pinguins">
+      <p class="modal-texto">Os pinguins-imperadores são os maiores pinguins do mundo e símbolo da Antártica. Sobrevivem ao inverno polar em colônias, incubando seus ovos em temperaturas de até -60°C. Uma das histórias de sobrevivência mais fascinantes da natureza.</p>
+    </div>
+    <h3 class="modal-subtitulo">Curiosidade: Pesquisa científica</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Pesquisa">
+      <p class="modal-texto">A Antártica é governada pelo Tratado Antártico de 1959, que a reserva exclusivamente para fins pacíficos e científicos. Mais de 70 estações de pesquisa de 30 países estudam clima, astronomia, geologia e vida marinha nesse continente único.</p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('antartica')">← Voltar</button>
+    </div>
+  </div>
+</div>
 
 <script>
-function carregarPagina(pagina) {
-  document.getElementById('secao-destinos').style.display = 'none';
-  document.getElementById('secao-viaje').style.display = 'none';
-  document.getElementById('secao-culturas').style.display = 'none';
-  document.getElementById('secao-receita').style.display = 'none';
-
-  if (pagina === 'pais') {
-    document.getElementById('secao-destinos').style.display = 'block';
-  } else if (pagina === 'continente') {
-    document.getElementById('secao-viaje').style.display = 'block';
-  } else if (pagina === 'cultura') {
-    document.getElementById('secao-culturas').style.display = 'block';
-    else if (pagina === 'cultura') {
-    document.getElementById('secao-receita').style.display = 'block';
-  }
-}}
-
-function mudarIdioma(idioma) {
-  localStorage.setItem("idioma", idioma);
-  let textos = {
-    pt: { titulo: "Para onde deseja viajar?", placeholder: "Digite um país", botao: "Pesquisar", menuPais: "País", menuContinente: "Continente", menuCultura: "Cultura", menuReceita: "Ganancia" },
-    en: { titulo: "Where do you want to travel?", placeholder: "Type a country", botao: "Search", menuPais: "Country", menuContinente: "Continent", menuCultura: "Culture", menuReceita: "Revenue"},
-    es: { titulo: "¿A dónde quieres viajar?", placeholder: "Escriba un país", botao: "Buscar", menuPais: "País", menuContinente: "Continente", menuCultura: "Cultura", menuReceita: "Receita" }
-  };
-  let t = textos[idioma];
-  document.getElementById('titulo').textContent = t.titulo;
-  document.getElementById('busca').placeholder = t.placeholder;
-  document.getElementById('botaoBusca').textContent = t.botao;
-  document.getElementById('menuPais').textContent = t.menuPais;
-  document.getElementById('menuContinente').textContent = t.menuContinente;
-  document.getElementById('menuCultura').textContent = t.menuCultura;
-  document.getElementById('menuReceita').textContent = t.menuCultura;
+function abrirModal(id) {
+  document.getElementById('modal-' + id).style.display = 'block';
+  window.scrollTo(0, 0);
 }
-
-function removerAcentos(texto) {
-  return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
-
-function buscar() {
-  let texto = removerAcentos(document.getElementById('busca').value.toLowerCase());
-
-  document.getElementById('secao-destinos').style.display = 'block';
-  document.getElementById('secao-viaje').style.display = 'block';
-  document.getElementById('secao-culturas').style.display = 'block';
-  document.getElementById('secao-receita').style.display = 'block';
-
-  let cards = document.querySelectorAll('.card');
-  cards.forEach(function(card) {
-    let nome = removerAcentos(card.querySelector('h3').textContent.toLowerCase());
-    if (nome.includes(texto)) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-
-  ['secao-destinos', 'secao-viaje', 'secao-culturas'].forEach(function(secaoId) {
-    let secao = document.getElementById(secaoId);
-    let cardsVisiveis = secao.querySelectorAll('.card[style*="block"]');
-    secao.style.display = cardsVisiveis.length > 0 ? 'block' : 'none';
-  });
-}
-
-function verificarBusca() {
-  let texto = document.getElementById('busca').value;
-  if (texto === '') {
-    document.getElementById('secao-destinos').style.display = 'block';
-    document.getElementById('secao-viaje').style.display = 'block';
-    document.getElementById('secao-culturas').style.display = 'block';
-    document.getElementById('secao-receita').style.display = 'block';
-    document.querySelectorAll('.card').forEach(function(card) {
-      card.style.display = 'block';
-    });
-  }
-}
-
-window.onscroll = function() {
-  let btn = document.getElementById('btnTopo');
-  if (document.documentElement.scrollTop > 300) {
-    btn.style.display = 'block';
-  } else {
-    btn.style.display = 'none';
-  }
-};
-
-function alternarIdioma() {
-    idiomaAtual = (idiomaAtual === "pt") ? "en" : "pt";
-    var elementos = document.querySelectorAll('[data-i18n]');
-
-    for (var i = 0; i < elementos.length; i++) {
-      var chave = elementos[i].getAttribute('data-i18n');
-      if (traducoes[idiomaAtual][chave]) {
-        elementos[i].innerText = traducoes[idiomaAtual][chave];
-    }
-  }
+function fecharModal(id) {
+  document.getElementById('modal-' + id).style.display = 'none';
 }
 </script>
-
-</body>
-</html>
-</div>
-</body>
-</html>
