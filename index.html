@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,172 +11,50 @@
 
 <header>
   <div class="header-container">
+
     <div class="logo">
-      <img src="https://i.imgur.com/bsnaHcv.png" alt="WanderEats">
+      <img src="https://i.imgur.com/bsnaHcv.png" alt="Logo WanderEats">
       WanderEats
     </div>
 
-    <div class="menu">
-      <a id="menuPais" href="#" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
-      <a id="menuContinente" href="#" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
-      <a id="menuCultura" href="#" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
-      <a id="menuReceita" href="#" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
-    </div>
+    <nav class="menu">
+      <a href="#" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
+      <a href="#" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
+      <a href="#" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
+      <a href="#" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
+    </nav>
 
-    <div class="bandeiras">
-      <img src="https://flagcdn.com/w40/br.png" onclick="mudarIdioma('pt')">
-      <img src="https://flagcdn.com/w40/us.png" onclick="mudarIdioma('en')">
-      <img src="https://flagcdn.com/w40/es.png" onclick="mudarIdioma('es')">
-    </div>
   </div>
 </header>
 
+<!-- HERO / BUSCA -->
 <section class="hero">
   <div class="hero-conteudo">
-    <div class="hero-texto">
-      <h1 id="titulo">Para onde deseja viajar?</h1>
-      <input id="busca" type="text" placeholder="Digite um país"
-        onkeypress="if(event.key === 'Enter') buscar()"
-        oninput="verificarBusca()">
-      <br>
-      <button id="botaoBusca" class="botao" onclick="buscar()">Pesquisar</button>
-    </div>
+    <h1 id="titulo">Para onde deseja viajar?</h1>
+
+    <input 
+      id="busca" 
+      type="text"
+      placeholder="Digite um país..."
+      onkeypress="if(event.key === 'Enter') buscar()"
+      oninput="verificarBusca()"
+    >
+
+    <button class="botao" onclick="buscar()">Pesquisar</button>
   </div>
 </section>
 
-<!-- DESTINOS POPULARES -->
-<main id="secao-destinos" class="container destinos">
-  <h2>Destinos Populares</h2>
-  <div class="cards">
-    <!-- Card do Brasil -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rio de Janeiro, Brasil">
-      <h3>Brasil</h3>
-      <div class="card-info">
-        <p><strong>Continente:</strong> América do Sul</p>
-        <p><strong>Pratos típicos:</strong> Feijoada, Pão de Queijo, Moqueca</p>
-        <button class="botao" onclick="abrirModal('brasil')">Ver detalhes</button>
-      </div>
-    </div>
+<!-- CONTEÚDO DINÂMICO (PÁGINAS) -->
+<main id="conteudo"></main>
 
-    <!-- Card do Japão -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Templo japonês com cerejeiras em flor">
-      <h3>Japão</h3>
-      <div class="card-info">
-        <p><strong>Continente:</strong> Ásia</p>
-        <p><strong>Pratos típicos:</strong> Sushi, Ramen, Takoyaki</p>
-        <button class="botao" onclick="abrirModal('japao')">Ver detalhes</button>
-      </div>
-    </div>
-
-    <!-- Card da Colômbia -->
-    <div class="card">
-      <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTI2XZ4CE_eD48Bzgp3b5Fys2tX2v3cy5Nmh7x_LLFzlUQCX5riWVbwvfVM7p5aWD6Z-Ia_DRVS5Rw9bjkEEPAtmVs&s=19" alt="Centro histórico de Cartagena, Colômbia">
-      <h3>Colômbia</h3>
-      <div class="card-info">
-        <p><strong>Continente:</strong> América do Sul</p>
-        <p><strong>Pratos típicos:</strong> Arepa, Bandeja Paisa, Ajiaco</p>
-        <button class="botao" onclick="abrirModal('colombia')">Ver detalhes</button>
-      </div>
-    </div>
-  </div>
-</main>
-
-<!-- CONTINENTES -->
-<main id="secao-continentes" class="container destinos">
-  <h2>Destinos por Continente</h2>
-  <div class="cards">
-    <!-- Card da América -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1500930287596-c1ecaa373bb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="América">
-      <h3>América</h3>
-      <div class="card-info">
-        <p><strong>Países:</strong> Brasil, EUA, Argentina, México</p>
-        <p><strong>Pratos típicos:</strong> Feijoada, Hambúrguer, Tacos</p>
-        <button class="botao" onclick="abrirModal('america')">Viajar para</button>
-      </div>
-    </div>
-
-    <!-- Card da África -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="África">
-      <h3>África</h3>
-      <div class="card-info">
-        <p><strong>Países:</strong> Egito, Marrocos, África do Sul</p>
-        <p><strong>Pratos típicos:</strong> Tagine, Injera, Jollof Rice</p>
-        <button class="botao" onclick="abrirModal('africa')">Viajar para</button>
-      </div>
-    </div>
-
-    <!-- Card da Ásia -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ásia">
-      <h3>Ásia</h3>
-      <div class="card-info">
-        <p><strong>Países:</strong> Japão, China, Índia, Tailândia</p>
-        <p><strong>Pratos típicos:</strong> Sushi, Dim Sum, Curry</p>
-        <button class="botao" onclick="abrirModal('asia')">Viajar para</button>
-      </div>
-    </div>
-  </div>
-</main>
-
-<!-- CULTURAS -->
-<main id="secao-culturas" class="container destinos">
-  <h2>Conheça as Culturas</h2>
-  <div class="cards">
-    <!-- Card Ocidental -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultura Ocidental">
-      <h3>Ocidental</h3>
-      <div class="card-info">
-        <p><strong>Região:</strong> Europa e Américas</p>
-        <p><strong>Pratos típicos:</strong> Pizza, Hambúrguer, Croissant</p>
-        <button class="botao" onclick="abrirModal('ocidental')">Me aventurar</button>
-      </div>
-    </div>
-
-    <!-- Card Chinesa -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultura Chinesa">
-      <h3>Chinesa</h3>
-      <div class="card-info">
-        <p><strong>Região:</strong> Ásia Oriental</p>
-        <p><strong>Pratos típicos:</strong> Dim Sum, Pato Pequim, Mapo Tofu</p>
-        <button class="botao" onclick="abrirModal('chinesa')">Me aventurar</button>
-      </div>
-    </div>
-
-    <!-- Card Indiana -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultura Indiana">
-      <h3>Indiana</h3>
-      <div class="card-info">
-        <p><strong>Região:</strong> Sul da Ásia</p>
-        <p><strong>Pratos típicos:</strong> Curry, Naan, Biryani</p>
-        <button class="botao" onclick="abrirModal('indiana')">Me aventurar</button>
-      </div>
-    </div>
-  </div>
-</main>
-
-<!-- RECEITAS -->
-<main id="secao-receita" class="container destinos">
-  <h2>Experimente</h2>
-  <div class="cards">
-    <div class="card"><h3>Pizza</h3></div>
-    <div class="card"><h3>Sushi</h3></div>
-  </div>
-</main>
+<!-- BOTÃO VOLTAR AO TOPO -->
+<button id="btnTopo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+  ↑
+</button>
 
 <footer>
-  🍴 WanderEats — UNIP - Ciências da Computação
+  🍴 WanderEats — UNIP
 </footer>
-
-<button id="btnTopo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-  ⌂
-</button>
 
 <script src="script.js"></script>
 

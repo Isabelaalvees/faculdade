@@ -3,12 +3,11 @@
 // ==========================
 function carregarPagina(pagina) {
   const secoes = [
-    'secao-destinos',
-    'secao-viaje',
+   'secao-destinos',
+    'secao-continentes', // corrigido
     'secao-culturas',
     'secao-receita'
   ];
-
   secoes.forEach(id => {
     let el = document.getElementById(id);
     if (el) el.style.display = 'none';
@@ -103,7 +102,7 @@ function buscar() {
 
   const secoes = [
     'secao-destinos',
-    'secao-viaje',
+    'secao-continentes',
     'secao-culturas',
     'secao-receita'
   ];
@@ -147,7 +146,7 @@ function verificarBusca() {
   if (input.value === '') {
     const secoes = [
       'secao-destinos',
-      'secao-viaje',
+      'secao-continentes',
       'secao-culturas',
       'secao-receita'
     ];
