@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,52 +12,89 @@
 
 <header>
   <div class="header-container">
-
     <div class="logo">
-      <img src="https://i.imgur.com/bsnaHcv.png" alt="Logo WanderEats">
-      WanderEats
+      <img src="https://i.imgur.com/bsnaHcv.png" alt="WanderEats"> WanderEats
     </div>
-
     <nav class="menu">
-      <a href="#" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
-      <a href="#" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
-      <a href="#" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
-      <a href="#" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
+      <a href="#" onclick="event.preventDefault(); carregarPagina('secao-destinos')">País</a>
+      <a href="#" onclick="event.preventDefault(); carregarPagina('secao-continentes')">Continente</a>
+      <a href="#" onclick="event.preventDefault(); carregarPagina('secao-culturas')">Cultura</a>
+      <a href="#" onclick="event.preventDefault(); carregarPagina('secao-receita')">Receitas</a>
     </nav>
-
+    <div class="bandeiras">
+      <img src="https://flagcdn.com/w40/br.png" onclick="mudarIdioma('pt')">
+      <img src="https://flagcdn.com/w40/us.png" onclick="mudarIdioma('en')">
+      <img src="https://flagcdn.com/w40/es.png" onclick="mudarIdioma('es')">
+    </div>
   </div>
 </header>
 
-<!-- HERO / BUSCA -->
 <section class="hero">
   <div class="hero-conteudo">
     <h1 id="titulo">Para onde deseja viajar?</h1>
-
-    <input 
-      id="busca" 
-      type="text"
-      placeholder="Digite um país..."
-      onkeypress="if(event.key === 'Enter') buscar()"
-      oninput="verificarBusca()"
-    >
-
-    <button class="botao" onclick="buscar()">Pesquisar</button>
+    <input id="busca" type="text" placeholder="Digite um país"
+           onkeypress="if(event.key === 'Enter') buscar()"
+           oninput="verificarBusca()">
+    <button id="botaoBusca" onclick="buscar()">Pesquisar</button>
   </div>
 </section>
 
-<!-- CONTEÚDO DINÂMICO (PÁGINAS) -->
-<main id="conteudo"></main>
+<!-- DESTINOS POPULARES -->
+<section id="secao-destinos" class="container destinos">
+  <h2>Destinos Populares</h2>
+  <div class="cards">
+    <!-- Card exemplo -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Brasil">
+      <h3>Brasil</h3>
+      <p><strong>Continente:</strong> América do Sul</p>
+      <p><strong>Pratos típicos:</strong> Feijoada, Pão de Queijo, Moqueca</p>
+      <button class="botao" onclick="abrirModal('brasil')">Ver detalhes</button>
+    </div>
+  </div>
+</section>
 
-<!-- BOTÃO VOLTAR AO TOPO -->
-<button id="btnTopo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-  ↑
-</button>
+<!-- CONTINENTES -->
+<section id="secao-continentes" class="container destinos">
+  <h2>Destinos por Continente</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1500930287596-c1ecaa373bb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="América">
+      <h3>América</h3>
+      <p><strong>Países:</strong> Brasil, EUA, Argentina, México</p>
+      <button class="botao" onclick="abrirModal('america')">Viajar para</button>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURAS -->
+<section id="secao-culturas" class="container destinos">
+  <h2>Conheça as Culturas</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultura Ocidental">
+      <h3>Ocidental</h3>
+      <p><strong>Região:</strong> Europa e Américas</p>
+      <button class="botao" onclick="abrirModal('ocidental')">Me aventurar</button>
+    </div>
+  </div>
+</section>
+
+<!-- RECEITAS -->
+<section id="secao-receita" class="container destinos">
+  <h2>Experimente</h2>
+  <div class="cards">
+    <div class="card"><h3>Pizza</h3></div>
+    <div class="card"><h3>Sushi</h3></div>
+  </div>
+</section>
 
 <footer>
-  🍴 WanderEats — UNIP
+  🍴 WanderEats — UNIP - Ciências da Computação
 </footer>
 
-<script src="script.js"></script>
+<button id="btnTopo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⌂</button>
 
+<script src="script.js"></script>
 </body>
 </html>
