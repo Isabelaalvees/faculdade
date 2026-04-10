@@ -200,16 +200,16 @@ window.onload = function () {
     fetch('continente.html')
     .then(response => response.text())
     .then(html => {
-      document.getElementById('conteudo-continentes').innerHTML = html;
+      document.getElementById('conteudo-continentes').innerHTML = '<div class="cards">' + html + '</div>';;
     });
-    fetch('cultura.html')
+   fetch('cultura.html')
     .then(response => response.text())
     .then(html => {
-      document.getElementById('conteudo-culturas').innerHTML = html;
-    });
+    document.getElementById('conteudo-culturas').innerHTML = '<div class="cards">' + html + '</div>';
+  });
     fetch('receita.html')
     .then(response => response.text())
     .then(html => {
-      document.getElementById('conteudo-receita').innerHTML = html;
+      document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + html + '</div>';
     });
 };
