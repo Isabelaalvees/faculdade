@@ -192,4 +192,9 @@ function fecharModal(id) {
 window.onload = function () {
   let idiomaSalvo = localStorage.getItem("idioma") || "pt";
   mudarIdioma(idiomaSalvo);
+  fetch('pais.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('conteudo-pais').innerHTML = html;
+    });
 };
