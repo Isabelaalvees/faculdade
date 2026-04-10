@@ -4,7 +4,7 @@
 function carregarPagina(pagina) {
   const secoes = [
    'secao-destinos',
-    'secao-continentes', // corrigido
+    'secao-continentes', 
     'secao-culturas',
     'secao-receita'
   ];
@@ -196,5 +196,20 @@ window.onload = function () {
     .then(response => response.text())
     .then(html => {
       document.getElementById('conteudo-pais').innerHTML = html;
+    });
+    fetch('continente.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('conteudo-continentes').innerHTML = html;
+    });
+    fetch('cultura.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('conteudo-culturas').innerHTML = html;
+    });
+    fetch('receita.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('conteudo-receita').innerHTML = html;
     });
 };
