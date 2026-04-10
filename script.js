@@ -15,10 +15,10 @@ function carregarPagina(pagina) {
 
   const mapa = {
     pais: 'secao-destinos',
-    continente: 'secao-viaje',
+    continente: 'secao-continentes',  
     cultura: 'secao-culturas',
     receita: 'secao-receita'
-  };
+};
 
   let secao = document.getElementById(mapa[pagina]);
   if (secao) secao.style.display = 'block';
@@ -177,8 +177,7 @@ window.onscroll = function () {
 // ==========================
 function abrirModal(id) {
   let modal = document.getElementById('modal-' + id);
-  if (modal) modal.style.display = 'block';
-
+  if (modal) modal.style.display = 'flex'; // ← correto
   window.scrollTo(0, 0);
 }
 

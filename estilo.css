@@ -206,7 +206,7 @@ header {
    MODAL
 =========================== */
 .modal {
-  display: none;
+  display: none;     
   position: fixed;
   top: 0;
   left: 0;
@@ -215,7 +215,6 @@ header {
   background: rgba(221, 217, 206, 0.95);
   z-index: 999;
   overflow-y: auto;
-  display: flex;
   justify-content: center;
   padding: 60px 20px;
 }
