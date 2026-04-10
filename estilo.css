@@ -213,7 +213,7 @@ header {
   width: 100%;
   height: 100%;
   background: rgba(221, 217, 206, 0.95);
-  z-index: 999;
+  z-index: 1000;
   overflow-y: auto;
   justify-content: center;
   align-items: flex-start;
@@ -229,6 +229,9 @@ header {
   box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
+.modal-conteudo img {
+  max-width: 100%;
+}
 .modal-titulo {
   color: #7b1b38;
   font-size: 36px;
