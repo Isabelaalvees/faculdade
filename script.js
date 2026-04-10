@@ -177,7 +177,7 @@ window.onscroll = function () {
 // ==========================
 function abrirModal(id) {
   let modal = document.getElementById('modal-' + id);
-  if (modal) modal.style.display = 'flex'; // ← correto
+  if (modal) modal.style.display = 'flex';
   window.scrollTo(0, 0);
 }
 

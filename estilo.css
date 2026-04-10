@@ -216,6 +216,7 @@ header {
   z-index: 999;
   overflow-y: auto;
   justify-content: center;
+  align-items: flex-start;
   padding: 60px 20px;
 }
 
