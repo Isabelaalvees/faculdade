@@ -195,7 +195,7 @@ window.onload = function () {
   fetch('pais.html')
     .then(response => response.text())
     .then(html => {
-    document.getElementById('conteudo-culturas').innerHTML = html;
+    document.getElementById('conteudo-culturas').innerHTML = '<div class="cards">' + html + '</div>';
     });
     fetch('continente.html')
     .then(response => response.text())
