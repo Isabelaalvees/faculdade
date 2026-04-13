@@ -1,36 +1,102 @@
-<!-- Receita: Arepas (Colombia) -->
-<div class="card">
-  <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultura Ocidental">
-  <h3>Receita: Arepas - Colombia</h3>
+<!-- Card: Takoyaki - Japão -->
+<div class="card" data-pais="japao">
+  <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80" alt="Takoyaki">
+  <h3>Takoyaki</h3>
   <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
-    <p><strong>Região:</strong> Europa e Américas</p>
-    <p><strong>Pratos típicos:</strong> Pizza, Hambúrguer, Croissant</p>
-    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('ocidental')">Me aventurar</button>
+    <p><strong>País:</strong> Japão 🇯🇵</p>
+    <p><strong>Tipo:</strong> Petisco</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('receita-takoyaki')">Ver receita</button>
   </div>
 </div>
 
+<!-- Card: Arepas - Colômbia -->
+<div class="card" data-pais="colombia">
+  <img src="https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=800&q=80" alt="Arepas">
+  <h3>Arepas</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>País:</strong> Colômbia 🇨🇴</p>
+    <p><strong>Tipo:</strong> Prato típico</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('receita-arepas')">Ver receita</button>
+  </div>
+</div>
 
-<!-- Modal Ocidental -->
-<div id="modal-ocidental" class="modal">
+<!-- Modal: Takoyaki -->
+<div id="modal-receita-takoyaki" class="modal">
   <div class="modal-conteudo">
-    <h2 class="modal-titulo">Cultura Ocidental</h2>
-    <h3 class="modal-subtitulo">Sobre a cultura</h3>
+    <h2 class="modal-titulo">Takoyaki 🇯🇵</h2>
+    <h3 class="modal-subtitulo">O que é?</h3>
     <div class="modal-bloco">
-      <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Ocidental">
-      <p class="modal-texto">A cultura ocidental tem suas raízes na Grécia e Roma antigas, passando pelo Renascimento europeu até a modernidade americana. Valoriza o individualismo, a democracia, a ciência e a liberdade de expressão, influenciando grande parte do mundo.</p>
+      <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80" alt="Takoyaki" class="modal-img-direita">
+      <p class="modal-texto">Takoyaki é um popular petisco japonês em formato de bolinhas, crocante por fora e macio por dentro, recheado com pedaços de polvo, gengibre e cebolinha. Originário de Osaka, é grelhado em chapas especiais e finalizado com molho takoyaki, maionese, aonori e katsuobushi.</p>
     </div>
-    <h3 class="modal-subtitulo">Tradição: Carnaval de Veneza</h3>
+    <h3 class="modal-subtitulo">Ingredientes</h3>
     <div class="modal-bloco">
-      <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-esquerda" alt="Carnaval de Veneza">
-      <p class="modal-texto">O Carnaval de Veneza é uma das festas mais antigas e elegantes do mundo, com máscaras elaboradas e fantasias históricas. Realizado desde o século XII, transforma a cidade em um espetáculo de arte e mistério.</p>
+      <p class="modal-texto">
+        <strong>Recheio:</strong><br>
+        • 300g de polvo (aprox. 3 tentáculos)<br>
+        • Manteiga para untar<br><br>
+        <strong>Massa:</strong><br>
+        • 200g de farinha de trigo<br>
+        • 500ml de água<br>
+        • 1 ovo<br>
+        • Cebolinha a gosto
+      </p>
     </div>
-    <h3 class="modal-subtitulo">Culinária: Croissant</h3>
+    <h3 class="modal-subtitulo">Modo de preparo</h3>
     <div class="modal-bloco">
-      <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="modal-img-direita" alt="Croissant">
-      <p class="modal-texto">O croissant é símbolo da padaria francesa, feito com massa folhada amanteigada e assado até ficar dourado e crocante. Apesar de ter origens austríacas, foi na França que se tornou ícone mundial da gastronomia ocidental.</p>
+      <p class="modal-texto">
+        1. Cozinhe o polvo na panela de pressão por 7 minutos com 2 dedos de água.<br>
+        2. Faça a massa misturando farinha, ovo, água e cebolinha picada.<br>
+        3. Corte o polvo cozido em pequenos pedaços.<br>
+        4. Unte a panela de takoyaki com bastante manteiga.<br>
+        5. Adicione a massa líquida até a metade dos buracos e coloque o polvo com aonori.<br>
+        6. Use 2 facas pequenas para virar a massa a 90º quando tostar.<br>
+        7. Complete com mais massa e gire até formar bolinhas.<br>
+        8. Quando crocante por fora e macio por dentro, sirva com molho takoyaki, maionese, aonori e katsuobushi.
+      </p>
     </div>
     <div class="modal-voltar">
-      <button class="botao" onclick="fecharModal('ocidental')">← Voltar</button>
+      <button class="botao" onclick="fecharModal('receita-takoyaki')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Arepas -->
+<div id="modal-receita-arepas" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Arepas 🇨🇴</h2>
+    <h3 class="modal-subtitulo">O que é?</h3>
+    <div class="modal-bloco">
+      <img src="https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=800&q=80" alt="Arepas" class="modal-img-direita">
+      <p class="modal-texto">As arepas são um prato tradicional colombiano feito de farinha de milho, muito consumido no café da manhã e como lanche. Podem ser recheadas com queijo, presunto, frango e muito mais.</p>
+    </div>
+    <h3 class="modal-subtitulo">Ingredientes</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        • 1 xícara de farinha de milho para polenta<br>
+        • 1 xícara de muçarela ralada<br>
+        • 2 colheres (sopa) de manteiga derretida<br>
+        • 1 xícara de leite<br>
+        • 50g de manteiga<br>
+        • 1 pitada de sal<br>
+        • 100g de queijo e presunto
+      </p>
+    </div>
+    <h3 class="modal-subtitulo">Modo de preparo</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        1. Misture a farinha de milho, o queijo e o sal em uma tigela.<br>
+        2. Acrescente o leite e a manteiga derretida e misture bem.<br>
+        3. Deixe a massa descansar por 5 minutos.<br>
+        4. Modele discos de massa, semelhantes a pequenas panquecas.<br>
+        5. Unte uma frigideira com manteiga e leve ao fogo médio.<br>
+        6. Doure cada lado por cerca de 5 minutos.<br>
+        7. Corte ao meio e recheie com queijo e presunto.<br>
+        8. Volte à frigideira para derreter o recheio e sirva quente.
+      </p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('receita-arepas')">← Voltar</button>
     </div>
   </div>
 </div>
