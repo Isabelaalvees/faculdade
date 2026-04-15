@@ -213,3 +213,22 @@ window.onload = function () {
       document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + html + '</div>';
     });
 };
+function verReceitas(pais) {
+  // Fecha o modal do país
+  document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+  
+  // Vai para a seção de receitas
+  carregarPagina('receita');
+  
+  // Mostra só os cards do país escolhido
+  document.querySelectorAll('#conteudo-receita .card').forEach(card => {
+    if (card.dataset.pais === pais) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  // Rola para a seção
+  document.getElementById('secao-receita').scrollIntoView({ behavior: 'smooth' });
+}
