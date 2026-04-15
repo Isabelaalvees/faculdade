@@ -199,6 +199,63 @@ function fecharModal(id) {
   if (modal) modal.style.display = 'none';
 }
 
+function iniciarSliders() {
+  document.querySelectorAll(".card-principal").forEach(card => {
+
+    let index = 0;
+
+    const slides = card.querySelector(".slides");
+    if (!slides) return;
+
+    const images = slides.querySelectorAll("img");
+    const prev = card.querySelector(".prev");
+    const next = card.querySelector(".next");
+    const dotsContainer = card.querySelector(".dots");
+
+    dotsContainer.innerHTML = "";
+
+    images.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.classList.add("dot");
+      if (i === 0) dot.classList.add("active");
+
+      dot.addEventListener("click", () => {
+        index = i;
+        update();
+      });
+
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll(".dot");
+
+    function update() {
+      const width = card.querySelector(".slider").clientWidth;
+      slides.style.transform = `translateX(-${index * width}px)`;
+
+      dots.forEach(dot => dot.classList.remove("active"));
+      dots[index].classList.add("active");
+    }
+
+    next.onclick = () => {
+      index = (index + 1) % images.length;
+      update();
+    };
+
+    prev.onclick = () => {
+      index = (index - 1 + images.length) % images.length;
+      update();
+    };
+
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      update();
+    }, 3000);
+
+  });
+}
+
+
 // ==========================
 // INICIAR SITE
 // ==========================
@@ -225,7 +282,40 @@ window.onload = function () {
     .then(html => {
       document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + html + '</div>';
     });
+
+    window.onload = function () {
+  let idiomaSalvo = localStorage.getItem("idioma") || "pt";
+  mudarIdioma(idiomaSalvo);
+
+  fetch('pais.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('conteudo-pais').innerHTML = html;
+
+      // 🔥 IMPORTANTE
+      iniciarSliders();
+    });
+
+  fetch('continente.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('conteudo-continentes').innerHTML = '<div class="cards">' + html + '</div>';
+    });
+
+  fetch('cultura.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('conteudo-culturas').innerHTML = '<div class="cards">' + html + '</div>';
+    });
+
+  fetch('receita.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + html + '</div>';
+    });
 };
+};
+
 function verReceitas(pais) {
   // Fecha o modal do país
   document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
