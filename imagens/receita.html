@@ -1,0 +1,153 @@
+<!-- Card: Takoyaki - Japão -->
+<div class="card" data-pais="japao">
+  <img src="imagens/takoyaki.png" alt="Takoyaki">
+  <h3>Takoyaki</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>País:</strong> Japão</p>
+    <p><strong>Tipo:</strong> Petisco</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('receita-takoyaki')">Ver receita</button>
+  </div>
+</div>
+
+<!-- Card: Arepas - Colômbia -->
+<div class="card" data-pais="colombia">
+  <img src="imagens/arepas.png" alt="Arepas">
+  <h3>Arepas</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>País:</strong> Colômbia</p>
+    <p><strong>Tipo:</strong> Prato típico</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('receita-arepas')">Ver receita</button>
+  </div>
+</div>
+
+<!-- Card: Feijoada - Brasil -->
+<div class="card" data-pais="brasil">
+  <img src="imagens/feijoada.png"alt="Feijoada">
+  <h3>Feijoada</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>País:</strong> Brasil</p>
+    <p><strong>Tipo:</strong> Prato típico</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('receita-feijoada')">Ver receita</button>
+  </div>
+</div>
+
+<!-- Modal: Takoyaki -->
+<div id="modal-receita-takoyaki" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Takoyaki</h2>
+    <h3 class="modal-subtitulo">O que é?</h3>
+    <div class="modal-bloco">
+      <img src="imagens/takoyaki.png" alt="Takoyaki" class="modal-img-direita">
+      <p class="modal-texto">Takoyaki é um popular petisco japonês em formato de bolinhas, crocante por fora e macio por dentro, recheado com pedaços de polvo, gengibre e cebolinha. Originário de Osaka, é grelhado em chapas especiais e finalizado com molho takoyaki, maionese, aonori e katsuobushi.</p>
+    </div>
+    <h3 class="modal-subtitulo">Ingredientes</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        <strong>Recheio:</strong><br>
+        • 300g de polvo (aprox. 3 tentáculos)<br>
+        • Manteiga para untar<br><br>
+        <strong>Massa:</strong><br>
+        • 200g de farinha de trigo<br>
+        • 500ml de água<br>
+        • 1 ovo<br>
+        • Cebolinha a gosto
+      </p>
+    </div>
+    <h3 class="modal-subtitulo">Modo de preparo</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        1. Cozinhe o polvo na panela de pressão por 7 minutos com 2 dedos de água.<br>
+        2. Faça a massa misturando farinha, ovo, água e cebolinha picada.<br>
+        3. Corte o polvo cozido em pequenos pedaços.<br>
+        4. Unte a panela de takoyaki com bastante manteiga.<br>
+        5. Adicione a massa líquida até a metade dos buracos e coloque o polvo com aonori.<br>
+        6. Use 2 facas pequenas para virar a massa a 90º quando tostar.<br>
+        7. Complete com mais massa e gire até formar bolinhas.<br>
+        8. Quando crocante por fora e macio por dentro, sirva com molho takoyaki, maionese, aonori e katsuobushi.
+      </p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('receita-takoyaki')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Arepas -->
+<div id="modal-receita-arepas" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Arepas</h2>
+    <h3 class="modal-subtitulo">O que é?</h3>
+    <div class="modal-bloco">
+      <img src="imagens/arepas.png" alt="Arepas" class="modal-img-direita">
+      <p class="modal-texto">As arepas são um prato tradicional colombiano feito de farinha de milho, muito consumido no café da manhã e como lanche. Podem ser recheadas com queijo, presunto, frango e muito mais.</p>
+    </div>
+    <h3 class="modal-subtitulo">Ingredientes</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        • 1 xícara de farinha de milho para polenta<br>
+        • 1 xícara de muçarela ralada<br>
+        • 2 colheres (sopa) de manteiga derretida<br>
+        • 1 xícara de leite<br>
+        • 50g de manteiga<br>
+        • 1 pitada de sal<br>
+        • 100g de queijo e presunto
+      </p>
+    </div>
+    <h3 class="modal-subtitulo">Modo de preparo</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        1. Misture a farinha de milho, o queijo e o sal em uma tigela.<br>
+        2. Acrescente o leite e a manteiga derretida e misture bem.<br>
+        3. Deixe a massa descansar por 5 minutos.<br>
+        4. Modele discos de massa, semelhantes a pequenas panquecas.<br>
+        5. Unte uma frigideira com manteiga e leve ao fogo médio.<br>
+        6. Doure cada lado por cerca de 5 minutos.<br>
+        7. Corte ao meio e recheie com queijo e presunto.<br>
+        8. Volte à frigideira para derreter o recheio e sirva quente.
+      </p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('receita-arepas')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Feijoada -->
+<div id="modal-receita-feijoada" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Feijoada</h2>
+    <h3 class="modal-subtitulo">O que é?</h3>
+    <div class="modal-bloco">
+      <img src="imagens/feijoada.png" alt="Feijoada" class="modal-img-direita">
+      <p class="modal-texto">A feijoada é um prato tradicional brasileiro feito com feijão-preto e diferentes carnes, muito consumido em refeições especiais. É um prato muito associado à cultura popular e aos encontros em família, especialmente aos fins de semana.</p>
+    </div>
+    <h3 class="modal-subtitulo">Ingredientes</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        • 500g Feijão-preto<br>
+        • 300g Carne-seca dessalgada<br>
+        • 2 unidades Linguiça calabresa<br>
+        • 300g unidades Costelinha suína<br>
+        • 2 folhas de louro<br>
+        • 3 dentes de alho picados<br>
+        • 1 unidade de cebola picada<br>
+        • Água o quanto baste
+        </p>
+    </div>
+    <h3 class="modal-subtitulo">Modo de preparo</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+      1. Deixe as carnes salgadas de molho, trocando a água, se necessário, para retirar o excesso de sal.<br>
+      2. Cozinhe o feijão-preto em panela com água até começar a amolecer.<br>
+      3. Em outra panela, doure a cebola e o alho.<br>
+      4. Adicione as carnes e refogue por alguns minutos.<br>
+      5. Misture tudo ao feijão e acrescente as folhas de louro.<br>
+      6. Deixe cozinhar em fogo baixo até o caldo engrossar e os sabores se incorporarem.<br>
+      7. Sirva com arroz, couve refogada, farofa e fatias de laranja.
+      </p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('receita-feijoada')">← Voltar</button>
+    </div>
+  </div>
+</div>

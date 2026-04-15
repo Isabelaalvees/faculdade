@@ -1,0 +1,330 @@
+/* ===========================
+    ESTILOS GERAIS
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Oswald', sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom, #f5f3eb, #7b1b38 80%);
+  padding-top: 80px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #7b1b38;
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 32px;
+  color: #FFFCC5;
+}
+
+.logo img {
+  height: 80px;
+  width: auto;
+}
+
+/* BANDEIRAS */
+.bandeiras img {
+  width: 28px;
+  margin-left: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+
+.bandeiras img:hover {
+  transform: scale(1.1);
+}
+
+/* ===========================
+   HERO
+=========================== */
+.hero {
+  text-align: center;
+  background: #7b1b38;
+  color: white;
+  padding: 80px 20px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.hero-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-texto h1 {
+  font-size: clamp(24px, 5vw, 36px);
+  margin-bottom: 20px;
+}
+
+.hero input {
+  margin-top: 20px;
+  padding: 14px;
+  width: 320px;
+  max-width: 90%;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+}
+
+.botao {
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 16px;
+  background: #CF6940;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.botao:hover {
+  background: #b85a35;
+  transform: scale(1.05);
+}
+
+/* ===========================
+   MENU
+=========================== */
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  background: #CF6940;
+  border: 3px solid #CF6940;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.menu a:hover {
+  background: transparent;
+  color: white;
+}
+
+/* ===========================
+   DESTINOS / CARDS
+=========================== */
+.destinos {
+  padding: 50px 20px;
+}
+
+.destinos h2 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 240px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card h3 {
+  padding: 12px;
+  text-align: center;
+  font-size: 22px;
+  color: #7b1b38;
+}
+
+/* ===========================
+   MODAL
+=========================== */
+.modal {
+  display: none;     
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(221, 217, 206, 0.95);
+  z-index: 1000;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+}
+
+.modal-conteudo {
+  max-width: 900px;
+  width: 100%;        
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.modal-conteudo img {
+  max-width: 100%;
+}
+.modal-titulo {
+  color: #7b1b38;
+  font-size: 36px;
+  margin-top: 0;
+}
+
+.modal-subtitulo {
+  color: #CF6940;
+  font-size: 22px;
+  margin: 25px 0 10px;
+}
+
+.modal-bloco {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.modal-img-direita,
+.modal-img-esquerda {
+  width: 45%;
+  border-radius: 10px;
+  margin: 0 20px 15px 0;
+  float: left;
+}
+
+.modal-img-direita {
+  float: right;
+  margin: 0 0 15px 20px;
+}
+
+.modal-texto {
+  line-height: 1.8;
+  color: #333;
+}
+
+.modal-voltar {
+  clear: both;
+  text-align: center;
+  margin-top: 40px;
+  padding-bottom: 20px;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+footer {
+  background: #7b1b38;
+  color: #FFFCC5;
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 16px;
+}
+
+/* ===========================
+   BOTÃO TOPO
+=========================== */
+#btnTopo {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background: #7b1b38;
+  color: #FFFCC5;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: background 0.3s, transform 0.3s;
+  z-index: 999;
+}
+
+#btnTopo:hover {
+  background: #CF6940;
+  transform: scale(1.1);
+}
+
+/* ===========================
+   RESPONSIVO
+=========================== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+  .menu { gap: 10px; }
+  .menu a { padding: 8px 12px; font-size: 14px; }
+  .hero-conteudo { flex-direction: column; }
+  .modal-img-direita,
+  .modal-img-esquerda {
+    float: none;
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
+}
