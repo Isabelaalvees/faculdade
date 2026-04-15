@@ -134,6 +134,18 @@ function buscar() {
     let visiveis = secao.querySelectorAll('.card[style*="block"]');
     secao.style.display = visiveis.length > 0 ? 'block' : 'none';
   });
+  // Mostra bandeira no hero
+let resultadoDiv = document.getElementById('resultado-busca');
+let encontrados = [];
+
+cards.forEach(card => {
+  if (card.style.display !== 'none') {
+    let bandeira = card.dataset.bandeira;
+    if (bandeira) encontrados.push(bandeira);
+  }
+});
+
+resultadoDiv.textContent = encontrados.join('  ');
 }
 
 // ==========================
@@ -233,15 +245,3 @@ function verReceitas(pais) {
   document.getElementById('secao-receita').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Mostra bandeira no hero
-let resultadoDiv = document.getElementById('resultado-busca');
-let encontrados = [];
-
-cards.forEach(card => {
-  if (card.style.display !== 'none') {
-    let bandeira = card.dataset.bandeira;
-    if (bandeira) encontrados.push(bandeira);
-  }
-});
-
-resultadoDiv.textContent = encontrados.join('  ');
