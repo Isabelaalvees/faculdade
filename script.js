@@ -259,19 +259,41 @@ function iniciarSliders() {
 // ==========================
 // INICIAR SITE
 // ==========================
-  
-  window.onload = function () {
+window.onload = function () {
   let idiomaSalvo = localStorage.getItem("idioma") || "pt";
   mudarIdioma(idiomaSalvo);
 
   fetch('pais.html')
-    .then(response => response.text())
+    .then(r => r.text())
     .then(html => {
       document.getElementById('conteudo-pais').innerHTML = html;
-
-      //  IMPORTANTE
-      iniciarSliders();
     });
+
+  fetch('continente.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('conteudo-continentes').innerHTML =
+        '<div class="cards">' + html + '</div>';
+    });
+
+  fetch('cultura.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('conteudo-culturas').innerHTML =
+        '<div class="cards">' + html + '</div>';
+    });
+
+  fetch('receita.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('conteudo-receita').innerHTML =
+        '<div class="cards">' + html + '</div>';
+    });
+
+  // slider
+  setTimeout(() => {
+    iniciarSliders();
+  }, 200);
 };
 
 function verReceitas(pais) {
@@ -293,4 +315,3 @@ function verReceitas(pais) {
   // Rola para a seção
   document.getElementById('secao-receita').scrollIntoView({ behavior: 'smooth' });
 }
-
