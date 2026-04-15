@@ -232,3 +232,16 @@ function verReceitas(pais) {
   // Rola para a seção
   document.getElementById('secao-receita').scrollIntoView({ behavior: 'smooth' });
 }
+
+// Mostra bandeira no hero
+let resultadoDiv = document.getElementById('resultado-busca');
+let encontrados = [];
+
+cards.forEach(card => {
+  if (card.style.display !== 'none') {
+    let bandeira = card.dataset.bandeira;
+    if (bandeira) encontrados.push(bandeira);
+  }
+});
+
+resultadoDiv.textContent = encontrados.join('  ');
