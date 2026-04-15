@@ -134,7 +134,8 @@ function buscar() {
     let visiveis = secao.querySelectorAll('.card[style*="block"]');
     secao.style.display = visiveis.length > 0 ? 'block' : 'none';
   });
-  // Mostra bandeira no hero
+
+// Mostra bandeira no hero
 let resultadoDiv = document.getElementById('resultado-busca');
 let encontrados = [];
 
