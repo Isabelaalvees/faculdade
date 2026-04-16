@@ -310,6 +310,33 @@ header {
   min-width: 220px;
 }
 
+.footer-col h2,
+.footer-col h3 {
+  margin-bottom: 15px;
+}
+
+.footer-col p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col a {
+  text-decoration: none;
+  color: #FFFCC5;
+  transition: 0.3s;
+}
+
+.footer-col a:hover {
+  color: #CF6940;
+}
 
 .footer-bottom {
   width: 100%;
