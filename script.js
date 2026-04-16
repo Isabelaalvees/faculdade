@@ -22,6 +22,8 @@ function carregarPagina(pagina) {
 
   let secao = document.getElementById(mapa[pagina]);
   if (secao) secao.style.display = 'block';
+
+  document.querySelector('.destaque').style.display = 'none';
 }
 
 // ==========================
@@ -98,6 +100,9 @@ function buscar() {
   let input = document.getElementById('busca');
   if (!input) return;
 
+  // ESCONDE O SLIDER
+  document.querySelector('.destaque').style.display = 'none';
+
   let texto = removerAcentos(input.value.toLowerCase());
 
   const secoes = [
@@ -159,6 +164,11 @@ function verificarBusca() {
   if (!input) return;
 
   if (input.value === '') {
+
+    //  VOLTA O SLIDER
+    document.querySelector('.destaque').style.display = 'block';
+
+  if (input.value === '') {
     const secoes = [
       'secao-destinos',
       'secao-continentes',
@@ -180,7 +190,7 @@ function verificarBusca() {
     if (resultadoDiv) resultadoDiv.innerHTML = '';
   }
 }
-
+}
 // ==========================
 // BOTÃO TOPO
 // ==========================
