@@ -302,10 +302,11 @@ header {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 30px;
+  align-items: flex-start; 
 }
 
 .footer-col {
-  flex: 1;
+  flex: 1 1 250px; 
   min-width: 220px;
 }
 
@@ -338,10 +339,10 @@ header {
 }
 
 .footer-bottom {
+  width: 100%;
   text-align: center;
   padding: 15px;
   background: #7b1b38;
-  font-size: 14px;
 }
 
 /* ===========================
