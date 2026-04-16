@@ -48,14 +48,20 @@ header {
 
 /* LOGO */
 .logo {
+  cursor: pointer;
+  transition: transform 0.2s ease;
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 32px;
   color: #FFFCC5;
-  cursor: pointer;
+  
 }
 
+
+.logo:hover {
+  transform: scale(1.05);
+}
 
 .logo img {
   height: 80px;
