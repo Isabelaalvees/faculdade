@@ -2,7 +2,6 @@
 // NAVEGAÇÃO ENTRE SEÇÕES
 // ==========================
 function carregarPagina(pagina) {
-  // Esconde todas as seções
   const secoes = [
     'secao-destinos',
     'secao-continentes',
@@ -15,12 +14,10 @@ function carregarPagina(pagina) {
     if (el) el.style.display = 'none';
   });
 
-  // Esconde todos os sliders
   document.querySelectorAll('.slider-area').forEach(el => {
     el.style.display = 'none';
   });
 
-  // Mapa de página → seção + slider correspondente
   const mapa = {
     pais:       { secao: 'secao-destinos',    slider: 'slider-pais' },
     continente: { secao: 'secao-continentes', slider: 'slider-continente' },
@@ -31,11 +28,9 @@ function carregarPagina(pagina) {
   const alvo = mapa[pagina];
   if (!alvo) return;
 
-  // Mostra a seção correta
   let secao = document.getElementById(alvo.secao);
   if (secao) secao.style.display = 'block';
 
-  // Mostra o slider correspondente (se existir)
   if (alvo.slider) {
     let slider = document.getElementById(alvo.slider);
     if (slider) slider.style.display = 'block';
@@ -207,7 +202,6 @@ function fecharModal(id) {
 
 function voltarHome() {
 
-  // mostra todas as seções
   const secoes = [
     'secao-destinos',
     'secao-continentes',
@@ -220,25 +214,20 @@ function voltarHome() {
     if (sec) sec.style.display = 'block';
   });
 
-  // mostra todos os cards
   document.querySelectorAll('.card').forEach(card => {
     card.style.display = 'block';
   });
 
-  // mostra sliders
   document.querySelectorAll('.slider-area').forEach(el => {
     el.style.display = 'block';
   });
 
-  // limpa busca
   let input = document.getElementById('busca');
   if (input) input.value = '';
 
-  // limpa bandeiras (se tiver)
   let resultado = document.getElementById('resultado-busca');
   if (resultado) resultado.innerHTML = '';
 
-  // volta topo
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -315,7 +304,6 @@ function iniciarGlobo() {
     return;
   }
 
-  // evita duplicar
   container.innerHTML = "";
 
   globe = Globe()
@@ -349,13 +337,25 @@ function iniciarGlobo() {
     .ringPropagationSpeed(2)
     .ringRepeatPeriod(1000)
     .onPointClick(d => {
-        globe.pointOfView(
+    console.log("Clicou no país:", d.nome);
+
+      globe.pointOfView(
         { lat: d.lat, lng: d.lng, altitude: 1.3 },
-        1200
+        1000
       );
+
       setTimeout(() => {
-        abrirModal(d.nome);
-      }, 800); 
+
+        const modal = document.getElementById("modal-" + d.nome);
+
+        if (modal) {
+          modal.style.display = "flex";
+        } else {
+          console.log("❌ Modal não encontrado:", "modal-" + d.nome);
+        }
+
+      }, 700);
+
     });
 }
 
@@ -412,8 +412,22 @@ window.onload = function () {
 
   mudarIdioma(localStorage.getItem("idioma") || "pt");
 
-  fetch('pais.html').then(r => r.text()).then(h => {
-    document.getElementById('conteudo-pais').innerHTML = h;
+ Promise.all([
+  fetch('pais.html').then(r => r.text()),
+  fetch('continente.html').then(r => r.text()),
+  fetch('cultura.html').then(r => r.text()),
+  fetch('receita.html').then(r => r.text())
+])
+.then(([pais, continente, cultura, receita]) => {
+
+  document.getElementById('conteudo-pais').innerHTML = pais;
+  document.getElementById('conteudo-continentes').innerHTML = '<div class="cards">' + continente + '</div>';
+  document.getElementById('conteudo-culturas').innerHTML = '<div class="cards">' + cultura + '</div>';
+  document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + receita + '</div>';
+
+  iniciarSliders();
+  iniciarGlobo();
+
   });
 
   fetch('continente.html').then(r => r.text()).then(h => {
@@ -428,10 +442,6 @@ window.onload = function () {
     document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + h + '</div>';
   });
 
-  setTimeout(() => {
-    iniciarSliders();
-    iniciarGlobo();
-  }, 600);
 };
 
 // ==========================
