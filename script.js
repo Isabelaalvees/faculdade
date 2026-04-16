@@ -339,6 +339,16 @@ function fecharSobre() {
 // ==========================
 window.onload = function () {
 
+  let botao = document.querySelector(".btn-dark");
+  let tema = localStorage.getItem("tema");
+
+  if (tema === "dark") {
+    document.body.classList.add("dark");
+    if (botao) botao.textContent = "☀️";
+  } else {
+   if (botao) botao.textContent = "🌙";
+}
+
   mudarIdioma(localStorage.getItem("idioma") || "pt");
 
   if (localStorage.getItem("tema") === "dark") {
@@ -366,3 +376,26 @@ window.onload = function () {
     iniciarGlobo();
   }, 600);
 };
+
+// ==========================
+// MODO DARK 
+// ==========================
+
+function toggleDarkMode() {
+  document.body.classList.toggle("dark");
+
+  let botao = document.querySelector(".btn-dark");
+
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("tema", "dark");
+    if (botao) botao.textContent = "☀️";
+  } else {
+    localStorage.setItem("tema", "light");
+    if (botao) botao.textContent = "🌙";
+  }
+
+  // 🔥 ATUALIZA O GLOBO JUNTO
+  setTimeout(() => {
+    iniciarGlobo();
+  }, 200);
+}
