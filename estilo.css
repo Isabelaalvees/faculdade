@@ -603,17 +603,26 @@ header {
 =========================== */
 
 .btn-dark {
-  background: transparent;
+  background: rgba(255,255,255,0.1);
   border: 2px solid #FFFCC5;
   color: #FFFCC5;
-  padding: 6px 10px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
   cursor: pointer;
   margin-left: 10px;
+  font-size: 18px;
+  transition: all 0.3s ease;
 }
 
+/* HOVER */
 .btn-dark:hover {
   background: #CF6940;
+  transform: scale(1.1);
+}
+
+/* CLIQUE */
+.btn-dark:active {
+  transform: scale(0.95);
 }
 
 /* DARK MODE BASE */

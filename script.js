@@ -364,9 +364,12 @@ window.onload = function () {
   let idiomaSalvo = localStorage.getItem("idioma") || "pt";
   mudarIdioma(idiomaSalvo);
 
+  let botao = document.querySelector(".btn-dark");
   let tema = localStorage.getItem("tema");
+
   if (tema === "dark") {
-    document.body.classList.add("dark");
+   document.body.classList.add("dark");
+   botao.textContent = "☀️";
   }
 
   fetch('pais.html')
@@ -486,9 +489,13 @@ function fecharSobre() {
 function toggleDarkMode() {
   document.body.classList.toggle("dark");
 
+  let botao = document.querySelector(".btn-dark");
+
   if (document.body.classList.contains("dark")) {
     localStorage.setItem("tema", "dark");
+    botao.textContent = "☀️";
   } else {
     localStorage.setItem("tema", "light");
+    botao.textContent = "🌙";
   }
 }
