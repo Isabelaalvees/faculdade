@@ -314,17 +314,13 @@ function verReceitas(pais) {
   document.getElementById('secao-receita').scrollIntoView({ behavior: 'smooth' });
 }
 
-
-// ==========================
-// MENU MOBILE
-// ==========================
-
 function toggleMenu() {
   const menu = document.getElementById("menu");
   menu.classList.toggle("ativo");
 }
 
-function toggleMenu() {
-  const menu = document.getElementById("menu");
-  menu.classList.toggle("ativo");
-}
+document.querySelectorAll("#menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("menu").classList.remove("ativo");
+  });
+});
