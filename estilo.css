@@ -157,7 +157,6 @@ header {
 }
 
 .hero-mapa {
-  
   flex: 1;
 
   display: flex;
@@ -171,17 +170,14 @@ header {
 }
 
 #globo {
-  width: 100%;
-  max-width: 380px;
-  height: 300px;
-  margin: 0 auto;
-  background: transparent ;
-   filter: drop-shadow(0 0 25px rgba(255,255,255,0.15));
+  width: 320px;
+  height: 320px;
+  margin: 0;
 }
+
 
 #globo canvas {
   border-radius: 50%;
-  
 }
 
 /* MOBILE */
