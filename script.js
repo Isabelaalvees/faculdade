@@ -405,7 +405,11 @@ window.onload = function () {
   iniciarSliders();
 
   // GLOBO AQUI
-  window.addEventListener("load", iniciarGlobo);
+  window.addEventListener("load", () => {
+  setTimeout(() => {
+    iniciarGlobo();
+  }, 500);
+});
 };
 
 // ==========================
@@ -508,17 +512,22 @@ function toggleDarkMode() {
 // MAPA
 // ==========================
 
-let mapa;
-let marcadorAtual = null;
 let globe;
 
 function iniciarGlobo() {
+  const container = document.getElementById("globo");
+
+  if (!container) {
+    console.log("Globo não encontrado");
+    return;
+  }
+
   globe = Globe()
     .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
     .backgroundColor('rgba(0,0,0,0)')
-    .width(document.getElementById('globo').clientWidth)
+    .width(container.clientWidth)
     .height(300)
-    (document.getElementById('globo'));
+    (container);
 
   const locais = [
     { nome: "Brasil", lat: -14.2, lng: -51.9 },
@@ -530,15 +539,11 @@ function iniciarGlobo() {
     .pointLat(d => d.lat)
     .pointLng(d => d.lng)
     .pointLabel(d => d.nome)
-    .pointColor(() => '#CF6940')
+    .pointColor(() => "#CF6940")
     .onPointClick(d => {
-      zoomPais(d);
+      globe.pointOfView(
+        { lat: d.lat, lng: d.lng, altitude: 1.8 },
+        1000
+      );
     });
-}
-
-function zoomPais(d) {
-  globe.pointOfView(
-    { lat: d.lat, lng: d.lng, altitude: 1.8 },
-    1000
-  );
 }
