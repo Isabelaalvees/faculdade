@@ -103,11 +103,19 @@ header {
   max-width: 600px;
 }
 
+.hero-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
 .hero-texto {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
+  justify-content: center; 
   text-align: center;
 }
 
@@ -149,11 +157,9 @@ header {
 }
 
 .hero-mapa {
-  position: absolute;
-  right: 80px;
-  top: 50%;
-  transform: translateY(-50%);
+  
   flex: 1;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -180,15 +186,9 @@ header {
 
 /* MOBILE */
 @media (max-width: 768px) {
-
   .hero-conteudo {
     flex-direction: column;
     gap: 25px;
-  }
-  
-  .hero-texto {
-    position: static;
-    transform: none;
   }
 
   .hero-texto h1 {
@@ -200,8 +200,8 @@ header {
   }
 
   .hero-mapa {
-    position: static;
-    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
   }
 
   #globo {
