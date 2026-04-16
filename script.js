@@ -314,8 +314,8 @@ function iniciarGlobo() {
     (container);
 
   globe
-    .atmosphereColor("#7b1b38")
-    .atmosphereAltitude(0.25);
+    .atmosphereColor("#CF6940")
+    .atmosphereAltitude(0.15);
 
   const locais = [
     { nome: "Brasil", lat: -14.2, lng: -51.9 },
