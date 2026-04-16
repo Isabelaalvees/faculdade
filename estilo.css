@@ -53,7 +53,9 @@ header {
   gap: 10px;
   font-size: 32px;
   color: #FFFCC5;
+  cursor: pointer;
 }
+
 
 .logo img {
   height: 80px;
@@ -440,7 +442,7 @@ footer {
   }
 
   .menu {
-    position: absolute; /* 🔥 ESSENCIAL */
+    position: absolute; 
     top: 80px;
     left: 0;
     width: 100%;
