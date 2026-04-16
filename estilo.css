@@ -650,6 +650,10 @@ header {
   background: #1e1e1e;
 }
 
+.footer-bottom {
+  background: #1e1e1e;
+}
+
 /* INPUT */
 .dark input {
   background: #333;
