@@ -314,6 +314,10 @@ function verReceitas(pais) {
   document.getElementById('secao-receita').scrollIntoView({ behavior: 'smooth' });
 }
 
+// ==========================
+// MENU RESPONSIVO
+// ==========================
+
 function toggleMenu() {
   const menu = document.getElementById("menu");
   menu.classList.toggle("ativo");
@@ -324,3 +328,38 @@ document.querySelectorAll("#menu a").forEach(link => {
     document.getElementById("menu").classList.remove("ativo");
   });
 });
+
+// ==========================
+// VOLTAR HOME
+// ==========================
+
+function voltarHome() {
+
+  // mostra todas as seções
+  const secoes = [
+    'secao-destinos',
+    'secao-continentes',
+    'secao-culturas',
+    'secao-receita'
+  ];
+
+  secoes.forEach(id => {
+    let sec = document.getElementById(id);
+    if (sec) sec.style.display = 'block';
+  });
+
+  // mostra sliders novamente
+  document.querySelectorAll('.slider-area').forEach(el => {
+    el.style.display = 'block';
+  });
+
+  // limpa busca
+  let input = document.getElementById('busca');
+  if (input) input.value = '';
+
+  let resultado = document.getElementById('resultado-busca');
+  if (resultado) resultado.innerHTML = '';
+
+  // volta topo
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
