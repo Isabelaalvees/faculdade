@@ -437,3 +437,32 @@ function toggleDarkMode() {
     iniciarGlobo();
   }, 200);
 }
+
+// ==========================
+// VER RECEITA
+// ==========================
+
+function verReceitas(pais) {
+
+  
+  carregarPagina('receita');
+  const cards = document.querySelectorAll('#conteudo-receita .card');
+  cards.forEach(card => {
+
+    const paisCard = card.dataset.pais;
+
+    if (!paisCard) return;
+
+    // compara (sem erro de maiúscula/minúscula)
+    if (paisCard.toLowerCase() === pais.toLowerCase()) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  const secao = document.getElementById('secao-receita');
+  if (secao) secao.style.display = 'block';
+
+  secao.scrollIntoView({ behavior: 'smooth' });
+}
