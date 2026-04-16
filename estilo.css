@@ -85,6 +85,7 @@ header {
    HERO
 =========================== */
 .hero {
+  position: relative;
   text-align: center;
   background: #7b1b38;
   color: white;
@@ -93,13 +94,13 @@ header {
   border-bottom-right-radius: 60px;
 }
 
-.hero-conteudo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  max-width: 1100px;
-  margin: 0 auto;
+.hero-texto {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
 }
 
 .hero-texto {
@@ -148,6 +149,10 @@ header {
 }
 
 .hero-mapa {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
   flex: 1;
   display: flex;
   justify-content: center;
@@ -175,9 +180,15 @@ header {
 
 /* MOBILE */
 @media (max-width: 768px) {
+
   .hero-conteudo {
     flex-direction: column;
     gap: 25px;
+  }
+  
+  .hero-texto {
+    position: static;
+    transform: none;
   }
 
   .hero-texto h1 {
@@ -189,8 +200,8 @@ header {
   }
 
   .hero-mapa {
-    width: 100%;
-    max-width: 100%;
+    position: static;
+    margin-top: 20px;
   }
 
   #globo {
