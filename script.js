@@ -372,10 +372,6 @@ window.onload = function () {
    botao.textContent = "☀️";
   }
 
-  setTimeout(() => {
-    iniciarMapa();
-  }, 300);
-
   fetch('pais.html')
     .then(r => r.text())
     .then(html => {
@@ -406,8 +402,11 @@ window.onload = function () {
   setTimeout(() => {
     iniciarSliders();
   }, 200);
-};
 
+  document.addEventListener("DOMContentLoaded", function () {
+    iniciarMapa();
+  });
+  };
 // ==========================
 // VER RECEITAS
 // ==========================
