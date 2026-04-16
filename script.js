@@ -3,11 +3,12 @@
 // ==========================
 function carregarPagina(pagina) {
   const secoes = [
-   'secao-destinos',
-    'secao-continentes', 
+    'secao-destinos',
+    'secao-continentes',
     'secao-culturas',
     'secao-receita'
   ];
+
   secoes.forEach(id => {
     let el = document.getElementById(id);
     if (el) el.style.display = 'none';
@@ -15,7 +16,7 @@ function carregarPagina(pagina) {
 
   const mapa = {
     pais: 'secao-destinos',
-    continente: 'secao-continentes',  
+    continente: 'secao-continentes',
     cultura: 'secao-culturas',
     receita: 'secao-receita'
   };
@@ -72,18 +73,6 @@ function mudarIdioma(idioma) {
 
   let botao = document.getElementById('botaoBusca');
   if (botao) botao.textContent = t.botao;
-
-  let menuPais = document.getElementById('menuPais');
-  if (menuPais) menuPais.textContent = t.menuPais;
-
-  let menuCont = document.getElementById('menuContinente');
-  if (menuCont) menuCont.textContent = t.menuContinente;
-
-  let menuCult = document.getElementById('menuCultura');
-  if (menuCult) menuCult.textContent = t.menuCultura;
-
-  let menuRec = document.getElementById('menuReceita');
-  if (menuRec) menuRec.textContent = t.menuReceita;
 }
 
 // ==========================
@@ -100,9 +89,8 @@ function buscar() {
   let input = document.getElementById('busca');
   if (!input) return;
 
-  // ESCONDE O SLIDER
   document.querySelectorAll('.slider-area').forEach(el => {
-  el.style.display = 'none';
+    el.style.display = 'none';
   });
 
   let texto = removerAcentos(input.value.toLowerCase());
@@ -127,22 +115,9 @@ function buscar() {
 
     let nome = removerAcentos(titulo.textContent.toLowerCase());
 
-    if (nome.includes(texto)) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
+    card.style.display = nome.includes(texto) ? 'block' : 'none';
   });
 
-  secoes.forEach(secaoId => {
-    let secao = document.getElementById(secaoId);
-    if (!secao) return;
-
-    let visiveis = secao.querySelectorAll('.card[style*="block"]');
-    secao.style.display = visiveis.length > 0 ? 'block' : 'none';
-  });
-
-  // Mostra bandeiras no hero
   let resultadoDiv = document.getElementById('resultado-busca');
   let encontrados = [];
 
@@ -153,11 +128,16 @@ function buscar() {
     }
   });
 
-  resultadoDiv.innerHTML = encontrados
-    .map(cod => `<img src="https://flagcdn.com/w40/${cod}.png" style="height:40px; margin: 0 5px; border-radius: 4px;">`)
-    .join('');
+  if (resultadoDiv) {
+    resultadoDiv.innerHTML = encontrados
+      .map(cod => `<img src="https://flagcdn.com/w40/${cod}.png" style="height:40px; margin: 0 5px;">`)
+      .join('');
+  }
 
+  // 🔥 chama globo sem quebrar
+  if (typeof buscarNoMapa === "function") {
     buscarNoMapa(input.value);
+  }
 }
 
 // ==========================
@@ -168,33 +148,19 @@ function verificarBusca() {
   if (!input) return;
 
   if (input.value === '') {
-
-    //  VOLTA TODOS OS SLIDERS
     document.querySelectorAll('.slider-area').forEach(el => {
       el.style.display = 'block';
-    });
-
-    const secoes = [
-      'secao-destinos',
-      'secao-continentes',
-      'secao-culturas',
-      'secao-receita'
-    ];
-
-    secoes.forEach(id => {
-      let sec = document.getElementById(id);
-      if (sec) sec.style.display = 'block';
     });
 
     document.querySelectorAll('.card').forEach(card => {
       card.style.display = 'block';
     });
 
-    // limpa bandeiras
     let resultadoDiv = document.getElementById('resultado-busca');
     if (resultadoDiv) resultadoDiv.innerHTML = '';
   }
 }
+
 // ==========================
 // BOTÃO TOPO
 // ==========================
@@ -206,30 +172,12 @@ window.onscroll = function () {
 };
 
 // ==========================
-// MODAL
-// ==========================
-function abrirModal(id) {
-  let modal = document.getElementById('modal-' + id);
-  if (modal) modal.style.display = 'flex';
-  window.scrollTo(0, 0);
-}
-
-function fecharModal(id) {
-  let modal = document.getElementById('modal-' + id);
-  if (modal) modal.style.display = 'none';
-}
-
-// ==========================
 // SLIDER
 // ==========================
-
 function iniciarSliders() {
   document.querySelectorAll(".card-principal").forEach(card => {
 
     let index = 0;
-    let startX = 0;
-    let isDragging = false;
-
     const slides = card.querySelector(".slides");
     if (!slides) return;
 
@@ -238,9 +186,6 @@ function iniciarSliders() {
     const next = card.querySelector(".next");
     const dotsContainer = card.querySelector(".dots");
 
-    // ==========================
-    // DOTS
-    // ==========================
     dotsContainer.innerHTML = "";
 
     images.forEach((_, i) => {
@@ -248,10 +193,10 @@ function iniciarSliders() {
       dot.classList.add("dot");
       if (i === 0) dot.classList.add("active");
 
-      dot.addEventListener("click", () => {
+      dot.onclick = () => {
         index = i;
         update();
-      });
+      };
 
       dotsContainer.appendChild(dot);
     });
@@ -262,13 +207,10 @@ function iniciarSliders() {
       const width = card.querySelector(".slider").clientWidth;
       slides.style.transform = `translateX(-${index * width}px)`;
 
-      dots.forEach(dot => dot.classList.remove("active"));
+      dots.forEach(d => d.classList.remove("active"));
       dots[index].classList.add("active");
     }
 
-    // ==========================
-    // BOTÕES
-    // ==========================
     next.onclick = () => {
       index = (index + 1) % images.length;
       update();
@@ -278,84 +220,6 @@ function iniciarSliders() {
       index = (index - 1 + images.length) % images.length;
       update();
     };
-
-    // ==========================
-    // AUTO SLIDE COM PAUSA
-    // ==========================
-    let interval;
-
-    function startAutoSlide() {
-      clearTimeout(interval);
-      interval = setTimeout(() => {
-        interval = setInterval(() => {
-          index = (index + 1) % images.length;
-          update();
-        }, 4000);
-      }, 2000); // espera 2s pra voltar
-    }
-
-    function stopAutoSlide() {
-      clearInterval(interval);
-      clearTimeout(interval);
-    }
-
-    startAutoSlide();
-
-    // ==========================
-    // PAUSAR AO INTERAGIR
-    // ==========================
-    card.addEventListener("mouseenter", stopAutoSlide);
-    card.addEventListener("mouseleave", startAutoSlide);
-
-    slides.addEventListener("mousedown", stopAutoSlide);
-    window.addEventListener("mouseup", startAutoSlide);
-
-    slides.addEventListener("touchstart", stopAutoSlide);
-    slides.addEventListener("touchend", startAutoSlide);
-
-    // ==========================
-    // DRAG COM MOUSE
-    // ==========================
-    slides.addEventListener("mousedown", (e) => {
-      isDragging = true;
-      startX = e.clientX;
-    });
-
-    window.addEventListener("mouseup", (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-
-      let diff = e.clientX - startX;
-
-      if (diff > 50) {
-        index = (index - 1 + images.length) % images.length;
-      } else if (diff < -50) {
-        index = (index + 1) % images.length;
-      }
-
-      update();
-    });
-
-    // ==========================
-    // TOUCH (CELULAR)
-    // ==========================
-    slides.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
-    });
-
-    slides.addEventListener("touchend", (e) => {
-      let endX = e.changedTouches[0].clientX;
-      let diff = endX - startX;
-
-      if (diff > 50) {
-        index = (index - 1 + images.length) % images.length;
-      } else if (diff < -50) {
-        index = (index + 1) % images.length;
-      }
-
-      update();
-    });
-
   });
 }
 
@@ -367,163 +231,44 @@ window.onload = function () {
   let idiomaSalvo = localStorage.getItem("idioma") || "pt";
   mudarIdioma(idiomaSalvo);
 
-  let botao = document.querySelector(".btn-dark");
-  let tema = localStorage.getItem("tema");
+  fetch('pais.html').then(r => r.text()).then(html => {
+    document.getElementById('conteudo-pais').innerHTML = html;
+  });
 
-  if (tema === "dark") {
-    document.body.classList.add("dark");
-    if (botao) botao.textContent = "☀️";
-  }
+  fetch('continente.html').then(r => r.text()).then(html => {
+    document.getElementById('conteudo-continentes').innerHTML =
+      '<div class="cards">' + html + '</div>';
+  });
 
-  fetch('pais.html')
-    .then(r => r.text())
-    .then(html => {
-      document.getElementById('conteudo-pais').innerHTML = html;
-    });
+  fetch('cultura.html').then(r => r.text()).then(html => {
+    document.getElementById('conteudo-culturas').innerHTML =
+      '<div class="cards">' + html + '</div>';
+  });
 
-  fetch('continente.html')
-    .then(r => r.text())
-    .then(html => {
-      document.getElementById('conteudo-continentes').innerHTML =
-        '<div class="cards">' + html + '</div>';
-    });
+  fetch('receita.html').then(r => r.text()).then(html => {
+    document.getElementById('conteudo-receita').innerHTML =
+      '<div class="cards">' + html + '</div>';
+  });
 
-  fetch('cultura.html')
-    .then(r => r.text())
-    .then(html => {
-      document.getElementById('conteudo-culturas').innerHTML =
-        '<div class="cards">' + html + '</div>';
-    });
-
-  fetch('receita.html')
-    .then(r => r.text())
-    .then(html => {
-      document.getElementById('conteudo-receita').innerHTML =
-        '<div class="cards">' + html + '</div>';
-    });
-
-  iniciarSliders();
-
-  // GLOBO AQUI
-  window.addEventListener("load", () => {
   setTimeout(() => {
+    iniciarSliders();
     iniciarGlobo();
-  }, 500);
-});
+  }, 600);
 };
 
 // ==========================
-// VER RECEITAS
+// GLOBO 3D (CORRIGIDO)
 // ==========================
-function verReceitas(pais) {
-  document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
-  carregarPagina('receita');
-  document.querySelectorAll('#conteudo-receita .card').forEach(card => {
-    if (card.dataset.pais === pais) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-  document.getElementById('secao-receita').scrollIntoView({ behavior: 'smooth' });
-}
-
-// ==========================
-// MENU RESPONSIVO
-// ==========================
-
-function toggleMenu() {
-  const menu = document.getElementById("menu");
-  menu.classList.toggle("ativo");
-}
-
-document.querySelectorAll("#menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    document.getElementById("menu").classList.remove("ativo");
-  });
-});
-
-// ==========================
-// VOLTAR HOME
-// ==========================
-
-function voltarHome() {
-
-  // mostra todas as seções
-  const secoes = [
-    'secao-destinos',
-    'secao-continentes',
-    'secao-culturas',
-    'secao-receita'
-  ];
-
-  secoes.forEach(id => {
-    let sec = document.getElementById(id);
-    if (sec) sec.style.display = 'block';
-  });
-
-  // mostra sliders novamente
-  document.querySelectorAll('.slider-area').forEach(el => {
-    el.style.display = 'block';
-  });
-
-  // limpa busca
-  let input = document.getElementById('busca');
-  if (input) input.value = '';
-
-  let resultado = document.getElementById('resultado-busca');
-  if (resultado) resultado.innerHTML = '';
-
-  // volta topo
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ==========================
-// ABRIR SOBRE NÓS
-// ==========================
-
-function abrirSobre() {
-  document.getElementById("modal-sobre").style.display = "flex";
-}
-
-function fecharSobre() {
-  document.getElementById("modal-sobre").style.display = "none";
-}
-
-// ==========================
-// DARK MODE
-// ==========================
-
-function toggleDarkMode() {
-  document.body.classList.toggle("dark");
-
-  let botao = document.querySelector(".btn-dark");
-
-  if (document.body.classList.contains("dark")) {
-    localStorage.setItem("tema", "dark");
-    botao.textContent = "☀️";
-  } else {
-    localStorage.setItem("tema", "light");
-    botao.textContent = "🌙";
-  }
-}
-
-// ==========================
-// MAPA
-// ==========================
-
 let globe;
 
 function iniciarGlobo() {
-  const container = document.getElementById("globo");
+  const container = document.getElementById("mapa");
+  if (!container || typeof Globe !== "function") return;
 
-  if (!container) {
-    console.log("Globo não encontrado");
-    return;
-  }
+  container.innerHTML = "";
 
   globe = Globe()
-    .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
     .backgroundColor('rgba(0,0,0,0)')
     .width(container.clientWidth)
     .height(300)
@@ -541,9 +286,6 @@ function iniciarGlobo() {
     .pointLabel(d => d.nome)
     .pointColor(() => "#CF6940")
     .onPointClick(d => {
-      globe.pointOfView(
-        { lat: d.lat, lng: d.lng, altitude: 1.8 },
-        1000
-      );
+      globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.8 }, 1000);
     });
 }
