@@ -186,6 +186,48 @@ function fecharModal(id) {
 }
 
 // ==========================
+// LOGO VOLTAR HOME 
+// ==========================
+
+function voltarHome() {
+
+  // mostra todas as seções
+  const secoes = [
+    'secao-destinos',
+    'secao-continentes',
+    'secao-culturas',
+    'secao-receita'
+  ];
+
+  secoes.forEach(id => {
+    let sec = document.getElementById(id);
+    if (sec) sec.style.display = 'block';
+  });
+
+  // mostra todos os cards
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.display = 'block';
+  });
+
+  // mostra sliders
+  document.querySelectorAll('.slider-area').forEach(el => {
+    el.style.display = 'block';
+  });
+
+  // limpa busca
+  let input = document.getElementById('busca');
+  if (input) input.value = '';
+
+  // limpa bandeiras (se tiver)
+  let resultado = document.getElementById('resultado-busca');
+  if (resultado) resultado.innerHTML = '';
+
+  // volta topo
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+// ==========================
 // SLIDER 
 // ==========================
 function iniciarSliders() {
