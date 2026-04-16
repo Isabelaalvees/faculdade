@@ -186,7 +186,7 @@ function fecharModal(id) {
 }
 
 // ==========================
-// SLIDER (igual ao seu)
+// SLIDER 
 // ==========================
 function iniciarSliders() {
   document.querySelectorAll(".card-principal").forEach(card => {
@@ -261,11 +261,15 @@ function iniciarGlobo() {
   container.innerHTML = "";
 
   globe = Globe()
-    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
+    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
     .backgroundColor('rgba(0,0,0,0)')
     .width(container.clientWidth)
     .height(300)
     (container);
+
+  globe
+    .atmosphereColor("#7b1b38")
+    .atmosphereAltitude(0.25);
 
   const locais = [
     { nome: "Brasil", lat: -14.2, lng: -51.9 },
