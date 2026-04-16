@@ -529,11 +529,15 @@ function iniciarMapa() {
       .addTo(mapa)
       .bindPopup(local.nome);
 
-    // CLIQUE NO MARCADOR
     marker.on("click", () => {
       irParaPais(local);
     });
   });
+
+
+  setTimeout(() => {
+    mapa.invalidateSize();
+  }, 300);
 }
 
 function irParaPais(local) {
@@ -548,32 +552,6 @@ function irParaPais(local) {
 
   marcadorAtual = L.marker(local.coords)
     .addTo(mapa)
-    .bindPopup(`📍 ${local.nome}`)
+    .bindPopup(local.nome)
     .openPopup();
-}
-
-function buscarNoMapa(nomePais) {
-  const locais = {
-    brasil: [-14.2, -51.9],
-    japao: [36.2, 138.2],
-    colombia: [4.57, -74.29]
-  };
-
-  let key = removerAcentos(nomePais.toLowerCase());
-
-  if (locais[key]) {
-    mapa.setView(locais[key], 5, {
-      animate: true,
-      duration: 1.2
-    });
-
-    if (marcadorAtual) {
-      mapa.removeLayer(marcadorAtual);
-    }
-
-    marcadorAtual = L.marker(locais[key])
-      .addTo(mapa)
-      .bindPopup(nomePais)
-      .openPopup();
-  }
 }
