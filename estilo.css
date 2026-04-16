@@ -148,8 +148,8 @@ header {
 }
 
 .hero-mapa {
-  position: absolute;
-  right: 40px; 
+
+right: 40px; 
   top: 50%;
   transform: translateY(-50%);
 }
