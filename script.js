@@ -351,10 +351,6 @@ window.onload = function () {
 
   mudarIdioma(localStorage.getItem("idioma") || "pt");
 
-  if (localStorage.getItem("tema") === "dark") {
-    document.body.classList.add("dark");
-  }
-
   fetch('pais.html').then(r => r.text()).then(h => {
     document.getElementById('conteudo-pais').innerHTML = h;
   });
