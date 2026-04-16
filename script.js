@@ -156,6 +156,8 @@ function buscar() {
   resultadoDiv.innerHTML = encontrados
     .map(cod => `<img src="https://flagcdn.com/w40/${cod}.png" style="height:40px; margin: 0 5px; border-radius: 4px;">`)
     .join('');
+
+    buscarNoMapa(input.value);
 }
 
 // ==========================
@@ -506,22 +508,72 @@ function toggleDarkMode() {
 // MAPA
 // ==========================
 
+let mapa;
+let marcadorAtual = null;
+
 function iniciarMapa() {
-  const mapa = L.map('mapa').setView([-15.78, -47.93], 2);
+  mapa = L.map('mapa').setView([-15.78, -47.93], 2);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap'
   }).addTo(mapa);
 
   const locais = [
-    { nome: "Brasil", coords: [-14.2, -51.9] },
-    { nome: "Japão", coords: [36.2, 138.2] },
-    { nome: "Colômbia", coords: [4.57, -74.29] }
+    { nome: "Brasil", coords: [-14.2, -51.9], zoom: 4 },
+    { nome: "Japão", coords: [36.2, 138.2], zoom: 5 },
+    { nome: "Colômbia", coords: [4.57, -74.29], zoom: 5 }
   ];
 
   locais.forEach(local => {
-    L.marker(local.coords)
+    const marker = L.marker(local.coords)
       .addTo(mapa)
       .bindPopup(local.nome);
+
+    // CLIQUE NO MARCADOR
+    marker.on("click", () => {
+      irParaPais(local);
+    });
   });
+}
+
+function irParaPais(local) {
+  mapa.setView(local.coords, local.zoom, {
+    animate: true,
+    duration: 1.2
+  });
+
+  if (marcadorAtual) {
+    mapa.removeLayer(marcadorAtual);
+  }
+
+  marcadorAtual = L.marker(local.coords)
+    .addTo(mapa)
+    .bindPopup(`📍 ${local.nome}`)
+    .openPopup();
+}
+
+function buscarNoMapa(nomePais) {
+  const locais = {
+    brasil: [-14.2, -51.9],
+    japao: [36.2, 138.2],
+    colombia: [4.57, -74.29]
+  };
+
+  let key = removerAcentos(nomePais.toLowerCase());
+
+  if (locais[key]) {
+    mapa.setView(locais[key], 5, {
+      animate: true,
+      duration: 1.2
+    });
+
+    if (marcadorAtual) {
+      mapa.removeLayer(marcadorAtual);
+    }
+
+    marcadorAtual = L.marker(locais[key])
+      .addTo(mapa)
+      .bindPopup(nomePais)
+      .openPopup();
+  }
 }
