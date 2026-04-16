@@ -337,28 +337,27 @@ function iniciarGlobo() {
     .ringPropagationSpeed(2)
     .ringRepeatPeriod(1000)
     .onPointClick(d => {
-    console.log("Clicou no país:", d.nome);
-
+      console.log("👉 Clicou:", d.nome);
       globe.pointOfView(
-        { lat: d.lat, lng: d.lng, altitude: 1.3 },
-        1000
-      );
+      { lat: d.lat, lng: d.lng, altitude: 1.3 },
+      1000
+  );
 
-      setTimeout(() => {
+  setTimeout(() => {
+    const id = "modal-" + d.nome.toLowerCase().trim();
+    const modal = document.getElementById(id);
 
-        const modal = document.getElementById("modal-" + d.nome);
+    if (modal) {
+      modal.style.display = "flex";
+      console.log("✅ Modal aberto:", id);
+    } else {
+      console.log("❌ Modal não encontrado:", id);
+    }
 
-        if (modal) {
-          modal.style.display = "flex";
-        } else {
-          console.log("❌ Modal não encontrado:", "modal-" + d.nome);
-        }
+  }, 700);
 
-      }, 700);
-
-    });
+});
 }
-
 function buscarNoGlobo(nomePais) {
   if (!globe) return;
 
