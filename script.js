@@ -2,6 +2,7 @@
 // NAVEGAÇÃO ENTRE SEÇÕES
 // ==========================
 function carregarPagina(pagina) {
+  // Esconde todas as seções
   const secoes = [
     'secao-destinos',
     'secao-continentes',
@@ -14,18 +15,33 @@ function carregarPagina(pagina) {
     if (el) el.style.display = 'none';
   });
 
+  // Esconde todos os sliders
+  document.querySelectorAll('.slider-area').forEach(el => {
+    el.style.display = 'none';
+  });
+
+  // Mapa de página → seção + slider correspondente
   const mapa = {
-    pais: 'secao-destinos',
-    continente: 'secao-continentes',
-    cultura: 'secao-culturas',
-    receita: 'secao-receita'
+    pais:       { secao: 'secao-destinos',    slider: 'slider-pais' },
+    continente: { secao: 'secao-continentes', slider: 'slider-continente' },
+    cultura:    { secao: 'secao-culturas',    slider: null },
+    receita:    { secao: 'secao-receita',     slider: 'slider-receita' }
   };
 
-  let secao = document.getElementById(mapa[pagina]);
+  const alvo = mapa[pagina];
+  if (!alvo) return;
+
+  // Mostra a seção correta
+  let secao = document.getElementById(alvo.secao);
   if (secao) secao.style.display = 'block';
 
-  let destaque = document.querySelector('.destaque');
-  if (destaque) destaque.style.display = 'none';
+  // Mostra o slider correspondente (se existir)
+  if (alvo.slider) {
+    let slider = document.getElementById(alvo.slider);
+    if (slider) slider.style.display = 'block';
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ==========================
