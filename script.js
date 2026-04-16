@@ -24,7 +24,8 @@ function carregarPagina(pagina) {
   let secao = document.getElementById(mapa[pagina]);
   if (secao) secao.style.display = 'block';
 
-  document.querySelector('.destaque').style.display = 'none';
+  let destaque = document.querySelector('.destaque');
+  if (destaque) destaque.style.display = 'none';
 }
 
 // ==========================
@@ -65,18 +66,22 @@ function mudarIdioma(idioma) {
 
   let t = textos[idioma];
 
-  let titulo = document.getElementById('titulo');
-  if (titulo) titulo.textContent = t.titulo;
+  const set = (id, value, prop = "textContent") => {
+    let el = document.getElementById(id);
+    if (el) el[prop] = value;
+  };
 
-  let busca = document.getElementById('busca');
-  if (busca) busca.placeholder = t.placeholder;
-
-  let botao = document.getElementById('botaoBusca');
-  if (botao) botao.textContent = t.botao;
+  set('titulo', t.titulo);
+  set('busca', t.placeholder, "placeholder");
+  set('botaoBusca', t.botao);
+  set('menuPais', t.menuPais);
+  set('menuContinente', t.menuContinente);
+  set('menuCultura', t.menuCultura);
+  set('menuReceita', t.menuReceita);
 }
 
 // ==========================
-// REMOVER ACENTOS
+// ACENTOS
 // ==========================
 function removerAcentos(texto) {
   return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -114,34 +119,30 @@ function buscar() {
     if (!titulo) return;
 
     let nome = removerAcentos(titulo.textContent.toLowerCase());
-
     card.style.display = nome.includes(texto) ? 'block' : 'none';
   });
 
   let resultadoDiv = document.getElementById('resultado-busca');
-  let encontrados = [];
-
-  cards.forEach(card => {
-    if (card.style.display !== 'none') {
-      let bandeira = card.dataset.bandeira;
-      if (bandeira) encontrados.push(bandeira);
-    }
-  });
-
   if (resultadoDiv) {
+    let encontrados = [];
+
+    cards.forEach(card => {
+      if (card.style.display !== 'none') {
+        let bandeira = card.dataset.bandeira;
+        if (bandeira) encontrados.push(bandeira);
+      }
+    });
+
     resultadoDiv.innerHTML = encontrados
-      .map(cod => `<img src="https://flagcdn.com/w40/${cod}.png" style="height:40px; margin: 0 5px;">`)
+      .map(cod => `<img src="https://flagcdn.com/w40/${cod}.png" style="height:40px;margin:0 5px;border-radius:4px;">`)
       .join('');
   }
 
-  // 🔥 chama globo sem quebrar
-  if (typeof buscarNoMapa === "function") {
-    buscarNoMapa(input.value);
-  }
+  buscarNoGlobo(input.value);
 }
 
 // ==========================
-// RESET BUSCA
+// RESET
 // ==========================
 function verificarBusca() {
   let input = document.getElementById('busca');
@@ -167,17 +168,30 @@ function verificarBusca() {
 window.onscroll = function () {
   let btn = document.getElementById('btnTopo');
   if (!btn) return;
-
   btn.style.display = document.documentElement.scrollTop > 300 ? 'block' : 'none';
 };
 
 // ==========================
-// SLIDER
+// MODAL
+// ==========================
+function abrirModal(id) {
+  let modal = document.getElementById('modal-' + id);
+  if (modal) modal.style.display = 'flex';
+  window.scrollTo(0, 0);
+}
+
+function fecharModal(id) {
+  let modal = document.getElementById('modal-' + id);
+  if (modal) modal.style.display = 'none';
+}
+
+// ==========================
+// SLIDER (igual ao seu)
 // ==========================
 function iniciarSliders() {
   document.querySelectorAll(".card-principal").forEach(card => {
-
     let index = 0;
+
     const slides = card.querySelector(".slides");
     if (!slides) return;
 
@@ -185,6 +199,8 @@ function iniciarSliders() {
     const prev = card.querySelector(".prev");
     const next = card.querySelector(".next");
     const dotsContainer = card.querySelector(".dots");
+
+    if (!dotsContainer) return;
 
     dotsContainer.innerHTML = "";
 
@@ -224,51 +240,16 @@ function iniciarSliders() {
 }
 
 // ==========================
-// INICIAR SITE
-// ==========================
-window.onload = function () {
-
-  let idiomaSalvo = localStorage.getItem("idioma") || "pt";
-  mudarIdioma(idiomaSalvo);
-
-  fetch('pais.html').then(r => r.text()).then(html => {
-    document.getElementById('conteudo-pais').innerHTML = html;
-  });
-
-  fetch('continente.html').then(r => r.text()).then(html => {
-    document.getElementById('conteudo-continentes').innerHTML =
-      '<div class="cards">' + html + '</div>';
-  });
-
-  fetch('cultura.html').then(r => r.text()).then(html => {
-    document.getElementById('conteudo-culturas').innerHTML =
-      '<div class="cards">' + html + '</div>';
-  });
-
-  fetch('receita.html').then(r => r.text()).then(html => {
-    document.getElementById('conteudo-receita').innerHTML =
-      '<div class="cards">' + html + '</div>';
-  });
-
-  setTimeout(() => {
-    iniciarSliders();
-    iniciarGlobo();
-  }, 600);
-};
-
-// ==========================
 // GLOBO 3D (CORRIGIDO)
 // ==========================
 let globe;
 
 function iniciarGlobo() {
-  const container = document.getElementById("mapa");
-  if (!container || typeof Globe !== "function") return;
-
-  container.innerHTML = "";
+  const container = document.getElementById("globo");
+  if (!container || typeof Globe === "undefined") return;
 
   globe = Globe()
-    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
+    .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
     .backgroundColor('rgba(0,0,0,0)')
     .width(container.clientWidth)
     .height(300)
@@ -289,3 +270,49 @@ function iniciarGlobo() {
       globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.8 }, 1000);
     });
 }
+
+// ==========================
+// SOBRE NÓS (CORRIGIDO)
+// ==========================
+function abrirSobre() {
+  let el = document.getElementById("modal-sobre");
+  if (el) el.style.display = "flex";
+}
+
+function fecharSobre() {
+  let el = document.getElementById("modal-sobre");
+  if (el) el.style.display = "none";
+}
+
+// ==========================
+// INIT (LIMPO)
+// ==========================
+window.onload = function () {
+
+  mudarIdioma(localStorage.getItem("idioma") || "pt");
+
+  if (localStorage.getItem("tema") === "dark") {
+    document.body.classList.add("dark");
+  }
+
+  fetch('pais.html').then(r => r.text()).then(h => {
+    document.getElementById('conteudo-pais').innerHTML = h;
+  });
+
+  fetch('continente.html').then(r => r.text()).then(h => {
+    document.getElementById('conteudo-continentes').innerHTML = '<div class="cards">' + h + '</div>';
+  });
+
+  fetch('cultura.html').then(r => r.text()).then(h => {
+    document.getElementById('conteudo-culturas').innerHTML = '<div class="cards">' + h + '</div>';
+  });
+
+  fetch('receita.html').then(r => r.text()).then(h => {
+    document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + h + '</div>';
+  });
+
+  setTimeout(() => {
+    iniciarSliders();
+    iniciarGlobo();
+  }, 600);
+};
