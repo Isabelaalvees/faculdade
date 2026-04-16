@@ -152,6 +152,7 @@ header {
 
 #globo {
   width: 100%;
+  max-width: 450px;
   height: 300px;
   border-radius: 15px;
   overflow: hidden;
