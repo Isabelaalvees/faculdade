@@ -165,11 +165,12 @@ header {
   height: 300px;
   margin: 0 auto;
   background: transparent ;
+   filter: drop-shadow(0 0 25px rgba(255,255,255,0.15));
 }
 
 #globo canvas {
   border-radius: 50%;
-  box-shadow: 0 0 40px rgba(207, 105, 64, 0.4);
+  
 }
 
 /* MOBILE */
