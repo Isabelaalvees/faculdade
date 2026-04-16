@@ -119,13 +119,7 @@ function buscar() {
     if (!titulo) return;
 
     let nome = removerAcentos(titulo.textContent.toLowerCase());
-
-    if (nome.includes(texto)) {
-      card.style.display = 'block';
-      titulo.style.display = 'none'; // 🔥 ESCONDE TÍTULO
-    } else {
-      card.style.display = 'none';
-    }
+    card.style.display = nome.includes(texto) ? 'block' : 'none';
   });
 
   let resultadoDiv = document.getElementById('resultado-busca');
@@ -155,18 +149,12 @@ function verificarBusca() {
   if (!input) return;
 
   if (input.value === '') {
-
     document.querySelectorAll('.slider-area').forEach(el => {
       el.style.display = 'block';
     });
 
     document.querySelectorAll('.card').forEach(card => {
       card.style.display = 'block';
-    });
-
-    // 🔥 VOLTA TÍTULOS
-    document.querySelectorAll('.card h3').forEach(t => {
-      t.style.display = 'block';
     });
 
     let resultadoDiv = document.getElementById('resultado-busca');
@@ -198,7 +186,7 @@ function fecharModal(id) {
 }
 
 // ==========================
-// SLIDER
+// SLIDER 
 // ==========================
 function iniciarSliders() {
   document.querySelectorAll(".card-principal").forEach(card => {
@@ -252,14 +240,24 @@ function iniciarSliders() {
 }
 
 // ==========================
-// GLOBO
+// GLOBO 3D 
 // ==========================
 let globe;
 
 function iniciarGlobo() {
   const container = document.getElementById("globo");
-  if (!container || typeof Globe === "undefined") return;
 
+  if (!container) {
+    console.log("❌ Container #globo não encontrado");
+    return;
+  }
+
+  if (typeof Globe === "undefined") {
+    console.log("❌ Biblioteca Globe não carregou");
+    return;
+  }
+
+  // evita duplicar
   container.innerHTML = "";
 
   globe = Globe()
@@ -268,6 +266,10 @@ function iniciarGlobo() {
     .width(container.clientWidth)
     .height(300)
     (container);
+
+  globe
+    .atmosphereColor("#7b1b38")
+    .atmosphereAltitude(0.25);
 
   const locais = [
     { nome: "Brasil", lat: -14.2, lng: -51.9 },
@@ -279,11 +281,27 @@ function iniciarGlobo() {
     .pointLat(d => d.lat)
     .pointLng(d => d.lng)
     .pointLabel(d => d.nome)
-    .pointColor(() => "#CF6940");
+    .pointColor(() => "#CF6940")
+    .pointAltitude(0.02)
+    .pointRadius(0.6)
+    .pointResolution(12)
+    .ringsData(locais)
+    .ringColor(() => "#CF6940")
+    .ringMaxRadius(5)
+    .ringPropagationSpeed(2)
+    .ringRepeatPeriod(1000)
+    .onPointClick(d => {
+      globe.pointOfView(
+        { lat: d.lat, lng: d.lng, altitude: 1.3 },
+        1800
+      );
+    });
 }
 
 function buscarNoGlobo(nomePais) {
   if (!globe) return;
+
+  const pais = nomePais.toLowerCase();
 
   const locais = [
     { nome: "brasil", lat: -14.2, lng: -51.9 },
@@ -292,7 +310,7 @@ function buscarNoGlobo(nomePais) {
   ];
 
   const encontrado = locais.find(l =>
-    l.nome.includes(nomePais.toLowerCase())
+    l.nome.includes(pais)
   );
 
   if (encontrado) {
@@ -304,7 +322,20 @@ function buscarNoGlobo(nomePais) {
 }
 
 // ==========================
-// INIT
+// SOBRE NÓS 
+// ==========================
+function abrirSobre() {
+  let el = document.getElementById("modal-sobre");
+  if (el) el.style.display = "flex";
+}
+
+function fecharSobre() {
+  let el = document.getElementById("modal-sobre");
+  if (el) el.style.display = "none";
+}
+
+// ==========================
+// INIT 
 // ==========================
 window.onload = function () {
 
@@ -315,10 +346,26 @@ window.onload = function () {
     document.body.classList.add("dark");
     if (botao) botao.textContent = "☀️";
   } else {
-    if (botao) botao.textContent = "🌙";
-  }
+   if (botao) botao.textContent = "🌙";
+}
 
   mudarIdioma(localStorage.getItem("idioma") || "pt");
+
+  fetch('pais.html').then(r => r.text()).then(h => {
+    document.getElementById('conteudo-pais').innerHTML = h;
+  });
+
+  fetch('continente.html').then(r => r.text()).then(h => {
+    document.getElementById('conteudo-continentes').innerHTML = '<div class="cards">' + h + '</div>';
+  });
+
+  fetch('cultura.html').then(r => r.text()).then(h => {
+    document.getElementById('conteudo-culturas').innerHTML = '<div class="cards">' + h + '</div>';
+  });
+
+  fetch('receita.html').then(r => r.text()).then(h => {
+    document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + h + '</div>';
+  });
 
   setTimeout(() => {
     iniciarSliders();
@@ -327,8 +374,9 @@ window.onload = function () {
 };
 
 // ==========================
-// DARK MODE
+// MODO DARK 
 // ==========================
+
 function toggleDarkMode() {
   document.body.classList.toggle("dark");
 
@@ -342,5 +390,8 @@ function toggleDarkMode() {
     if (botao) botao.textContent = "🌙";
   }
 
-  setTimeout(() => iniciarGlobo(), 200);
+  // 🔥 ATUALIZA O GLOBO JUNTO
+  setTimeout(() => {
+    iniciarGlobo();
+  }, 200);
 }
