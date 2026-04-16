@@ -145,7 +145,6 @@ header {
 
 .botao:hover {
   transform: scale(1.05);
-  background: #b85a35;
 }
 
 .hero-mapa {
