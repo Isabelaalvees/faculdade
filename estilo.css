@@ -597,3 +597,66 @@ header {
 .slides:active {
   cursor: grabbing;
 }
+
+/* ===========================
+    DARK MODE
+=========================== */
+
+.btn-dark {
+  background: transparent;
+  border: 2px solid #FFFCC5;
+  color: #FFFCC5;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btn-dark:hover {
+  background: #CF6940;
+}
+
+/* DARK MODE BASE */
+.dark {
+  background: #121212;
+  color: #eee;
+}
+
+/* HEADER */
+.dark header {
+  background: #1e1e1e;
+}
+
+/* HERO */
+.dark .hero {
+  background: #1e1e1e;
+}
+
+/* CARDS */
+.dark .card,
+.dark .card-principal {
+  background: #1e1e1e;
+  color: white;
+}
+
+/* MENU */
+.dark .menu a {
+  background: #333;
+  border-color: #333;
+}
+
+/* FOOTER */
+.dark footer {
+  background: #1e1e1e;
+}
+
+/* INPUT */
+.dark input {
+  background: #333;
+  color: white;
+}
+
+/* BOTÕES */
+.dark .botao {
+  background: #444;
+}
