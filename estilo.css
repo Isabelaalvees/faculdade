@@ -97,17 +97,17 @@ header {
 .hero-conteudo {
   display: flex;
   align-items: center;
-  justify-content: center; 
-  gap: 40px;
-  position: relative; 
+  justify-content: center; /* centraliza o conjunto */
+  gap: 40px; /* controla distância real */
 }
 
 .hero-texto {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto; 
-  text-align: center;
-  z-index: 2;
+  flex: 0 0 auto;
+  max-width: 500px;
+}
+
+.hero-mapa {
+  flex: 0 0 auto;
 }
 
 .hero-texto h1 {
@@ -145,13 +145,6 @@ header {
 
 .botao:hover {
   transform: scale(1.05);
-}
-
-.hero-mapa {
-  position: absolute;
-  right: 3%; 
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 #globo {
