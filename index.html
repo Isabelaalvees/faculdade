@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WanderEats</title>
   <link rel="stylesheet" href="estilo.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
 <div id="modal-sobre" class="modal-sobre">
@@ -62,13 +64,26 @@
 
 <section class="hero">
   <div class="hero-conteudo">
+
+  <!-- TEXTO -->
+  <div class="hero-texto">
     <h1 id="titulo">Para onde deseja viajar?</h1>
+
     <input id="busca" type="text" placeholder="Digite um país"
            onkeypress="if(event.key === 'Enter') buscar()"
            oninput="verificarBusca()">
+
     <button id="botaoBusca" class="botao" onclick="buscar()">Pesquisar</button>
+
     <div id="resultado-busca"></div>
   </div>
+
+  <!-- MAPA -->
+  <div class="hero-mapa">
+    <div id="mapa"></div>
+  </div>
+
+</div>
 </section>
 
 <section class="container destaque slider-area">

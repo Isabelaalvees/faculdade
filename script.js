@@ -372,6 +372,10 @@ window.onload = function () {
    botao.textContent = "☀️";
   }
 
+  setTimeout(() => {
+    iniciarMapa();
+  }, 300);
+
   fetch('pais.html')
     .then(r => r.text())
     .then(html => {
@@ -498,4 +502,28 @@ function toggleDarkMode() {
     localStorage.setItem("tema", "light");
     botao.textContent = "🌙";
   }
+}
+
+// ==========================
+// MAPA
+// ==========================
+
+function iniciarMapa() {
+  const mapa = L.map('mapa').setView([-15.78, -47.93], 2);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(mapa);
+
+  const locais = [
+    { nome: "Brasil", coords: [-14.2, -51.9] },
+    { nome: "Japão", coords: [36.2, 138.2] },
+    { nome: "Colômbia", coords: [4.57, -74.29] }
+  ];
+
+  locais.forEach(local => {
+    L.marker(local.coords)
+      .addTo(mapa)
+      .bindPopup(local.nome);
+  });
 }

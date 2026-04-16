@@ -697,3 +697,32 @@ header {
 .dark .modal-texto {
   color: #ddd;
 }
+
+
+/* TEXTO */
+.hero-texto {
+  flex: 1;
+}
+
+/* MAPA */
+.hero-mapa {
+  flex: 1;
+}
+
+/* MAPA TAMANHO */
+#mapa {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero-conteudo {
+    flex-direction: column;
+  }
+
+  #mapa {
+    height: 250px;
+  }
+}
