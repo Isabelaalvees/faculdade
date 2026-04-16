@@ -152,6 +152,7 @@ header {
   flex: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 #globo {
@@ -159,10 +160,15 @@ header {
   max-width: 100%;
   height: 300px;
   border-radius: 15px;
+  background: transparent;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
+#globo canvas {
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(207, 105, 64, 0.4);
+}
 
 /* MOBILE */
 @media (max-width: 768px) {
