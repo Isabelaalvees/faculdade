@@ -363,3 +363,15 @@ function voltarHome() {
   // volta topo
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// ==========================
+// ABRIR SOBRE NÓS
+// ==========================
+
+function abrirSobre() {
+  document.getElementById("modal-sobre").style.display = "flex";
+}
+
+function fecharSobre() {
+  document.getElementById("modal-sobre").style.display = "none";
+}
