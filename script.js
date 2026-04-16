@@ -340,7 +340,7 @@ function iniciarGlobo() {
       console.log("👉 Clicou:", d.nome);
       globe.pointOfView(
       { lat: d.lat, lng: d.lng, altitude: 1.3 },
-      1000
+      100
   );
 
   setTimeout(() => {
@@ -354,7 +354,7 @@ function iniciarGlobo() {
       console.log("❌ Modal não encontrado:", id);
     }
 
-  }, 700);
+  }, 100);
 
 });
 }
