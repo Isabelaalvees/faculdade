@@ -12,32 +12,35 @@
 
 <header>
   <div class="header-container">
+
+    <!-- LOGO -->
     <div class="logo">
-      <img src="imagens/logo.png" alt="WanderEats"> WanderEats
+      <img src="imagens/logo.png" alt="WanderEats">
+      WanderEats
     </div>
-    <nav class="menu">
-      <a href="#" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
-      <a href="#" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
-      <a href="#" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
-      <a href="#" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
-    <div class="bandeiras">
-      <img src="https://flagcdn.com/w40/br.png" onclick="mudarIdioma('pt')">
-      <img src="https://flagcdn.com/w40/us.png" onclick="mudarIdioma('en')">
-      <img src="https://flagcdn.com/w40/es.png" onclick="mudarIdioma('es')">
+
+    <!-- BOTÃO MOBILE -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <!-- MENU + BANDEIRAS -->
+    <div class="header-right">
+
+      <nav class="menu" id="menu">
+        <a href="#" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
+        <a href="#" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
+        <a href="#" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
+        <a href="#" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
+      </nav>
+
+      <div class="bandeiras">
+        <img src="https://flagcdn.com/w40/br.png" onclick="mudarIdioma('pt')">
+        <img src="https://flagcdn.com/w40/us.png" onclick="mudarIdioma('en')">
+        <img src="https://flagcdn.com/w40/es.png" onclick="mudarIdioma('es')">
+      </div>
+
     </div>
   </div>
 </header>
-
-<section class="hero">
-  <div class="hero-conteudo">
-    <h1 id="titulo">Para onde deseja viajar?</h1>
-    <input id="busca" type="text" placeholder="Digite um país"
-           onkeypress="if(event.key === 'Enter') buscar()"
-           oninput="verificarBusca()">
-    <button id="botaoBusca" class="botao" onclick="buscar()">Pesquisar</button>
-    <div id="resultado-busca"></div>
-  </div>
-</section>
 
 <section class="container destaque slider-area">
 

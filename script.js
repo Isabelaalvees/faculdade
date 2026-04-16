@@ -313,3 +313,18 @@ function verReceitas(pais) {
   });
   document.getElementById('secao-receita').scrollIntoView({ behavior: 'smooth' });
 }
+
+
+// ==========================
+// MENU MOBILE
+// ==========================
+
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  menu.classList.toggle("ativo");
+}
+
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  menu.classList.toggle("ativo");
+}
