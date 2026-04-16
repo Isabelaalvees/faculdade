@@ -349,10 +349,13 @@ function iniciarGlobo() {
     .ringPropagationSpeed(2)
     .ringRepeatPeriod(1000)
     .onPointClick(d => {
-      globe.pointOfView(
+        globe.pointOfView(
         { lat: d.lat, lng: d.lng, altitude: 1.3 },
-        1800
+        1200
       );
+      setTimeout(() => {
+        abrirModal(d.nome);
+      }, 800); 
     });
 }
 
