@@ -18,7 +18,7 @@ function carregarPagina(pagina) {
     continente: 'secao-continentes',  
     cultura: 'secao-culturas',
     receita: 'secao-receita'
-};
+  };
 
   let secao = document.getElementById(mapa[pagina]);
   if (secao) secao.style.display = 'block';
@@ -135,18 +135,20 @@ function buscar() {
     secao.style.display = visiveis.length > 0 ? 'block' : 'none';
   });
 
-// Mostra bandeira no hero
-let resultadoDiv = document.getElementById('resultado-busca');
-let encontrados = [];
+  // Mostra bandeiras no hero
+  let resultadoDiv = document.getElementById('resultado-busca');
+  let encontrados = [];
 
-cards.forEach(card => {
-  if (card.style.display !== 'none') {
-    let bandeira = card.dataset.bandeira;
-    if (bandeira) encontrados.push(bandeira);
-  }
-});
+  cards.forEach(card => {
+    if (card.style.display !== 'none') {
+      let bandeira = card.dataset.bandeira;
+      if (bandeira) encontrados.push(bandeira);
+    }
+  });
 
-resultadoDiv.textContent = encontrados.join('  ');
+  resultadoDiv.innerHTML = encontrados
+    .map(cod => `<img src="https://flagcdn.com/w40/${cod}.png" style="height:40px; margin: 0 5px; border-radius: 4px;">`)
+    .join('');
 }
 
 // ==========================
@@ -172,6 +174,10 @@ function verificarBusca() {
     document.querySelectorAll('.card').forEach(card => {
       card.style.display = 'block';
     });
+
+    // Limpa as bandeiras
+    let resultadoDiv = document.getElementById('resultado-busca');
+    if (resultadoDiv) resultadoDiv.innerHTML = '';
   }
 }
 
@@ -201,60 +207,45 @@ function fecharModal(id) {
 
 function iniciarSliders() {
   document.querySelectorAll(".card-principal").forEach(card => {
-
     let index = 0;
-
     const slides = card.querySelector(".slides");
     if (!slides) return;
-
     const images = slides.querySelectorAll("img");
     const prev = card.querySelector(".prev");
     const next = card.querySelector(".next");
     const dotsContainer = card.querySelector(".dots");
-
     dotsContainer.innerHTML = "";
-
     images.forEach((_, i) => {
       const dot = document.createElement("span");
       dot.classList.add("dot");
       if (i === 0) dot.classList.add("active");
-
       dot.addEventListener("click", () => {
         index = i;
         update();
       });
-
       dotsContainer.appendChild(dot);
     });
-
     const dots = dotsContainer.querySelectorAll(".dot");
-
     function update() {
       const width = card.querySelector(".slider").clientWidth;
       slides.style.transform = `translateX(-${index * width}px)`;
-
       dots.forEach(dot => dot.classList.remove("active"));
       dots[index].classList.add("active");
     }
-
     next.onclick = () => {
       index = (index + 1) % images.length;
       update();
     };
-
     prev.onclick = () => {
       index = (index - 1 + images.length) % images.length;
       update();
     };
-
     setInterval(() => {
       index = (index + 1) % images.length;
       update();
     }, 3000);
-
   });
 }
-
 
 // ==========================
 // INICIAR SITE
@@ -290,20 +281,17 @@ window.onload = function () {
         '<div class="cards">' + html + '</div>';
     });
 
-  // slider
   setTimeout(() => {
     iniciarSliders();
   }, 200);
 };
 
+// ==========================
+// VER RECEITAS
+// ==========================
 function verReceitas(pais) {
-  // Fecha o modal do país
   document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
-  
-  // Vai para a seção de receitas
   carregarPagina('receita');
-  
-  // Mostra só os cards do país escolhido
   document.querySelectorAll('#conteudo-receita .card').forEach(card => {
     if (card.dataset.pais === pais) {
       card.style.display = 'block';
@@ -311,7 +299,5 @@ function verReceitas(pais) {
       card.style.display = 'none';
     }
   });
-
-  // Rola para a seção
   document.getElementById('secao-receita').scrollIntoView({ behavior: 'smooth' });
 }
