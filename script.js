@@ -240,16 +240,28 @@ function iniciarSliders() {
 }
 
 // ==========================
-// GLOBO 3D (CORRIGIDO)
+// GLOBO 3D 
 // ==========================
 let globe;
 
 function iniciarGlobo() {
   const container = document.getElementById("globo");
-  if (!container || typeof Globe === "undefined") return;
+
+  if (!container) {
+    console.log("❌ Container #globo não encontrado");
+    return;
+  }
+
+  if (typeof Globe === "undefined") {
+    console.log("❌ Biblioteca Globe não carregou");
+    return;
+  }
+
+  // evita duplicar
+  container.innerHTML = "";
 
   globe = Globe()
-    .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
     .backgroundColor('rgba(0,0,0,0)')
     .width(container.clientWidth)
     .height(300)
@@ -267,12 +279,15 @@ function iniciarGlobo() {
     .pointLabel(d => d.nome)
     .pointColor(() => "#CF6940")
     .onPointClick(d => {
-      globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.8 }, 1000);
+      globe.pointOfView(
+        { lat: d.lat, lng: d.lng, altitude: 1.8 },
+        1000
+      );
     });
 }
 
 // ==========================
-// SOBRE NÓS (CORRIGIDO)
+// SOBRE NÓS 
 // ==========================
 function abrirSobre() {
   let el = document.getElementById("modal-sobre");
@@ -285,7 +300,7 @@ function fecharSobre() {
 }
 
 // ==========================
-// INIT (LIMPO)
+// INIT 
 // ==========================
 window.onload = function () {
 
