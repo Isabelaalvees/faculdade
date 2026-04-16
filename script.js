@@ -282,12 +282,43 @@ function iniciarGlobo() {
     .pointLng(d => d.lng)
     .pointLabel(d => d.nome)
     .pointColor(() => "#CF6940")
+    .pointAltitude(0.02)
+    .pointRadius(0.6)
+    .pointResolution(12)
+    .ringsData(locais)
+    .ringColor(() => "#CF6940")
+    .ringMaxRadius(5)
+    .ringPropagationSpeed(2)
+    .ringRepeatPeriod(1000)
     .onPointClick(d => {
       globe.pointOfView(
-        { lat: d.lat, lng: d.lng, altitude: 1.8 },
-        1000
+        { lat: d.lat, lng: d.lng, altitude: 1.3 },
+        1800
       );
     });
+}
+
+function buscarNoGlobo(nomePais) {
+  if (!globe) return;
+
+  const pais = nomePais.toLowerCase();
+
+  const locais = [
+    { nome: "brasil", lat: -14.2, lng: -51.9 },
+    { nome: "japão", lat: 36.2, lng: 138.2 },
+    { nome: "colômbia", lat: 4.57, lng: -74.29 }
+  ];
+
+  const encontrado = locais.find(l =>
+    l.nome.includes(pais)
+  );
+
+  if (encontrado) {
+    globe.pointOfView(
+      { lat: encontrado.lat, lng: encontrado.lng, altitude: 1.5 },
+      1500
+    );
+  }
 }
 
 // ==========================
