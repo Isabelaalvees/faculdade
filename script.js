@@ -404,8 +404,8 @@ window.onload = function () {
 
   iniciarSliders();
 
-  // 🔥 MAPA AQUI (CORRETO)
-  iniciarMapa();
+  // GLOBO AQUI
+  window.addEventListener("load", iniciarGlobo);
 };
 
 // ==========================
@@ -510,48 +510,35 @@ function toggleDarkMode() {
 
 let mapa;
 let marcadorAtual = null;
+let globe;
 
-function iniciarMapa() {
-  mapa = L.map('mapa').setView([-15.78, -47.93], 2);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap'
-  }).addTo(mapa);
+function iniciarGlobo() {
+  globe = Globe()
+    .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+    .backgroundColor('rgba(0,0,0,0)')
+    .width(document.getElementById('globo').clientWidth)
+    .height(300)
+    (document.getElementById('globo'));
 
   const locais = [
-    { nome: "Brasil", coords: [-14.2, -51.9], zoom: 4 },
-    { nome: "Japão", coords: [36.2, 138.2], zoom: 5 },
-    { nome: "Colômbia", coords: [4.57, -74.29], zoom: 5 }
+    { nome: "Brasil", lat: -14.2, lng: -51.9 },
+    { nome: "Japão", lat: 36.2, lng: 138.2 },
+    { nome: "Colômbia", lat: 4.57, lng: -74.29 }
   ];
 
-  locais.forEach(local => {
-    const marker = L.marker(local.coords)
-      .addTo(mapa)
-      .bindPopup(local.nome);
-
-    marker.on("click", () => {
-      irParaPais(local);
+  globe.pointsData(locais)
+    .pointLat(d => d.lat)
+    .pointLng(d => d.lng)
+    .pointLabel(d => d.nome)
+    .pointColor(() => '#CF6940')
+    .onPointClick(d => {
+      zoomPais(d);
     });
-  });
-
-
-  setTimeout(() => {
-    mapa.invalidateSize();
-  }, 300);
 }
 
-function irParaPais(local) {
-  mapa.setView(local.coords, local.zoom, {
-    animate: true,
-    duration: 1.2
-  });
-
-  if (marcadorAtual) {
-    mapa.removeLayer(marcadorAtual);
-  }
-
-  marcadorAtual = L.marker(local.coords)
-    .addTo(mapa)
-    .bindPopup(local.nome)
-    .openPopup();
+function zoomPais(d) {
+  globe.pointOfView(
+    { lat: d.lat, lng: d.lng, altitude: 1.8 },
+    1000
+  );
 }
