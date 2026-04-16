@@ -101,9 +101,9 @@ function buscar() {
   if (!input) return;
 
   // ESCONDE O SLIDER
- document.querySelectorAll('.destaque').forEach(el => {
+  document.querySelectorAll('.destaque').forEach(el => {
   el.style.display = 'none';
-});
+  });
 
   let texto = removerAcentos(input.value.toLowerCase());
 
@@ -168,9 +168,9 @@ function verificarBusca() {
   if (input.value === '') {
 
     //  VOLTA O SLIDER
-   document.querySelectorAll('.destaque').forEach(el => {
+  document.querySelectorAll('.slider-area').forEach(el => {
   el.style.display = 'block';
-});
+  });
 
   if (input.value === '') {
     const secoes = [
