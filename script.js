@@ -217,45 +217,143 @@ function fecharModal(id) {
   if (modal) modal.style.display = 'none';
 }
 
+// ==========================
+// SLIDER
+// ==========================
+
 function iniciarSliders() {
   document.querySelectorAll(".card-principal").forEach(card => {
+
     let index = 0;
+    let startX = 0;
+    let isDragging = false;
+
     const slides = card.querySelector(".slides");
     if (!slides) return;
+
     const images = slides.querySelectorAll("img");
     const prev = card.querySelector(".prev");
     const next = card.querySelector(".next");
     const dotsContainer = card.querySelector(".dots");
+
+    // ==========================
+    // DOTS
+    // ==========================
     dotsContainer.innerHTML = "";
+
     images.forEach((_, i) => {
       const dot = document.createElement("span");
       dot.classList.add("dot");
       if (i === 0) dot.classList.add("active");
+
       dot.addEventListener("click", () => {
         index = i;
         update();
       });
+
       dotsContainer.appendChild(dot);
     });
+
     const dots = dotsContainer.querySelectorAll(".dot");
+
     function update() {
       const width = card.querySelector(".slider").clientWidth;
       slides.style.transform = `translateX(-${index * width}px)`;
+
       dots.forEach(dot => dot.classList.remove("active"));
       dots[index].classList.add("active");
     }
+
+    // ==========================
+    // BOTÕES
+    // ==========================
     next.onclick = () => {
       index = (index + 1) % images.length;
       update();
     };
+
     prev.onclick = () => {
       index = (index - 1 + images.length) % images.length;
       update();
     };
-    setInterval(() => {
-      index = (index + 1) % images.length;
+
+    // ==========================
+    // AUTO SLIDE COM PAUSA
+    // ==========================
+    let interval;
+
+    function startAutoSlide() {
+      clearTimeout(interval);
+      interval = setTimeout(() => {
+        interval = setInterval(() => {
+          index = (index + 1) % images.length;
+          update();
+        }, 4000);
+      }, 2000); // espera 2s pra voltar
+    }
+
+    function stopAutoSlide() {
+      clearInterval(interval);
+      clearTimeout(interval);
+    }
+
+    startAutoSlide();
+
+    // ==========================
+    // PAUSAR AO INTERAGIR
+    // ==========================
+    card.addEventListener("mouseenter", stopAutoSlide);
+    card.addEventListener("mouseleave", startAutoSlide);
+
+    slides.addEventListener("mousedown", stopAutoSlide);
+    window.addEventListener("mouseup", startAutoSlide);
+
+    slides.addEventListener("touchstart", stopAutoSlide);
+    slides.addEventListener("touchend", startAutoSlide);
+
+    // ==========================
+    // DRAG COM MOUSE
+    // ==========================
+    slides.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      startX = e.clientX;
+    });
+
+    window.addEventListener("mouseup", (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+
+      let diff = e.clientX - startX;
+
+      if (diff > 50) {
+        index = (index - 1 + images.length) % images.length;
+      } else if (diff < -50) {
+        index = (index + 1) % images.length;
+      }
+
       update();
-    }, 3000);
+    });
+
+    // ==========================
+    // TOUCH (CELULAR)
+    // ==========================
+    slides.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    slides.addEventListener("touchend", (e) => {
+      let endX = e.changedTouches[0].clientX;
+      let diff = endX - startX;
+
+      if (diff > 50) {
+        index = (index - 1 + images.length) % images.length;
+      } else if (diff < -50) {
+        index = (index + 1) % images.length;
+      }
+
+      update();
+    });
+
   });
 }
 
