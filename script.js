@@ -101,7 +101,7 @@ function buscar() {
   if (!input) return;
 
   // ESCONDE O SLIDER
-  document.querySelectorAll('.destaque').forEach(el => {
+  document.querySelectorAll('.slider-area').forEach(el => {
   el.style.display = 'none';
   });
 
@@ -167,12 +167,11 @@ function verificarBusca() {
 
   if (input.value === '') {
 
-    //  VOLTA O SLIDER
-  document.querySelectorAll('.slider-area').forEach(el => {
-  el.style.display = 'block';
-  });
+    //  VOLTA TODOS OS SLIDERS
+    document.querySelectorAll('.slider-area').forEach(el => {
+      el.style.display = 'block';
+    });
 
-  if (input.value === '') {
     const secoes = [
       'secao-destinos',
       'secao-continentes',
@@ -189,11 +188,10 @@ function verificarBusca() {
       card.style.display = 'block';
     });
 
-    // Limpa as bandeiras
+    // limpa bandeiras
     let resultadoDiv = document.getElementById('resultado-busca');
     if (resultadoDiv) resultadoDiv.innerHTML = '';
   }
-}
 }
 // ==========================
 // BOTÃO TOPO

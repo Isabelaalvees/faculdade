@@ -35,14 +35,11 @@
            onkeypress="if(event.key === 'Enter') buscar()"
            oninput="verificarBusca()">
     <button id="botaoBusca" class="botao" onclick="buscar()">Pesquisar</button>
-    <div class="card" data-bandeira="br">  <!-- Brasil -->
-    <div class="card" data-bandeira="jp">  <!-- Japão -->
-    <div class="card" data-bandeira="co">  <!-- Colômbia -->
+    <div id="resultado-busca"></div>
   </div>
 </section>
 
-
-<section class="container destaque">
+<section class="container destaque slider-area">
 
   <h2>Paises mais viajados</h2>
 
@@ -112,7 +109,7 @@
   <div id="conteudo-culturas"></div>
 </section>
 
-<section class="container destinos slider-area">
+<section class="container destaque slider-area">
 
   <h2>Receitas</h2>
 
