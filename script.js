@@ -460,7 +460,6 @@ function toggleDarkMode() {
     if (botao) botao.textContent = "🌙";
   }
 
-  // 🔥 ATUALIZA O GLOBO JUNTO
   setTimeout(() => {
     iniciarGlobo();
   }, 200);
@@ -494,3 +493,23 @@ function verReceitas(pais) {
 
   secao.scrollIntoView({ behavior: 'smooth' });
 }
+
+// ==========================
+// MENU MOBILE
+// ==========================
+
+function toggleMenu() {
+  const menu = document.querySelector(".menu");
+  if (menu) {
+    menu.classList.toggle("ativo");
+  }
+}
+
+document.querySelectorAll(".menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    const menu = document.querySelector(".menu");
+    if (menu) {
+      menu.classList.remove("ativo");
+    }
+  });
+});
