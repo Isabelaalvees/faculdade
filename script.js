@@ -306,10 +306,13 @@ function iniciarGlobo() {
 
   container.innerHTML = "";
 
+
+  const largura = container.clientWidth || 400;
+
   globe = Globe()
     .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
     .backgroundColor('rgba(0,0,0,0)')
-    .width(container.clientWidth)
+    .width(largura)
     .height(300)
     (container);
 
@@ -317,6 +320,12 @@ function iniciarGlobo() {
     .atmosphereColor("#CF6940")
     .atmosphereAltitude(0.15);
 
+ 
+  globe.pointOfView({ lat: -10, lng: -60, altitude: 2 }, 0);
+
+  
+  globe.controls().autoRotate = true;
+  globe.controls().autoRotateSpeed = 0.5;
 
   const locais = [
     {
@@ -339,95 +348,98 @@ function iniciarGlobo() {
     }
   ];
 
-
   globe
     .htmlElementsData(locais)
     .htmlElement(d => {
-  const container = document.createElement("div");
+      const wrapper = document.createElement("div"); 
 
-  // formato do pin
-  container.style.display = "flex";
-  container.style.flexDirection = "column";
-  container.style.alignItems = "center";
-  container.style.cursor = "pointer";
+      wrapper.style.display = "flex";
+      wrapper.style.flexDirection = "column";
+      wrapper.style.alignItems = "center";
+      wrapper.style.cursor = "pointer";
+      wrapper.style.transition = "transform 0.2s"; 
+      const flag = document.createElement("img");
+      flag.src = d.bandeira;
+      flag.style.width = "26px";
+      flag.style.height = "18px";
+      flag.style.borderRadius = "3px";
+      flag.style.boxShadow = "0 0 5px rgba(0,0,0,0.5)";
 
-  // bandeira
-  const flag = document.createElement("img");
-  flag.src = d.bandeira;
-  flag.style.width = "26px";
-  flag.style.height = "18px";
-  flag.style.borderRadius = "3px";
-  flag.style.boxShadow = "0 0 5px rgba(0,0,0,0.5)";
+      const pin = document.createElement("div");
+      pin.style.width = "6px";
+      pin.style.height = "6px";
+      pin.style.background = "#CF6940";
+      pin.style.borderRadius = "50%";
+      pin.style.marginTop = "2px";
 
-  // ponta do pin
-  const pin = document.createElement("div");
-  pin.style.width = "6px";
-  pin.style.height = "6px";
-  pin.style.background = "#CF6940";
-  pin.style.borderRadius = "50%";
-  pin.style.marginTop = "2px";
+      wrapper.appendChild(flag);
+      wrapper.appendChild(pin);
 
-  // junta tudo
-  container.appendChild(flag);
-  container.appendChild(pin);
+      wrapper.onmouseover = () => {
+       
+        globe.controls().autoRotate = false;
+        wrapper.style.transform = "scale(1.3)";
+      };
 
-  // hover
-  container.onmouseover = () => {
-    container.style.transform = "scale(1.3)";
-  };
+      wrapper.onmouseout = () => {
+        globe.controls().autoRotate = true;
+        wrapper.style.transform = "scale(1)";
+      };
 
-  container.onmouseout = () => {
-    container.style.transform = "scale(1)";
-  };
+      wrapper.onclick = () => {
+        console.log("👉 Clicou:", d.nome);
 
-  // clique (mantém seu sistema)
-  container.onclick = () => {
-    console.log("👉 Clicou:", d.nome);
+        globe.controls().autoRotate = false; 
 
-    globe.pointOfView(
-      { lat: d.lat, lng: d.lng, altitude: 1.3 },
-      1000
-    );
+        globe.pointOfView(
+          { lat: d.lat, lng: d.lng, altitude: 1.3 },
+          1000
+        );
 
-    setTimeout(() => {
-      const id = "modal-" + d.nome.toLowerCase().trim();
-      const modal = document.getElementById(id);
+        setTimeout(() => {
+          const id = "modal-" + d.nome.toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "") 
+            .trim();
+          const modal = document.getElementById(id);
 
-      if (modal) {
-        modal.style.display = "flex";
-      } else {
-        console.log("❌ Modal não encontrado:", id);
-      }
-    }, 100);
-  };
+          if (modal) {
+            modal.style.display = "flex";
+          } else {
+            console.log("❌ Modal não encontrado:", id);
+          }
+        }, 100);
+      };
 
-  return container;
-})
-
-  
+      return wrapper;
+    })
     .ringsData(locais)
     .ringColor(() => "#CF6940")
     .ringMaxRadius(5)
     .ringPropagationSpeed(2)
     .ringRepeatPeriod(1000);
+
+  
+  window.addEventListener("resize", () => {
+    globe.width(container.clientWidth);
+  });
 }
 
 function buscarNoGlobo(nomePais) {
   if (!globe) return;
 
-  const pais = nomePais.toLowerCase();
+  const pais = nomePais.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   const locais = [
     { nome: "brasil", lat: -14.2, lng: -51.9 },
-    { nome: "japão", lat: 36.2, lng: 138.2 },
-    { nome: "colômbia", lat: 4.57, lng: -74.29 }
+    { nome: "japao", lat: 36.2, lng: 138.2 }, // 
+    { nome: "colombia", lat: 4.57, lng: -74.29 } // 
   ];
 
-  const encontrado = locais.find(l =>
-    l.nome.includes(pais)
-  );
+  const encontrado = locais.find(l => l.nome.includes(pais));
 
   if (encontrado) {
+    globe.controls().autoRotate = false;
     globe.pointOfView(
       { lat: encontrado.lat, lng: encontrado.lng, altitude: 1.5 },
       1500
