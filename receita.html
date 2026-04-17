@@ -42,6 +42,18 @@
   </div>
 </div>
 
+<!-- Card: Meat Pie - Austrália -->
+<div class="card" data-pais="australia">
+  <img src="imagens/meat-pie.png" alt="Meat Pie">
+  <h3>Meat Pie</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>País:</strong> Austrália</p>
+    <p><strong>Tipo:</strong> Prato típico</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('receita-feijoada')">Ver receita</button>
+  </div>
+</div>
+
+
 <!-- Modal: Takoyaki -->
 <div id="modal-receita-takoyaki" class="modal">
   <div class="modal-conteudo">
@@ -51,6 +63,7 @@
       <img src="imagens/takoyaki.png" alt="Takoyaki" class="modal-img-direita">
       <p class="modal-texto">Takoyaki é um popular petisco japonês em formato de bolinhas, crocante por fora e macio por dentro, recheado com pedaços de polvo, gengibre e cebolinha. Originário de Osaka, é grelhado em chapas especiais e finalizado com molho takoyaki, maionese, aonori e katsuobushi.</p>
     </div>
+
     <h3 class="modal-subtitulo">Ingredientes</h3>
     <div class="modal-bloco">
       <p class="modal-texto">
@@ -196,6 +209,48 @@
     </div>
     <div class="modal-voltar">
       <button class="botao" onclick="fecharModal('receita-takoyaki')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Meat Pie - Austrália -->
+<div id="modal-receita-meat-pie" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Meat Pie</h2>
+    <h3 class="modal-subtitulo">O que é?</h3>
+    <div class="modal-bloco">
+      <img src="imagens/meat-pie.png" alt="Meat Pie" class="modal-img-direita">
+      <p class="modal-texto">Uma torta salgada muito popular no país é o lanche mais icônico da Austrália e da Nova Zelândia, considerada quase um prato nacional.</p>
+    </div>
+    <h3 class="modal-subtitulo">Ingredientes</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        • 350g de filé mignon Minerva Seleção (cozido e desfiado)<br>
+        • 5 colheres (sopa) de azeite para refogar<br>
+        • 1 cebola picada<br>
+        • 1 dente de alho picadinho<br>
+        • 1 colher (sopa) de farinha de trigo<br>
+        • 1/3 de xícara de molho de tomate<br>
+        • 1 tomate picado sem pele e sem semente<br>
+        • 2 colheres (sopa) de molho inglês<br>
+        • ⅔  de xícara (chá) de caldo do cozimento da carne<br>
+        • 2 colheres (sopa) de salsinha cortada<br>
+        • Sal a gosto<br>
+        • Pimenta-do-reino preta moída a gosto<br>
+        • 400g massa folhada pronta
+        </p>
+    </div>
+    <h3 class="modal-subtitulo">Modo de preparo</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+      1. Em uma panela média, aqueça o azeite e refogue levemente a cebola e o alho. Acrescente o filé mignon já cozido e desfiado, sal e pimenta-do-reino preta moída a gosto e mexa bem.<br>
+      2. Salpique a farinha de trigo sobre a carne e, sem parar de mexer, acrescente o molho de tomate, o tomate picadinho, o molho inglês e o caldo de carne. Continue mexendo até engrossar um pouco o molho. Retire do fogo e espere esfriar.<br>
+      3. Em uma forma redonda, acomode a massa folhada na base e nas laterais. Adicione o recheio, salpique a salsinha e cubra com mais massa folhada.<br>
+      4. Preaqueça o forno a 200ºC e asse a torta por 20 minutos ou até dourar. Sirva como lanche da tarde ou no horário que preferir!<br>
+      </p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('receita-feijoada')">← Voltar</button>
     </div>
   </div>
 </div>
