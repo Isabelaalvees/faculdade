@@ -317,47 +317,84 @@ function iniciarGlobo() {
     .atmosphereColor("#CF6940")
     .atmosphereAltitude(0.15);
 
+
   const locais = [
-    { nome: "Brasil", lat: -14.2, lng: -51.9 },
-    { nome: "Japão", lat: 36.2, lng: 138.2 },
-    { nome: "Colômbia", lat: 4.57, lng: -74.29 }
+    {
+      nome: "Brasil",
+      lat: -14.2,
+      lng: -51.9,
+      bandeira: "https://flagcdn.com/w40/br.png"
+    },
+    {
+      nome: "Japão",
+      lat: 36.2,
+      lng: 138.2,
+      bandeira: "https://flagcdn.com/w40/jp.png"
+    },
+    {
+      nome: "Colômbia",
+      lat: 4.57,
+      lng: -74.29,
+      bandeira: "https://flagcdn.com/w40/co.png"
+    }
   ];
 
-  globe.pointsData(locais)
-    .pointLat(d => d.lat)
-    .pointLng(d => d.lng)
-    .pointLabel(d => d.nome)
-    .pointColor(() => "#CF6940")
-    .pointAltitude(0.02)
-    .pointRadius(0.6)
-    .pointResolution(12)
+
+  globe
+    .htmlElementsData(locais)
+    .htmlElement(d => {
+      const el = document.createElement("img");
+
+      el.src = d.bandeira;
+      el.style.width = "28px";
+      el.style.height = "20px";
+      el.style.cursor = "pointer";
+      el.style.borderRadius = "4px";
+      el.style.boxShadow = "0 0 6px rgba(0,0,0,0.5)";
+      el.style.transition = "0.2s";
+
+      // hover
+      el.onmouseover = () => {
+        el.style.transform = "scale(1.3)";
+      };
+
+      el.onmouseout = () => {
+        el.style.transform = "scale(1)";
+      };
+
+  
+      el.onclick = () => {
+        console.log("👉 Clicou:", d.nome);
+
+        globe.pointOfView(
+          { lat: d.lat, lng: d.lng, altitude: 1.3 },
+          1000
+        );
+
+        setTimeout(() => {
+          const id = "modal-" + d.nome.toLowerCase().trim();
+          const modal = document.getElementById(id);
+
+          if (modal) {
+            modal.style.display = "flex";
+            console.log("✅ Modal aberto:", id);
+          } else {
+            console.log("❌ Modal não encontrado:", id);
+          }
+        }, 100);
+      };
+
+      return el;
+    })
+
+  
     .ringsData(locais)
     .ringColor(() => "#CF6940")
     .ringMaxRadius(5)
     .ringPropagationSpeed(2)
-    .ringRepeatPeriod(1000)
-    .onPointClick(d => {
-      console.log("👉 Clicou:", d.nome);
-      globe.pointOfView(
-      { lat: d.lat, lng: d.lng, altitude: 1.3 },
-      100
-  );
-
-  setTimeout(() => {
-    const id = "modal-" + d.nome.toLowerCase().trim();
-    const modal = document.getElementById(id);
-
-    if (modal) {
-      modal.style.display = "flex";
-      console.log("✅ Modal aberto:", id);
-    } else {
-      console.log("❌ Modal não encontrado:", id);
-    }
-
-  }, 100);
-
-});
+    .ringRepeatPeriod(1000);
 }
+
 function buscarNoGlobo(nomePais) {
   if (!globe) return;
 
@@ -480,7 +517,6 @@ function verReceitas(pais) {
 
     if (!paisCard) return;
 
-    // compara (sem erro de maiúscula/minúscula)
     if (paisCard.toLowerCase() === pais.toLowerCase()) {
       card.style.display = 'block';
     } else {
