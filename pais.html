@@ -51,6 +51,37 @@
   </div>
   </div>
 
+  <div class="card" data-bandeira="�🇸">  <!-- EUA -->
+      <img src="imagens/pais/eua.png" alt="EUA">
+      <h3>EUA</h3>
+      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <p><strong>Região:</strong> América do Norte</p>
+      <p><strong>Pratos típicos:</strong> Hambúrguer, Hot Dog, Apple Pie</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('eua')">Me aventurar</button>
+  </div>
+  </div>
+
+    <div class="card" data-bandeira="�🇸">  <!-- FRANÇA -->
+      <img src="imagens/pais/franca.png" alt="França">
+      <h3>França</h3>
+      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <p><strong>Região:</strong> Europa</p>
+      <p><strong>Pratos típicos:</strong> Croissant, Coq au Vin, Ratatouille</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('franca')">Me aventurar</button>
+  </div>
+  </div>
+  
+
+    <div class="card" data-bandeira="�🇸">  <!-- EGITO -->
+      <img src="imagens/pais/egito.png" alt="Egito">
+      <h3>Egito</h3>
+      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <p><strong>Região:</strong> África</p>
+      <p><strong>Pratos típicos:</strong> Ful Medames, Koshari, Taamiya</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('egito')">Me aventurar</button>
+  </div>
+  </div>
+
   </div>
 </main>
 
@@ -203,6 +234,65 @@
     <div class="modal-voltar">
       <button class="botao" onclick="verReceitas('australia')">🍽️ Ver receitas</button>
       <button class="botao" onclick="fecharModal('australia')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal-franca" class="modal">
+    <div class="modal-conteudo">
+    <h2 class="modal-titulo">França</h2>
+    <h3 class="modal-subtitulo">Dados gerais</h3>
+    <div class="modal-bloco">
+      <img src="imagens/dados-gerais/franca_gerais.png" alt="França" class="modal-img-direita">
+      <p class="modal-texto" data-i18n="cl_dados_txt">A França está localizada na Europa e é conhecida por sua cultura, história e gastronomia refinada.</p>
+    </div>
+    <h3 class="modal-subtitulo" data-i18n="cl_cart_sub">Ponto turístico: Torre Eiffel</h3>
+    <div class="modal-bloco">
+      <img src="imagens/ponto-turistico/torre-eiffel.png" alt="Torre Eiffel" class="modal-img-esquerda">
+      <p class="modal-texto" data-i18n="cl_col_txt">Um dos monumentos mais famosos do mundo, localizado em Paris.</p>
+    </div>
+    <h3 class="modal-subtitulo" data-i18n="cl_cult_sub">Cultura - Melhor época para viajar para a França</h3>
+    <div class="modal-bloco">
+      <img src="imagens/festa/festa-franca.png" alt="Festa França" class="modal-img-direita">
+      <p class="modal-texto" data-i18n="cl_colo_txt">A França pode ser visitada em qualquer época do ano, pois possui clima temperado com temperaturas relativamente estáveis. No entanto, algumas épocas podem ser mais vantajosas! Sendo as principais épocas para festas: Fevereiro (Carnaval de Barranquilla) e Agosto (Feira das Flores em Medellín).</p>
+    </div>
+    <h3 class="modal-subtitulo" data-i18n="cl_culi_sub">Culinária da França</h3>
+    <div class="modal-bloco">
+      <img src="imagens/receita/croissant.png" alt="Croissant" class="modal-img-esquerda">
+      <p class="modal-texto" data-i18n="cl_culi_txt">Um pão folhado típico, muito consumido no café da manhã.</p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="verReceitas('franca')">🍽️ Ver receitas</button>
+      <button class="botao" onclick="fecharModal('franca')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal-egito" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Egito</h2>
+
+    <h3 class="modal-subtitulo">Dados gerais</h3>
+    <div class="modal-bloco">
+      <img src="imagens/pais/egito.png" alt="Egito" class="modal-img-direita">
+      <p class="modal-texto">O Egito está localizado no nordeste da África e é famoso por sua história antiga e civilização milenar.</p>
+    </div>
+
+    <h3 class="modal-subtitulo">Ponto turístico: Pirâmides de Gizé</h3>
+    <div class="modal-bloco">
+      <img src="imagens/ponto-turistico/piramide-gize.png" alt="Pirâmides de Gizé" class="modal-img-esquerda">
+      <p class="modal-texto">As pirâmides de Gizé são um dos monumentos mais antigos e impressionantes do mundo. Localizadas no Egito, elas são um dos Sete Maravilhas do Mundo Antigo.</p>
+    </div>
+
+    <h3 class="modal-subtitulo">Culinária: Koshari</h3>
+    <div class="modal-bloco">
+      <img src="imagens/receita/koshari.png" alt="Koshari" class="modal-img-direita">
+      <p class="modal-texto">Prato tradicional feito com arroz, macarrão e lentilhas.  é o prato nacional do Egito e uma das comidas de rua mais populares e amadas do país.</p>
+    </div>
+
+    <div class="modal-voltar">
+      <button class="botao" onclick="verReceitas('egito')">🍽️ Ver receitas</button>
+      <button class="botao" onclick="fecharModal('egito')">← Voltar</button>
     </div>
   </div>
 </div>
