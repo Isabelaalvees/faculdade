@@ -289,9 +289,7 @@ function iniciarSliders() {
 // ==========================
 // GLOBO 3D 
 // ==========================
-// ==========================
-// GLOBO 3D 
-// ==========================
+
 let globe;
 
 function iniciarGlobo() {
@@ -303,11 +301,13 @@ function iniciarGlobo() {
   const largura = container.clientWidth || 400;
 
   globe = Globe()
-    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
-    .backgroundColor('rgba(0,0,0,0)')
-    .width(largura)
-    .height(300)
-    (container);
+  .globeImageUrl('...')
+  .backgroundColor('rgba(0,0,0,0)')
+  .width(largura)
+  .height(300)
+  (container);
+
+const THREE = globe.three(); 
 
   globe.atmosphereColor("#CF6940").atmosphereAltitude(0.15);
   globe.pointOfView({ lat: -10, lng: -60, altitude: 2 }, 0);
@@ -366,7 +366,6 @@ function iniciarGlobo() {
         obj.rotateX(-Math.PI / 2);
       });
 
-    // ✅ Clique — DENTRO do .then()
     const camera = globe.camera();
     const scene = globe.scene();
     const raycaster = new THREE.Raycaster();
@@ -404,7 +403,7 @@ function iniciarGlobo() {
       }
     });
 
-  }); // ✅ fecha o .then()
+  }); 
 
   window.addEventListener("resize", () => {
     globe.width(container.clientWidth);
