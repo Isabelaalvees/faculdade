@@ -599,11 +599,33 @@ header {
   visibility: visible;
 }
 
-  .bandeiras {
-    margin-top: 10px;
-  }
+  .menu-extra {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
+/* bandeiras no menu */
+.menu-idioma img {
+  width: 32px;
+  margin: 0 6px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.menu-idioma img:hover {
+  transform: scale(1.1);
+}
+
+/* botão dark dentro do menu */
+.menu-extra .btn-dark {
+  font-size: 20px;
+  padding: 8px 16px;
+}
+}
 /* ===========================
    MODAL SOBRE NÓS
 =========================== */

@@ -516,3 +516,15 @@ document.querySelectorAll(".menu a").forEach(link => {
     }
   });
 });
+
+document.querySelectorAll(".menu-idioma img, .btn-dark").forEach(el => {
+  el.addEventListener("click", () => {
+    const menu = document.querySelector(".menu");
+    const overlay = document.querySelector(".overlay");
+
+    if (menu && overlay) {
+      menu.classList.remove("ativo");
+      overlay.classList.remove("ativo");
+    }
+  });
+});
