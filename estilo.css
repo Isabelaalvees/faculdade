@@ -627,6 +627,27 @@ header {
   display: flex;
 }
 
+.menu-topo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: #FFFCC5;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.menu-fechar {
+  font-size: 26px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-fechar:hover {
+  transform: scale(1.2);
+}
+
 /* OVERLAY */
 .overlay {
   position: fixed;

@@ -44,12 +44,18 @@
     <div class="header-right">
 
       <nav class="menu" id="menu">
+
+        <div class="menu-topo">
+          <span class="menu-titulo">Menu</span>
+          <span class="menu-fechar" onclick="toggleMenu()">✕</span>
+        </div>
+
         <a href="#" onclick="carregarPagina('pais')">País</a>
         <a href="#" onclick="carregarPagina('continente')">Continente</a>
         <a href="#" onclick="carregarPagina('cultura')">Cultura</a>
         <a href="#" onclick="carregarPagina('receita')">Receitas</a>
 
-        <!-- 🔥 ITENS MOBILE -->
+        <!-- ITENS MOBILE -->
         <div class="menu-extra">
           <div class="menu-idioma">
             <img src="https://flagcdn.com/w40/br.png" onclick="mudarIdioma('pt')">
