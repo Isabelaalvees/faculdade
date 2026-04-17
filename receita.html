@@ -31,6 +31,17 @@
   </div>
 </div>
 
+<!-- Card: Hambúrguer - EUA -->
+<div class="card" data-pais="eua">
+  <img src="imagens/hamburguer.png" alt="Hambúrguer">
+  <h3>Hambúrguer</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>País:</strong> EUA</p>
+    <p><strong>Tipo:</strong> Prato típico</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('receita-feijoada')">Ver receita</button>
+  </div>
+</div>
+
 <!-- Modal: Takoyaki -->
 <div id="modal-receita-takoyaki" class="modal">
   <div class="modal-conteudo">
@@ -148,6 +159,43 @@
     </div>
     <div class="modal-voltar">
       <button class="botao" onclick="fecharModal('receita-feijoada')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Hambúrguer -->
+<div id="modal-receita-hamburguer" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Hambúrguer</h2>
+    <h3 class="modal-subtitulo">O que é?</h3>
+    <div class="modal-bloco">
+      <img src="imagens/hamburguer.png" alt="Hambúrguer" class="modal-img-direita">
+      <p class="modal-texto">O hambúrguer é um prato composto por uma carne moída, geralmente bovina, que é grelhada e servida em um pão cortado ao meio. É um dos pratos mais populares da culinária norte-americana.</p>
+    </div>
+    <h3 class="modal-subtitulo">Ingredientes</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        • 500g de carne moída (dá 2 a 3 hambúrgueres grandes).<br>
+        • Sal e pimenta-do-reino moída na hora.<br>
+        • Queijo Cheddar (o alaranjado é o mais clássico).<br>
+        • ​Pão de hambúrguer (tipo Brioche ou com gergelim).<br>
+        • Manteiga para o pão.<br>
+        <strong>Complementos:</strong><br>
+        •Picles de pepino, cebola roxa, alface americana e tomate <br>
+      </p>
+    </div>
+    <h3 class="modal-subtitulo">Modo de preparo</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        1. ​Modele: Com as mãos frias, faça bolas de carne e molde o disco sem apertar demais (para manter a suculência). Dica: faça um pequeno buraco com o polegar no centro do disco para que ele não "inche" ao fritar.<br>
+        2. Toste o Pão: Passe manteiga no pão e doure-o na frigideira até criar uma barreira crocante. Isso impede que o suco da carne encharque o pão.<br>
+        3. Frite: Aqueça bem uma frigideira (preferencialmente de ferro) ou grelha. Só agora coloque bastante sal e pimenta apenas no lado de cima da carne. Coloque na frigideira com o tempero para baixo. Tempere o outro lado enquanto frita.<br>
+        4. ​Não aperte! Nunca pressione a carne com a espátula, ou você vai expulsar todo o suco.<br>
+        5. ​O Queijo: Assim que virar a carne, coloque a fatia de queijo por cima. Se quiser que derreta rápido, coloque uma tampa na frigideira por 30 segundos
+      </p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('receita-takoyaki')">← Voltar</button>
     </div>
   </div>
 </div>

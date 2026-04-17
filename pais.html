@@ -31,6 +31,16 @@
   </div>
   </div>
 
+  <div class="card" data-bandeira="�🇸">  <!-- EUA -->
+      <img src="imagens/eua.png" alt="EUA">
+      <h3>EUA</h3>
+      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <p><strong>Região:</strong> América do Norte</p>
+      <p><strong>Pratos típicos:</strong> Hambúrguer, Hot Dog, Apple Pie</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('eua')">Me aventurar</button>
+  </div>
+  </div>
+
   </div>
 </main>
 
@@ -120,6 +130,36 @@
     <div class="modal-voltar">
       <button class="botao" onclick="verReceitas('colombia')">🍽️ Ver receitas</button>
       <button class="botao" onclick="fecharModal('colombia')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal-eua" class="modal">
+    <div class="modal-conteudo">
+    <h2 class="modal-titulo">Estados Unidos</h2>
+    <h3 class="modal-subtitulo">Dados gerais</h3>
+    <div class="modal-bloco">
+      <img src="imagens/eua_gerais.png" alt="Estados Unidos" class="modal-img-direita">
+      <p class="modal-texto" data-i18n="cl_dados_txt">Os Estados Unidos estão localizados na América do Norte e são uma das maiores potências econômicas e culturais do mundo.</p>
+    </div>
+    <h3 class="modal-subtitulo" data-i18n="cl_cart_sub">Ponto turístico: Estátua da Liberdade</h3>
+    <div class="modal-bloco">
+      <img src="imagens/estatua-liberdade.png" alt="Estátua da Liberdade" class="modal-img-esquerda">
+      <p class="modal-texto" data-i18n="cl_col_txt">Localizada em Nova York, é um símbolo de liberdade e um dos monumentos mais famosos do mundo.</p>
+    </div>
+    <h3 class="modal-subtitulo" data-i18n="cl_cult_sub">Cultura - Melhor época para viajar para a EUA</h3>
+    <div class="modal-bloco">
+      <img src="imagens/festa-colombia.png" alt="Festa Colômbia" class="modal-img-direita">
+      <p class="modal-texto" data-i18n="cl_colo_txt">A Colômbia pode ser visitada em qualquer época do ano, pois possui clima tropical com temperaturas relativamente estáveis. No entanto, algumas épocas podem ser mais vantajosas! Sendo as principais épocas para festas: Fevereiro (Carnaval de Barranquilla) e Agosto (Feira das Flores em Medellín).</p>
+    </div>
+    <h3 class="modal-subtitulo" data-i18n="cl_culi_sub">Culinária dos EUA</h3>
+    <div class="modal-bloco">
+      <img src="imagens/hamburguer.png" alt="Hambúrguer" class="modal-img-esquerda">
+      <p class="modal-texto" data-i18n="cl_culi_txt">A culinária dos EUA é resultado da mistura de culturas indígenas, europeias e africanas. Um dos alimentos mais populares do país, consumido em diversas versões. nos EUA é um ícone cultural, variando entre fast-food clássico e opções gourmets.</p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="verReceitas('eua')">🍽️ Ver receitas</button>
+      <button class="botao" onclick="fecharModal('eua')">← Voltar</button>
     </div>
   </div>
 </div>
