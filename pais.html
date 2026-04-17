@@ -84,13 +84,38 @@
   <div class="modal-conteudo">
     <h2 class="modal-titulo">Brasil</h2>
     
-      <button class="botao" onclick="lerConteudo('brasil')">
-        🔊 Ouvir conteúdo
-      </button>
+    <div class="player">
 
-      <button class="botao" onclick="pararLeitura()">
-        ⏹️ Parar
-      </button>
+    <!-- INFO -->
+      <div class="player-info">
+        <span id="player-pais">Brasil</span>
+      </div>
+
+      <!-- CONTROLES -->
+        <div class="player-controls">
+          <button onclick="toggleAudioGlobal()" id="btn-play">▶️</button>
+        </div>
+
+      <!-- PROGRESSO -->
+        <div class="player-bar">
+          <span id="tempo-atual">0:00</span>
+
+        <input type="range" id="barra-progresso" value="0"
+           onchange="mudarTempo(this.value)">
+
+          <span id="tempo-total">0:00</span>
+        </div>
+
+          <!-- VOLUME -->
+          <div class="player-volume">
+            🔊
+            <input type="range" min="0" max="1" step="0.1" value="1"
+                  onchange="mudarVolumeGlobal(this.value)">
+          </div>
+
+          <audio id="audio-global"></audio>
+
+</div>
           
     <h3 class="modal-subtitulo">Dados gerais</h3>
     <div class="modal-bloco">

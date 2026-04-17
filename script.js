@@ -557,29 +557,63 @@ document.addEventListener("click", function (e) {
 
 });
 
+// ==========================
+// AUDIO
+// ==========================
 
-function lerConteudo(pais) {
-  const modal = document.getElementById(`modal-${pais}`);
 
-  if (!modal) return;
 
-  // pega só os textos principais (melhor UX)
-  const textos = modal.querySelectorAll(".modal-texto");
-  let textoFinal = "";
+let audio = document.getElementById("audio-global");
+let botao = document.getElementById("btn-play");
 
-  textos.forEach(t => {
-    textoFinal += t.innerText + " ";
-  });
+function tocarPais(pais) {
+  audio.src = `audios/${pais}.mp3`;
 
-  const fala = new SpeechSynthesisUtterance(textoFinal);
+  document.getElementById("player-pais").innerText = pais;
 
-  fala.lang = "pt-BR";
-  fala.rate = 0.9; // um pouco mais natural
-
-  speechSynthesis.cancel(); // para qualquer leitura anterior
-  speechSynthesis.speak(fala);
+  audio.play();
+  botao.innerText = "⏸️";
 }
 
-function pararLeitura() {
-  speechSynthesis.cancel();
+// play/pause
+function toggleAudioGlobal() {
+  if (audio.paused) {
+    audio.play();
+    botao.innerText = "⏸️";
+  } else {
+    audio.pause();
+    botao.innerText = "▶️";
+  }
+}
+
+// volume
+function mudarVolumeGlobal(valor) {
+  audio.volume = valor;
+}
+
+// progresso (tempo)
+audio.addEventListener("timeupdate", () => {
+  const progresso = document.getElementById("barra-progresso");
+
+  progresso.max = audio.duration;
+  progresso.value = audio.currentTime;
+
+  document.getElementById("tempo-atual").innerText = formatarTempo(audio.currentTime);
+  document.getElementById("tempo-total").innerText = formatarTempo(audio.duration);
+});
+
+function mudarTempo(valor) {
+  audio.currentTime = valor;
+}
+
+// formatar tempo
+function formatarTempo(segundos) {
+  if (!segundos) return "0:00";
+
+  let min = Math.floor(segundos / 60);
+  let sec = Math.floor(segundos % 60);
+
+  if (sec < 10) sec = "0" + sec;
+
+  return `${min}:${sec}`;
 }
