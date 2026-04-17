@@ -570,16 +570,12 @@ header {
   right: -100%;
   width: 75%;
   height: 100vh;
-
   background: #7b1b38;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   gap: 20px;
-
   transition: right 0.4s ease;
   z-index: 1000;
   box-shadow: -5px 0 20px rgba(0,0,0,0.3);
@@ -857,4 +853,31 @@ header {
 
 .dark .modal-texto {
   color: #ddd;
+}
+
+.dark .menu {
+  background: #121212; 
+}
+
+.dark .menu a {
+  background: #1e1e1e;
+  border-color: #333;
+  color: #eee;
+}
+
+.dark .menu a:hover {
+  background: #CF6940;
+  color: white;
+}
+
+.dark .menu-titulo {
+  color: #FFFCC5;
+}
+
+.dark .menu-fechar {
+  color: #FFFCC5;
+}
+
+.dark .overlay {
+  background: rgba(0,0,0,0.7);
 }
