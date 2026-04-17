@@ -225,6 +225,10 @@ header {
   display: none;
 }
 
+.menu-titulo {
+  display: none;
+}
+
 /* ===========================
    DESTINOS / CARDS
 =========================== */
@@ -652,9 +656,14 @@ header {
     cursor: pointer;
   }
 
-.menu-fechar:hover {
-  transform: scale(1.2);
-}
+  .menu-titulo {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    color: #FFFCC5;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
 
 /* OVERLAY */
 .overlay {
