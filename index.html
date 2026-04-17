@@ -26,27 +26,42 @@
 
 </div>
 
-
-
 <body>
 
 <header>
   <div class="header-container">
 
+    <!-- LOGO -->
     <div class="logo" onclick="voltarHome()">
       <img src="imagens/logo.png" alt="WanderEats">
       WanderEats
     </div>
 
+    <!-- BOTÃO MOBILE -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <!-- MENU + EXTRAS -->
     <div class="header-right">
 
       <nav class="menu" id="menu">
-        <a href="#" onclick="event.preventDefault(); carregarPagina('pais')">País</a>
-        <a href="#" onclick="event.preventDefault(); carregarPagina('continente')">Continente</a>
-        <a href="#" onclick="event.preventDefault(); carregarPagina('cultura')">Cultura</a>
-        <a href="#" onclick="event.preventDefault(); carregarPagina('receita')">Receitas</a>
+        <a href="#" onclick="carregarPagina('pais')">País</a>
+        <a href="#" onclick="carregarPagina('continente')">Continente</a>
+        <a href="#" onclick="carregarPagina('cultura')">Cultura</a>
+        <a href="#" onclick="carregarPagina('receita')">Receitas</a>
+
+        <!-- 🔥 ITENS MOBILE -->
+        <div class="menu-extra">
+          <div class="menu-idioma">
+            <img src="https://flagcdn.com/w40/br.png" onclick="mudarIdioma('pt')">
+            <img src="https://flagcdn.com/w40/us.png" onclick="mudarIdioma('en')">
+            <img src="https://flagcdn.com/w40/es.png" onclick="mudarIdioma('es')">
+          </div>
+
+          <button class="btn-dark" onclick="toggleDarkMode()">🌙</button>
+        </div>
       </nav>
 
+      <!-- DESKTOP -->
       <div class="bandeiras">
         <img src="https://flagcdn.com/w40/br.png" onclick="mudarIdioma('pt')">
         <img src="https://flagcdn.com/w40/us.png" onclick="mudarIdioma('en')">
@@ -58,22 +73,9 @@
     </div>
   </div>
 
- <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-  <!-- 🔥 NOVO BLOCO -->
-  <div class="menu-extra">
-    <div class="menu-idioma">
-      <img src="https://flagcdn.com/w40/br.png" onclick="mudarIdioma('pt')">
-      <img src="https://flagcdn.com/w40/us.png" onclick="mudarIdioma('en')">
-      <img src="https://flagcdn.com/w40/es.png" onclick="mudarIdioma('es')">
-    </div>
-  </div>
-</nav>
-
-<!-- 🔥 OVERLAY -->
-<div class="overlay" onclick="toggleMenu()"></div>
+  <!-- OVERLAY -->
+  <div class="overlay" onclick="toggleMenu()"></div>
 </header>
-
   
 
 <section class="hero">

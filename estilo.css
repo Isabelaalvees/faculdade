@@ -541,10 +541,10 @@ header {
   }
 
   .header-right {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
 .menu {
   position: fixed;
@@ -564,6 +564,8 @@ header {
 
   transition: right 0.4s ease;
   z-index: 1000;
+  box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+
 }
 
 .menu.ativo {
@@ -576,8 +578,13 @@ header {
   padding: 15px;
   font-size: 18px;
   border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+  border: none;
 }
 
+.menu a:hover {
+  background: #CF6940;
+}
 .menu-extra {
   margin-top: 30px;
   display: flex;
@@ -618,6 +625,11 @@ header {
 .overlay.ativo {
   opacity: 1;
   visibility: visible;
+}
+
+.bandeiras,
+.header-right > .btn-dark {
+  display: none;
 }
 }
 
