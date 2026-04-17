@@ -289,23 +289,17 @@ function iniciarSliders() {
 // ==========================
 // GLOBO 3D 
 // ==========================
+// ==========================
+// GLOBO 3D 
+// ==========================
 let globe;
 
 function iniciarGlobo() {
   const container = document.getElementById("globo");
-
-  if (!container) {
-    console.log("❌ Container #globo não encontrado");
-    return;
-  }
-
-  if (typeof Globe === "undefined") {
-    console.log("❌ Biblioteca Globe não carregou");
-    return;
-  }
+  if (!container) return;
+  if (typeof Globe === "undefined") return;
 
   container.innerHTML = "";
-
   const largura = container.clientWidth || 400;
 
   globe = Globe()
@@ -315,22 +309,17 @@ function iniciarGlobo() {
     .height(300)
     (container);
 
-  globe
-    .atmosphereColor("#CF6940")
-    .atmosphereAltitude(0.15);
-
+  globe.atmosphereColor("#CF6940").atmosphereAltitude(0.15);
   globe.pointOfView({ lat: -10, lng: -60, altitude: 2 }, 0);
-
   globe.controls().autoRotate = true;
   globe.controls().autoRotateSpeed = 0.5;
 
   const locais = [
-    { nome: "Brasil",   lat: -14.2,  lng: -51.9,  bandeira: "https://flagcdn.com/w40/br.png" },
-    { nome: "Japão",    lat: 36.2,   lng: 138.2,  bandeira: "https://flagcdn.com/w40/jp.png" },
-    { nome: "Colômbia", lat: 4.57,   lng: -74.29, bandeira: "https://flagcdn.com/w40/co.png" }
+    { nome: "Brasil",   lat: -14.2, lng: -51.9,  bandeira: "https://flagcdn.com/w40/br.png" },
+    { nome: "Japão",    lat: 36.2,  lng: 138.2,  bandeira: "https://flagcdn.com/w40/jp.png" },
+    { nome: "Colômbia", lat: 4.57,  lng: -74.29, bandeira: "https://flagcdn.com/w40/co.png" }
   ];
 
-  // Carrega as texturas e cria os pins depois que todas estiverem prontas
   const textureLoader = new THREE.TextureLoader();
 
   Promise.all(locais.map(local =>
@@ -340,55 +329,44 @@ function iniciarGlobo() {
       });
     })
   )).then(locaisComTextura => {
+
     globe
       .customLayerData(locaisComTextura)
       .customThreeObject(d => {
         const group = new THREE.Group();
 
-        // 🏳 Bandeira (plano com textura)
-        const flagGeo = new THREE.PlaneGeometry(6, 4);
+        const flagGeo = new THREE.PlaneGeometry(20, 13);
         const flagMat = new THREE.MeshBasicMaterial({
           map: d.texture,
           side: THREE.DoubleSide,
           transparent: true
         });
         const flag = new THREE.Mesh(flagGeo, flagMat);
-        flag.position.set(3, 18, 0); // centraliza na haste
+        flag.position.set(10, 60, 0);
         group.add(flag);
 
-        // | Haste
-        const hasteGeo = new THREE.CylinderGeometry(0.15, 0.15, 16, 8);
+        const hasteGeo = new THREE.CylinderGeometry(0.5, 0.5, 50, 8);
         const hasteMat = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
         const haste = new THREE.Mesh(hasteGeo, hasteMat);
-        haste.position.set(0, 10, 0);
+        haste.position.set(0, 30, 0);
         group.add(haste);
 
-        // • Base
-        const baseGeo = new THREE.SphereGeometry(0.8, 8, 8);
+        const baseGeo = new THREE.SphereGeometry(2.5, 8, 8);
         const baseMat = new THREE.MeshBasicMaterial({ color: 0xCF6940 });
         const base = new THREE.Mesh(baseGeo, baseMat);
         base.position.set(0, 0, 0);
         group.add(base);
 
-        // Guarda os dados no group para recuperar no clique
         group.userData = d;
-
         return group;
       })
       .customThreeObjectUpdate((obj, d) => {
-        // Posiciona o objeto na superfície do globo
-        Object.assign(
-          obj.position,
-          globe.getCoords(d.lat, d.lng, 0.02)
-        );
-
-        // Aponta o pin para fora do centro do globo (perpendicular à superfície)
+        Object.assign(obj.position, globe.getCoords(d.lat, d.lng, 0.05));
         obj.lookAt(new THREE.Vector3(0, 0, 0));
-        obj.rotateX(Math.PI / 2); // corrige o eixo
+        obj.rotateX(-Math.PI / 2);
       });
 
-    // ✅ Clique funcionando via raycasting do Three.js
-    const renderer = globe.renderer();
+    // ✅ Clique — DENTRO do .then()
     const camera = globe.camera();
     const scene = globe.scene();
     const raycaster = new THREE.Raycaster();
@@ -400,12 +378,9 @@ function iniciarGlobo() {
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
       raycaster.setFromCamera(mouse, camera);
-
-      // Pega todos os objetos clicáveis da cena
       const intersects = raycaster.intersectObjects(scene.children, true);
 
       if (intersects.length > 0) {
-        // Sobe na hierarquia até encontrar o group com userData
         let obj = intersects[0].object;
         while (obj.parent && !obj.userData.nome) {
           obj = obj.parent;
@@ -413,8 +388,6 @@ function iniciarGlobo() {
 
         if (obj.userData.nome) {
           const d = obj.userData;
-          console.log("👉 Clicou:", d.nome);
-
           globe.controls().autoRotate = false;
           globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.3 }, 1000);
 
@@ -430,32 +403,12 @@ function iniciarGlobo() {
         }
       }
     });
-  });
+
+  }); // ✅ fecha o .then()
 
   window.addEventListener("resize", () => {
     globe.width(container.clientWidth);
   });
-}
-
-function buscarNoGlobo(nomePais) {
-  if (!globe) return;
-
-  const pais = nomePais.toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-
-  const locais = [
-    { nome: "brasil",   lat: -14.2,  lng: -51.9 },
-    { nome: "japao",    lat: 36.2,   lng: 138.2 },
-    { nome: "colombia", lat: 4.57,   lng: -74.29 }
-  ];
-
-  const encontrado = locais.find(l => l.nome.includes(pais));
-
-  if (encontrado) {
-    globe.controls().autoRotate = false;
-    globe.pointOfView({ lat: encontrado.lat, lng: encontrado.lng, altitude: 1.5 }, 1500);
-  }
 }
 
 // ==========================
