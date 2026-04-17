@@ -298,112 +298,92 @@ function iniciarGlobo() {
   if (typeof Globe === "undefined") return;
 
   container.innerHTML = "";
-  const largura = container.clientWidth || 400;
 
   globe = Globe()
-  .globeImageUrl('...')
-  .backgroundColor('rgba(0,0,0,0)')
-  .width(largura)
-  .height(300)
-  (container);
-
-const THREE = globe.three(); 
+    .globeImageUrl('https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg')
+    .backgroundColor('rgba(0,0,0,0)')
+    .width(container.clientWidth)
+    .height(300)
+    (container);
 
   globe.atmosphereColor("#CF6940").atmosphereAltitude(0.15);
+
   globe.pointOfView({ lat: -10, lng: -60, altitude: 2 }, 0);
+
   globe.controls().autoRotate = true;
   globe.controls().autoRotateSpeed = 0.5;
 
   const locais = [
-    { nome: "Brasil",   lat: -14.2, lng: -51.9,  bandeira: "https://flagcdn.com/w40/br.png" },
-    { nome: "Japão",    lat: 36.2,  lng: 138.2,  bandeira: "https://flagcdn.com/w40/jp.png" },
-    { nome: "Colômbia", lat: 4.57,  lng: -74.29, bandeira: "https://flagcdn.com/w40/co.png" }
+    {
+      nome: "Brasil",
+      lat: -14.2,
+      lng: -51.9,
+      bandeira: "https://flagcdn.com/w40/br.png"
+    },
+    {
+      nome: "Japão",
+      lat: 36.2,
+      lng: 138.2,
+      bandeira: "https://flagcdn.com/w40/jp.png"
+    },
+    {
+      nome: "Colômbia",
+      lat: 4.57,
+      lng: -74.29,
+      bandeira: "https://flagcdn.com/w40/co.png"
+    }
   ];
 
-  const textureLoader = new THREE.TextureLoader();
+  // 🔥 PIN + BANDEIRA (SEM BUG)
+  globe
+    .htmlElementsData(locais)
+    .htmlElement(d => {
+      const container = document.createElement("div");
 
-  Promise.all(locais.map(local =>
-    new Promise(resolve => {
-      textureLoader.load(local.bandeira, texture => {
-        resolve({ ...local, texture });
-      });
-    })
-  )).then(locaisComTextura => {
+      container.style.display = "flex";
+      container.style.flexDirection = "column";
+      container.style.alignItems = "center";
+      container.style.cursor = "pointer";
 
-    globe
-      .customLayerData(locaisComTextura)
-      .customThreeObject(d => {
-        const group = new THREE.Group();
+      const flag = document.createElement("img");
+      flag.src = d.bandeira;
+      flag.style.width = "26px";
+      flag.style.height = "18px";
+      flag.style.borderRadius = "3px";
 
-        const flagGeo = new THREE.PlaneGeometry(20, 13);
-        const flagMat = new THREE.MeshBasicMaterial({
-          map: d.texture,
-          side: THREE.DoubleSide,
-          transparent: true
-        });
-        const flag = new THREE.Mesh(flagGeo, flagMat);
-        flag.position.set(10, 60, 0);
-        group.add(flag);
+      const pin = document.createElement("div");
+      pin.style.width = "6px";
+      pin.style.height = "6px";
+      pin.style.background = "#CF6940";
+      pin.style.borderRadius = "50%";
+      pin.style.marginTop = "2px";
 
-        const hasteGeo = new THREE.CylinderGeometry(0.5, 0.5, 50, 8);
-        const hasteMat = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
-        const haste = new THREE.Mesh(hasteGeo, hasteMat);
-        haste.position.set(0, 30, 0);
-        group.add(haste);
+      container.appendChild(flag);
+      container.appendChild(pin);
 
-        const baseGeo = new THREE.SphereGeometry(2.5, 8, 8);
-        const baseMat = new THREE.MeshBasicMaterial({ color: 0xCF6940 });
-        const base = new THREE.Mesh(baseGeo, baseMat);
-        base.position.set(0, 0, 0);
-        group.add(base);
+      container.onclick = () => {
+        globe.controls().autoRotate = false;
 
-        group.userData = d;
-        return group;
-      })
-      .customThreeObjectUpdate((obj, d) => {
-        Object.assign(obj.position, globe.getCoords(d.lat, d.lng, 0.05));
-        obj.lookAt(new THREE.Vector3(0, 0, 0));
-        obj.rotateX(-Math.PI / 2);
-      });
+        globe.pointOfView(
+          { lat: d.lat, lng: d.lng, altitude: 1.3 },
+          1000
+        );
 
-    const camera = globe.camera();
-    const scene = globe.scene();
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
+        setTimeout(() => {
+          const id = "modal-" + d.nome.toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
 
-    container.addEventListener("click", (event) => {
-      const rect = container.getBoundingClientRect();
-      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+          const modal = document.getElementById(id);
 
-      raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObjects(scene.children, true);
+          if (modal) modal.style.display = "flex";
+          else console.log("❌ Modal não encontrado:", id);
+        }, 100);
+      };
 
-      if (intersects.length > 0) {
-        let obj = intersects[0].object;
-        while (obj.parent && !obj.userData.nome) {
-          obj = obj.parent;
-        }
-
-        if (obj.userData.nome) {
-          const d = obj.userData;
-          globe.controls().autoRotate = false;
-          globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.3 }, 1000);
-
-          setTimeout(() => {
-            const id = "modal-" + d.nome.toLowerCase()
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .trim();
-            const modal = document.getElementById(id);
-            if (modal) modal.style.display = "flex";
-            else console.log("❌ Modal não encontrado:", id);
-          }, 100);
-        }
-      }
+      return container;
     });
-
-  }); 
 
   window.addEventListener("resize", () => {
     globe.width(container.clientWidth);
