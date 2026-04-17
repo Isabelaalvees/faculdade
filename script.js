@@ -351,68 +351,63 @@ function iniciarGlobo() {
   globe
     .htmlElementsData(locais)
     .htmlElement(d => {
-      const wrapper = document.createElement("div"); 
+  const wrapper = document.createElement("div");
+  wrapper.style.display = "flex";
+  wrapper.style.flexDirection = "column";
+  wrapper.style.alignItems = "flex-start"; // bandeira alinhada à esquerda da haste
+  wrapper.style.cursor = "pointer";
+  wrapper.style.transition = "transform 0.2s";
 
-      wrapper.style.display = "flex";
-      wrapper.style.flexDirection = "column";
-      wrapper.style.alignItems = "center";
-      wrapper.style.cursor = "pointer";
-      wrapper.style.transition = "transform 0.2s"; 
-      const flag = document.createElement("img");
-      flag.src = d.bandeira;
-      flag.style.width = "26px";
-      flag.style.height = "18px";
-      flag.style.borderRadius = "3px";
-      flag.style.boxShadow = "0 0 5px rgba(0,0,0,0.5)";
+  // 🏳 Bandeira
+  const flag = document.createElement("img");
+  flag.src = d.bandeira;
+  flag.style.width = "28px";
+  flag.style.height = "18px";
+  flag.style.borderRadius = "2px";
+  flag.style.boxShadow = "0 1px 4px rgba(0,0,0,0.6)";
+  flag.style.display = "block";
 
-      const pin = document.createElement("div");
-      pin.style.width = "6px";
-      pin.style.height = "6px";
-      pin.style.background = "#CF6940";
-      pin.style.borderRadius = "50%";
-      pin.style.marginTop = "2px";
+  // | Haste
+  const haste = document.createElement("div");
+  haste.style.width = "2px";
+  haste.style.height = "20px";
+  haste.style.background = "#888";
+  haste.style.marginLeft = "2px"; // alinha com a borda esquerda da bandeira
 
-      wrapper.appendChild(flag);
-      wrapper.appendChild(pin);
+  // • Base
+  const base = document.createElement("div");
+  base.style.width = "6px";
+  base.style.height = "6px";
+  base.style.background = "#CF6940";
+  base.style.borderRadius = "50%";
+  base.style.marginLeft = "-1px"; // centraliza na haste
 
-      wrapper.onmouseover = () => {
-       
-        globe.controls().autoRotate = false;
-        wrapper.style.transform = "scale(1.3)";
-      };
+  wrapper.appendChild(flag);
+  wrapper.appendChild(haste);
+  wrapper.appendChild(base);
 
-      wrapper.onmouseout = () => {
-        globe.controls().autoRotate = true;
-        wrapper.style.transform = "scale(1)";
-      };
+  wrapper.onmouseover = () => {
+    globe.controls().autoRotate = false;
+    wrapper.style.transform = "scale(1.3)";
+  };
+  wrapper.onmouseout = () => {
+    globe.controls().autoRotate = true;
+    wrapper.style.transform = "scale(1)";
+  };
+  wrapper.onclick = () => {
+    globe.controls().autoRotate = false;
+    globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.3 }, 1000);
+    setTimeout(() => {
+      const id = "modal-" + d.nome.toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+      const modal = document.getElementById(id);
+      if (modal) modal.style.display = "flex";
+    }, 100);
+  };
 
-      wrapper.onclick = () => {
-        console.log("👉 Clicou:", d.nome);
+  return wrapper;
+})
 
-        globe.controls().autoRotate = false; 
-
-        globe.pointOfView(
-          { lat: d.lat, lng: d.lng, altitude: 1.3 },
-          1000
-        );
-
-        setTimeout(() => {
-          const id = "modal-" + d.nome.toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "") 
-            .trim();
-          const modal = document.getElementById(id);
-
-          if (modal) {
-            modal.style.display = "flex";
-          } else {
-            console.log("❌ Modal não encontrado:", id);
-          }
-        }, 100);
-      };
-
-      return wrapper;
-    })
     .ringsData(locais)
     .ringColor(() => "#CF6940")
     .ringMaxRadius(5)
