@@ -343,49 +343,66 @@ function iniciarGlobo() {
   globe
     .htmlElementsData(locais)
     .htmlElement(d => {
-      const el = document.createElement("img");
+  const container = document.createElement("div");
 
-      el.src = d.bandeira;
-      el.style.width = "28px";
-      el.style.height = "20px";
-      el.style.cursor = "pointer";
-      el.style.borderRadius = "4px";
-      el.style.boxShadow = "0 0 6px rgba(0,0,0,0.5)";
-      el.style.transition = "0.2s";
+  // formato do pin
+  container.style.display = "flex";
+  container.style.flexDirection = "column";
+  container.style.alignItems = "center";
+  container.style.cursor = "pointer";
 
-      // hover
-      el.onmouseover = () => {
-        el.style.transform = "scale(1.3)";
-      };
+  // bandeira
+  const flag = document.createElement("img");
+  flag.src = d.bandeira;
+  flag.style.width = "26px";
+  flag.style.height = "18px";
+  flag.style.borderRadius = "3px";
+  flag.style.boxShadow = "0 0 5px rgba(0,0,0,0.5)";
 
-      el.onmouseout = () => {
-        el.style.transform = "scale(1)";
-      };
+  // ponta do pin
+  const pin = document.createElement("div");
+  pin.style.width = "6px";
+  pin.style.height = "6px";
+  pin.style.background = "#CF6940";
+  pin.style.borderRadius = "50%";
+  pin.style.marginTop = "2px";
 
-  
-      el.onclick = () => {
-        console.log("👉 Clicou:", d.nome);
+  // junta tudo
+  container.appendChild(flag);
+  container.appendChild(pin);
 
-        globe.pointOfView(
-          { lat: d.lat, lng: d.lng, altitude: 1.3 },
-          1000
-        );
+  // hover
+  container.onmouseover = () => {
+    container.style.transform = "scale(1.3)";
+  };
 
-        setTimeout(() => {
-          const id = "modal-" + d.nome.toLowerCase().trim();
-          const modal = document.getElementById(id);
+  container.onmouseout = () => {
+    container.style.transform = "scale(1)";
+  };
 
-          if (modal) {
-            modal.style.display = "flex";
-            console.log("✅ Modal aberto:", id);
-          } else {
-            console.log("❌ Modal não encontrado:", id);
-          }
-        }, 100);
-      };
+  // clique (mantém seu sistema)
+  container.onclick = () => {
+    console.log("👉 Clicou:", d.nome);
 
-      return el;
-    })
+    globe.pointOfView(
+      { lat: d.lat, lng: d.lng, altitude: 1.3 },
+      1000
+    );
+
+    setTimeout(() => {
+      const id = "modal-" + d.nome.toLowerCase().trim();
+      const modal = document.getElementById(id);
+
+      if (modal) {
+        modal.style.display = "flex";
+      } else {
+        console.log("❌ Modal não encontrado:", id);
+      }
+    }, 100);
+  };
+
+  return container;
+})
 
   
     .ringsData(locais)
