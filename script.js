@@ -556,3 +556,30 @@ document.addEventListener("click", function (e) {
   }
 
 });
+
+
+function lerConteudo(pais) {
+  const modal = document.getElementById(`modal-${pais}`);
+
+  if (!modal) return;
+
+  // pega só os textos principais (melhor UX)
+  const textos = modal.querySelectorAll(".modal-texto");
+  let textoFinal = "";
+
+  textos.forEach(t => {
+    textoFinal += t.innerText + " ";
+  });
+
+  const fala = new SpeechSynthesisUtterance(textoFinal);
+
+  fala.lang = "pt-BR";
+  fala.rate = 0.9; // um pouco mais natural
+
+  speechSynthesis.cancel(); // para qualquer leitura anterior
+  speechSynthesis.speak(fala);
+}
+
+function pararLeitura() {
+  speechSynthesis.cancel();
+}
