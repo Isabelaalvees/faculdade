@@ -306,7 +306,6 @@ function iniciarGlobo() {
 
   container.innerHTML = "";
 
-
   const largura = container.clientWidth || 400;
 
   globe = Globe()
@@ -320,101 +319,119 @@ function iniciarGlobo() {
     .atmosphereColor("#CF6940")
     .atmosphereAltitude(0.15);
 
- 
   globe.pointOfView({ lat: -10, lng: -60, altitude: 2 }, 0);
 
-  
   globe.controls().autoRotate = true;
   globe.controls().autoRotateSpeed = 0.5;
 
   const locais = [
-    {
-      nome: "Brasil",
-      lat: -14.2,
-      lng: -51.9,
-      bandeira: "https://flagcdn.com/w40/br.png"
-    },
-    {
-      nome: "Japão",
-      lat: 36.2,
-      lng: 138.2,
-      bandeira: "https://flagcdn.com/w40/jp.png"
-    },
-    {
-      nome: "Colômbia",
-      lat: 4.57,
-      lng: -74.29,
-      bandeira: "https://flagcdn.com/w40/co.png"
-    }
+    { nome: "Brasil",   lat: -14.2,  lng: -51.9,  bandeira: "https://flagcdn.com/w40/br.png" },
+    { nome: "Japão",    lat: 36.2,   lng: 138.2,  bandeira: "https://flagcdn.com/w40/jp.png" },
+    { nome: "Colômbia", lat: 4.57,   lng: -74.29, bandeira: "https://flagcdn.com/w40/co.png" }
   ];
 
-  globe
-    .htmlElementsData(locais)
-    .htmlElement(d => {
-  const wrapper = document.createElement("div");
-  wrapper.style.display = "flex";
-  wrapper.style.flexDirection = "column";
-  wrapper.style.alignItems = "flex-start"; // bandeira alinhada à esquerda da haste
-  wrapper.style.cursor = "pointer";
-  wrapper.style.transition = "transform 0.2s";
+  // Carrega as texturas e cria os pins depois que todas estiverem prontas
+  const textureLoader = new THREE.TextureLoader();
 
-  // 🏳 Bandeira
-  const flag = document.createElement("img");
-  flag.src = d.bandeira;
-  flag.style.width = "28px";
-  flag.style.height = "18px";
-  flag.style.borderRadius = "2px";
-  flag.style.boxShadow = "0 1px 4px rgba(0,0,0,0.6)";
-  flag.style.display = "block";
+  Promise.all(locais.map(local =>
+    new Promise(resolve => {
+      textureLoader.load(local.bandeira, texture => {
+        resolve({ ...local, texture });
+      });
+    })
+  )).then(locaisComTextura => {
+    globe
+      .customLayerData(locaisComTextura)
+      .customThreeObject(d => {
+        const group = new THREE.Group();
 
-  // | Haste
-  const haste = document.createElement("div");
-  haste.style.width = "2px";
-  haste.style.height = "20px";
-  haste.style.background = "#888";
-  haste.style.marginLeft = "2px"; // alinha com a borda esquerda da bandeira
+        // 🏳 Bandeira (plano com textura)
+        const flagGeo = new THREE.PlaneGeometry(6, 4);
+        const flagMat = new THREE.MeshBasicMaterial({
+          map: d.texture,
+          side: THREE.DoubleSide,
+          transparent: true
+        });
+        const flag = new THREE.Mesh(flagGeo, flagMat);
+        flag.position.set(3, 18, 0); // centraliza na haste
+        group.add(flag);
 
-  // • Base
-  const base = document.createElement("div");
-  base.style.width = "6px";
-  base.style.height = "6px";
-  base.style.background = "#CF6940";
-  base.style.borderRadius = "50%";
-  base.style.marginLeft = "-1px"; // centraliza na haste
+        // | Haste
+        const hasteGeo = new THREE.CylinderGeometry(0.15, 0.15, 16, 8);
+        const hasteMat = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
+        const haste = new THREE.Mesh(hasteGeo, hasteMat);
+        haste.position.set(0, 10, 0);
+        group.add(haste);
 
-  wrapper.appendChild(flag);
-  wrapper.appendChild(haste);
-  wrapper.appendChild(base);
+        // • Base
+        const baseGeo = new THREE.SphereGeometry(0.8, 8, 8);
+        const baseMat = new THREE.MeshBasicMaterial({ color: 0xCF6940 });
+        const base = new THREE.Mesh(baseGeo, baseMat);
+        base.position.set(0, 0, 0);
+        group.add(base);
 
-  wrapper.onmouseover = () => {
-    globe.controls().autoRotate = false;
-    wrapper.style.transform = "scale(1.3)";
-  };
-  wrapper.onmouseout = () => {
-    globe.controls().autoRotate = true;
-    wrapper.style.transform = "scale(1)";
-  };
-  wrapper.onclick = () => {
-    globe.controls().autoRotate = false;
-    globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.3 }, 1000);
-    setTimeout(() => {
-      const id = "modal-" + d.nome.toLowerCase()
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-      const modal = document.getElementById(id);
-      if (modal) modal.style.display = "flex";
-    }, 100);
-  };
+        // Guarda os dados no group para recuperar no clique
+        group.userData = d;
 
-  return wrapper;
-})
+        return group;
+      })
+      .customThreeObjectUpdate((obj, d) => {
+        // Posiciona o objeto na superfície do globo
+        Object.assign(
+          obj.position,
+          globe.getCoords(d.lat, d.lng, 0.02)
+        );
 
-    .ringsData(locais)
-    .ringColor(() => "#CF6940")
-    .ringMaxRadius(5)
-    .ringPropagationSpeed(2)
-    .ringRepeatPeriod(1000);
+        // Aponta o pin para fora do centro do globo (perpendicular à superfície)
+        obj.lookAt(new THREE.Vector3(0, 0, 0));
+        obj.rotateX(Math.PI / 2); // corrige o eixo
+      });
 
-  
+    // ✅ Clique funcionando via raycasting do Three.js
+    const renderer = globe.renderer();
+    const camera = globe.camera();
+    const scene = globe.scene();
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    container.addEventListener("click", (event) => {
+      const rect = container.getBoundingClientRect();
+      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, camera);
+
+      // Pega todos os objetos clicáveis da cena
+      const intersects = raycaster.intersectObjects(scene.children, true);
+
+      if (intersects.length > 0) {
+        // Sobe na hierarquia até encontrar o group com userData
+        let obj = intersects[0].object;
+        while (obj.parent && !obj.userData.nome) {
+          obj = obj.parent;
+        }
+
+        if (obj.userData.nome) {
+          const d = obj.userData;
+          console.log("👉 Clicou:", d.nome);
+
+          globe.controls().autoRotate = false;
+          globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.3 }, 1000);
+
+          setTimeout(() => {
+            const id = "modal-" + d.nome.toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .trim();
+            const modal = document.getElementById(id);
+            if (modal) modal.style.display = "flex";
+            else console.log("❌ Modal não encontrado:", id);
+          }, 100);
+        }
+      }
+    });
+  });
+
   window.addEventListener("resize", () => {
     globe.width(container.clientWidth);
   });
@@ -423,22 +440,21 @@ function iniciarGlobo() {
 function buscarNoGlobo(nomePais) {
   if (!globe) return;
 
-  const pais = nomePais.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const pais = nomePais.toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 
   const locais = [
-    { nome: "brasil", lat: -14.2, lng: -51.9 },
-    { nome: "japao", lat: 36.2, lng: 138.2 }, // 
-    { nome: "colombia", lat: 4.57, lng: -74.29 } // 
+    { nome: "brasil",   lat: -14.2,  lng: -51.9 },
+    { nome: "japao",    lat: 36.2,   lng: 138.2 },
+    { nome: "colombia", lat: 4.57,   lng: -74.29 }
   ];
 
   const encontrado = locais.find(l => l.nome.includes(pais));
 
   if (encontrado) {
     globe.controls().autoRotate = false;
-    globe.pointOfView(
-      { lat: encontrado.lat, lng: encontrado.lng, altitude: 1.5 },
-      1500
-    );
+    globe.pointOfView({ lat: encontrado.lat, lng: encontrado.lng, altitude: 1.5 }, 1500);
   }
 }
 
