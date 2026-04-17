@@ -314,27 +314,51 @@ function iniciarGlobo() {
   globe.controls().autoRotateSpeed = 0.5;
 
   const locais = [
-    {
-      nome: "Brasil",
-      lat: -14.2,
-      lng: -51.9,
-      bandeira: "https://flagcdn.com/w40/br.png"
-    },
-    {
-      nome: "Japão",
-      lat: 36.2,
-      lng: 138.2,
-      bandeira: "https://flagcdn.com/w40/jp.png"
-    },
-    {
-      nome: "Colômbia",
-      lat: 4.57,
-      lng: -74.29,
-      bandeira: "https://flagcdn.com/w40/co.png"
-    }
-  ];
+  {
+    nome: "Brasil",
+    lat: -14.2,
+    lng: -51.9,
+    bandeira: "https://flagcdn.com/w40/br.png"
+  },
+  {
+    nome: "Japão",
+    lat: 36.2,
+    lng: 138.2,
+    bandeira: "https://flagcdn.com/w40/jp.png"
+  },
+  {
+    nome: "Colômbia",
+    lat: 4.57,
+    lng: -74.29,
+    bandeira: "https://flagcdn.com/w40/co.png"
+  },
+  {
+    nome: "EUA",
+    lat: 37.1,
+    lng: -95.7,
+    bandeira: "https://flagcdn.com/w40/us.png"
+  },
+  {
+    nome: "Austrália",
+    lat: -25.3,
+    lng: 133.8,
+    bandeira: "https://flagcdn.com/w40/au.png"
+  },
+  {
+    nome: "França",
+    lat: 46.2,
+    lng: 2.2,
+    bandeira: "https://flagcdn.com/w40/fr.png"
+  },
+  {
+    nome: "Egito",
+    lat: 26.8,
+    lng: 30.8,
+    bandeira: "https://flagcdn.com/w40/eg.png"
+  }
+];
 
-  // 🔥 PIN + BANDEIRA (SEM BUG)
+
   globe
     .htmlElementsData(locais)
     .htmlElement(d => {
