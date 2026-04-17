@@ -191,7 +191,7 @@ header {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-top: 0; /* 🔥 corrigido */
+  margin-top: 0; 
 }
 
 .menu a {
@@ -613,6 +613,18 @@ header {
 
 .menu-idioma img:hover {
   transform: scale(1.1);
+}
+
+.menu .menu-extra {
+  display: flex;
+}
+
+.menu .btn-dark {
+  display: inline-block;
+}
+
+.menu .menu-idioma {
+  display: flex;
 }
 
 /* OVERLAY */
