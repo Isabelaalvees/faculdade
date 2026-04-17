@@ -882,3 +882,31 @@ header {
   background: rgba(0,0,0,0.7);
 }
 
+/* AUDIO */
+
+.botao-audio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* animação 🔥 */
+.botao-audio.tocando .icone {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.modal-texto {
+  transition: 0.3s;
+}
+
+.modal-texto.ativo {
+  background: #fff3cd;
+  padding: 5px;
+  border-radius: 6px;
+}

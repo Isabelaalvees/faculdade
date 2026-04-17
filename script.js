@@ -614,4 +614,61 @@ function toggleNarracao(pais) {
   paisAtual = pais;
 
   btn.innerText = "⏸️ Pausar";
+
+  btn.classList.add("tocando"); // quando começa
+  btn.classList.remove("tocando");
+}
+
+function falarComDestaque(pais) {
+  const textos = document.querySelectorAll(`#modal-${pais} .modal-texto`);
+
+  let i = 0;
+
+  function lerProximo() {
+    if (i > 0) {
+      textos[i - 1].classList.remove("ativo");
+    }
+
+    if (i >= textos.length) return;
+
+    const texto = textos[i];
+
+    texto.classList.add("ativo");
+
+    const fala = new SpeechSynthesisUtterance(texto.innerText);
+    fala.lang = getIdioma(pais);
+
+    fala.onend = () => {
+      i++;
+      lerProximo();
+    };
+
+    speechSynthesis.speak(fala);
+  }
+
+  speechSynthesis.cancel();
+  lerProximo();
+}
+
+function toggleNarracao(pais) {
+  const btn = document.getElementById(`btn-audio-${pais}`);
+  const textoBtn = btn.querySelector(".texto");
+
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    btn.classList.remove("tocando");
+    textoBtn.innerText = "Ouvir";
+    return;
+  }
+
+  btn.classList.add("tocando");
+  textoBtn.innerText = "Parar";
+
+  falarComDestaque(pais);
+
+  // quando terminar tudo
+  setTimeout(() => {
+    btn.classList.remove("tocando");
+    textoBtn.innerText = "Ouvir";
+  }, 10000); // ajuste depois
 }
