@@ -549,11 +549,13 @@ header {
 .menu {
   position: fixed;
   top: 0;
-  right: -100%; 
+  right: -100%;
   width: 75%;
   height: 100vh;
 
   background: #7b1b38;
+
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -564,12 +566,10 @@ header {
   z-index: 1000;
 }
 
-/* MENU ABERTO */
 .menu.ativo {
   right: 0;
 }
 
-/* LINKS */
 .menu a {
   width: 80%;
   text-align: center;
@@ -578,6 +578,27 @@ header {
   border-radius: 12px;
 }
 
+.menu-extra {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu-idioma img {
+  width: 32px;
+  margin: 0 6px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.menu-idioma img:hover {
+  transform: scale(1.1);
+}
+
+/* OVERLAY */
 .overlay {
   position: fixed;
   top: 0;
@@ -598,34 +619,8 @@ header {
   opacity: 1;
   visibility: visible;
 }
-
-  .menu-extra {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
 }
 
-/* bandeiras no menu */
-.menu-idioma img {
-  width: 32px;
-  margin: 0 6px;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: 0.3s;
-}
-
-.menu-idioma img:hover {
-  transform: scale(1.1);
-}
-
-/* botão dark dentro do menu */
-.menu-extra .btn-dark {
-  font-size: 20px;
-  padding: 8px 16px;
-}
-}
 /* ===========================
    MODAL SOBRE NÓS
 =========================== */

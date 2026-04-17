@@ -497,7 +497,6 @@ function verReceitas(pais) {
 // ==========================
 // MENU MOBILE
 // ==========================
-
 function toggleMenu() {
   const menu = document.querySelector(".menu");
   const overlay = document.querySelector(".overlay");
@@ -508,17 +507,13 @@ function toggleMenu() {
   }
 }
 
-document.querySelectorAll(".menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    const menu = document.querySelector(".menu");
-    if (menu) {
-      menu.classList.remove("ativo");
-    }
-  });
-});
 
-document.querySelectorAll(".menu-idioma img, .btn-dark").forEach(el => {
-  el.addEventListener("click", () => {
+document.addEventListener("click", function (e) {
+
+  if (e.target.closest(".menu a") || 
+      e.target.closest(".menu-idioma img") || 
+      e.target.closest(".btn-dark")) {
+
     const menu = document.querySelector(".menu");
     const overlay = document.querySelector(".overlay");
 
@@ -526,5 +521,6 @@ document.querySelectorAll(".menu-idioma img, .btn-dark").forEach(el => {
       menu.classList.remove("ativo");
       overlay.classList.remove("ativo");
     }
-  });
+  }
+
 });
