@@ -546,31 +546,58 @@ header {
     align-items: center;
   }
 
-  .menu {
-    position: absolute; 
-    top: 80px;
-    left: 0;
-    width: 100%;
-    background: #7b1b38;
+.menu {
+  position: fixed;
+  top: 0;
+  right: -100%; 
+  width: 75%;
+  height: 100vh;
 
-    flex-direction: column;
-    align-items: center;
+  background: #7b1b38;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    display: none;
-    padding: 15px 0;
+  gap: 20px;
 
-    z-index: 999;
-  }
+  transition: right 0.4s ease;
+  z-index: 1000;
+}
 
-  .menu a {
-    width: 80%;
-    text-align: center;
-    margin: 6px 0;
-  }
+/* MENU ABERTO */
+.menu.ativo {
+  right: 0;
+}
 
-  .menu.ativo {
-    display: flex;
-  }
+/* LINKS */
+.menu a {
+  width: 80%;
+  text-align: center;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.5);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.overlay.ativo {
+  opacity: 1;
+  visibility: visible;
+}
 
   .bandeiras {
     margin-top: 10px;

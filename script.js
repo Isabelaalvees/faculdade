@@ -500,8 +500,11 @@ function verReceitas(pais) {
 
 function toggleMenu() {
   const menu = document.querySelector(".menu");
-  if (menu) {
+  const overlay = document.querySelector(".overlay");
+
+  if (menu && overlay) {
     menu.classList.toggle("ativo");
+    overlay.classList.toggle("ativo");
   }
 }
 
