@@ -212,7 +212,13 @@ header {
 }
 
 .menu-extra {
-  display: flex;
+  display: none;
+}
+
+.menu .menu-extra,
+.menu .btn-dark,
+.menu .menu-idioma {
+  display: none;
 }
 
 /* ===========================
