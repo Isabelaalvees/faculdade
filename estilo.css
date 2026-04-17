@@ -211,6 +211,10 @@ header {
   color: white;
 }
 
+.menu-extra {
+  display: flex;
+}
+
 /* ===========================
    DESTINOS / CARDS
 =========================== */
@@ -513,7 +517,7 @@ header {
 }
 
 /* ===========================
-   HEADER RESPONSIVO
+   HEADER E MENU RESPONSIVO
 =========================== */
 
 .header-right {
