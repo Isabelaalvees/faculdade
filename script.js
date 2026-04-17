@@ -194,7 +194,15 @@ function abrirModal(id) {
 function fecharModal(id) {
   let modal = document.getElementById('modal-' + id);
   if (modal) modal.style.display = 'none';
+
+   speechSynthesis.cancel();
+
+  const btn = document.getElementById(`btn-audio-${pais}`);
+  if (btn) {
+    btn.innerText = "▶️ Ouvir";
+  }
 }
+
 
 // ==========================
 // LOGO VOLTAR HOME 
@@ -560,60 +568,50 @@ document.addEventListener("click", function (e) {
 // ==========================
 // AUDIO
 // ==========================
+let paisAtual = null;
 
+function toggleNarracao(pais) {
+  const btn = document.getElementById(`btn-audio-${pais}`);
 
-
-let audio = document.getElementById("audio-global");
-let botao = document.getElementById("btn-play");
-
-function tocarPais(pais) {
-  audio.src = `audios/${pais}.mp3`;
-
-  document.getElementById("player-pais").innerText = pais;
-
-  audio.play();
-  botao.innerText = "⏸️";
-}
-
-// play/pause
-function toggleAudioGlobal() {
-  if (audio.paused) {
-    audio.play();
-    botao.innerText = "⏸️";
-  } else {
-    audio.pause();
-    botao.innerText = "▶️";
+  // 🎧 se estiver tocando → PAUSA
+  if (speechSynthesis.speaking && !speechSynthesis.paused) {
+    speechSynthesis.pause();
+    btn.innerText = "▶️ Continuar";
+    return;
   }
-}
 
-// volume
-function mudarVolumeGlobal(valor) {
-  audio.volume = valor;
-}
+  // ▶️ se estiver pausado → CONTINUA
+  if (speechSynthesis.paused) {
+    speechSynthesis.resume();
+    btn.innerText = "⏸️ Pausar";
+    return;
+  }
 
-// progresso (tempo)
-audio.addEventListener("timeupdate", () => {
-  const progresso = document.getElementById("barra-progresso");
+  // 🚀 se não estiver tocando → COMEÇA
+  const modal = document.getElementById(`modal-${pais}`);
+  if (!modal) return;
 
-  progresso.max = audio.duration;
-  progresso.value = audio.currentTime;
+  const textos = modal.querySelectorAll(".modal-texto");
 
-  document.getElementById("tempo-atual").innerText = formatarTempo(audio.currentTime);
-  document.getElementById("tempo-total").innerText = formatarTempo(audio.duration);
-});
+  let textoFinal = "";
 
-function mudarTempo(valor) {
-  audio.currentTime = valor;
-}
+  textos.forEach(t => {
+    textoFinal += t.innerText + " ";
+  });
 
-// formatar tempo
-function formatarTempo(segundos) {
-  if (!segundos) return "0:00";
+  const fala = new SpeechSynthesisUtterance(textoFinal);
 
-  let min = Math.floor(segundos / 60);
-  let sec = Math.floor(segundos % 60);
+  fala.lang = "pt-BR";
+  fala.rate = 0.9;
 
-  if (sec < 10) sec = "0" + sec;
+  fala.onend = () => {
+    btn.innerText = "▶️ Ouvir";
+  };
 
-  return `${min}:${sec}`;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(fala);
+
+  paisAtual = pais;
+
+  btn.innerText = "⏸️ Pausar";
 }

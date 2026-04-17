@@ -7,7 +7,7 @@
       <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
       <p><strong>Região:</strong> América do Sul</p>
       <p><strong>Pratos típicos:</strong> Feijoada, Coxinha, Pão de Açúcar</p>
-    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('brasil'); tocarPais('brasil')">Me aventurar</button>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('brasil');">Me aventurar</button>
   </div>
   </div>
 
@@ -84,38 +84,9 @@
   <div class="modal-conteudo">
     <h2 class="modal-titulo">Brasil</h2>
     
-    <div class="player">
-
-    <!-- INFO -->
-      <div class="player-info">
-        <span id="player-pais">Brasil</span>
-      </div>
-
-      <!-- CONTROLES -->
-        <div class="player-controls">
-          <button onclick="toggleAudioGlobal()" id="btn-play">▶️</button>
-        </div>
-
-      <!-- PROGRESSO -->
-        <div class="player-bar">
-          <span id="tempo-atual">0:00</span>
-
-        <input type="range" id="barra-progresso" value="0"
-           onchange="mudarTempo(this.value)">
-
-          <span id="tempo-total">0:00</span>
-        </div>
-
-          <!-- VOLUME -->
-          <div class="player-volume">
-            🔊
-            <input type="range" min="0" max="1" step="0.1" value="1"
-                  onchange="mudarVolumeGlobal(this.value)">
-          </div>
-
-          <audio id="audio-global"></audio>
-
-</div>
+    <button id="btn-audio-brasil" class="botao" onclick="toggleNarracao('brasil')">
+        ▶️ Ouvir
+    </button>
           
     <h3 class="modal-subtitulo">Dados gerais</h3>
     <div class="modal-bloco">
