@@ -221,6 +221,10 @@ header {
   display: none;
 }
 
+.menu-fechar {
+  display: none;
+}
+
 /* ===========================
    DESTINOS / CARDS
 =========================== */
@@ -638,11 +642,15 @@ header {
   font-weight: bold;
 }
 
-.menu-fechar {
-  font-size: 26px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+ .menu-fechar {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    color: #FFFCC5;
+    cursor: pointer;
+  }
 
 .menu-fechar:hover {
   transform: scale(1.2);
