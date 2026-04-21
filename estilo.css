@@ -882,6 +882,10 @@ header {
   background: rgba(0,0,0,0.7);
 }
 
+.modal-sobre {
+  background: rgba(0,0,0,0.8);
+  color: #FFFCC5;
+}
 /* AUDIO */
 
 .botao-audio {
