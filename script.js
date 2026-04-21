@@ -435,6 +435,20 @@ function fecharSobre() {
   if (el) el.style.display = "none";
 }
 
+function abrirQuemSomos() {
+  let el = document.getElementById("modal-quem-somos");
+  if (el) el.style.display = "flex";
+}
+
+function fecharQuemSomos() {
+  let el = document.getElementById("modal-quem-somos");
+  if (el) el.style.display = "none";
+}
+
+
+
+
+
 // ==========================
 // INIT 
 // ==========================
