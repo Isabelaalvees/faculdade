@@ -568,26 +568,25 @@ document.addEventListener("click", function (e) {
 // ==========================
 // AUDIO
 // ==========================
+
 let paisAtual = null;
 
 function toggleNarracao(pais) {
   const btn = document.getElementById(`btn-audio-${pais}`);
 
-  // 🎧 se estiver tocando → PAUSA
   if (speechSynthesis.speaking && !speechSynthesis.paused) {
     speechSynthesis.pause();
     btn.innerText = "▶️ Continuar";
     return;
   }
 
-  // ▶️ se estiver pausado → CONTINUA
+ 
   if (speechSynthesis.paused) {
     speechSynthesis.resume();
     btn.innerText = "⏸️ Pausar";
     return;
   }
 
-  // 🚀 se não estiver tocando → COMEÇA
   const modal = document.getElementById(`modal-${pais}`);
   if (!modal) return;
 
@@ -666,7 +665,6 @@ function toggleNarracao(pais) {
 
   falarComDestaque(pais);
 
-  // quando terminar tudo
   setTimeout(() => {
     btn.classList.remove("tocando");
     textoBtn.innerText = "Ouvir";
