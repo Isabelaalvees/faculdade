@@ -315,56 +315,74 @@ function iniciarGlobo() {
     (container);
 
   globe.atmosphereColor("#CF6940").atmosphereAltitude(0.15);
-
   globe.pointOfView({ lat: -10, lng: -60, altitude: 2 }, 0);
-
   globe.controls().autoRotate = true;
   globe.controls().autoRotateSpeed = 0.5;
 
   const locais = [
-  {
-    nome: "Brasil",
-    lat: -14.2,
-    lng: -51.9,
-    bandeira: "https://flagcdn.com/w40/br.png"
-  },
-  {
-    nome: "Japão",
-    lat: 36.2,
-    lng: 138.2,
-    bandeira: "https://flagcdn.com/w40/jp.png"
-  },
-  {
-    nome: "Colômbia",
-    lat: 4.57,
-    lng: -74.29,
-    bandeira: "https://flagcdn.com/w40/co.png"
-  },
-  {
-    nome: "EUA",
-    lat: 37.1,
-    lng: -95.7,
-    bandeira: "https://flagcdn.com/w40/us.png"
-  },
-  {
-    nome: "Austrália",
-    lat: -25.3,
-    lng: 133.8,
-    bandeira: "https://flagcdn.com/w40/au.png"
-  },
-  {
-    nome: "França",
-    lat: 46.2,
-    lng: 2.2,
-    bandeira: "https://flagcdn.com/w40/fr.png"
-  },
-  {
-    nome: "Egito",
-    lat: 26.8,
-    lng: 30.8,
-    bandeira: "https://flagcdn.com/w40/eg.png"
-  }
-];
+    { nome: "Brasil",    lat: -14.2, lng: -51.9,  bandeira: "https://flagcdn.com/w40/br.png" },
+    { nome: "Japão",     lat: 36.2,  lng: 138.2,  bandeira: "https://flagcdn.com/w40/jp.png" },
+    { nome: "Colômbia",  lat: 4.57,  lng: -74.29, bandeira: "https://flagcdn.com/w40/co.png" },
+    { nome: "EUA",       lat: 37.1,  lng: -95.7,  bandeira: "https://flagcdn.com/w40/us.png" },
+    { nome: "Austrália", lat: -25.3, lng: 133.8,  bandeira: "https://flagcdn.com/w40/au.png" },
+    { nome: "França",    lat: 46.2,  lng: 2.2,    bandeira: "https://flagcdn.com/w40/fr.png" },
+    { nome: "Egito",     lat: 26.8,  lng: 30.8,   bandeira: "https://flagcdn.com/w40/eg.png" }
+  ]; 
+
+  globe
+    .htmlElementsData(locais)
+    .htmlElement(d => {
+      const container = document.createElement("div");
+      container.style.display = "flex";
+      container.style.flexDirection = "column";
+      container.style.alignItems = "center";
+      container.style.cursor = "pointer";
+
+      const flag = document.createElement("img");
+      flag.src = d.bandeira;
+      flag.style.width = "26px";
+      flag.style.height = "18px";
+      flag.style.borderRadius = "3px";
+      flag.style.pointerEvents = "auto"; 
+
+      const pin = document.createElement("div");
+      pin.style.width = "6px";
+      pin.style.height = "6px";
+      pin.style.background = "#CF6940";
+      pin.style.borderRadius = "50%";
+      pin.style.marginTop = "2px";
+
+      container.appendChild(flag);
+      container.appendChild(pin);
+
+      container.onclick = () => {
+        globe.controls().autoRotate = false;
+        globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.3 }, 1000);
+
+        carregarPagina('pais');
+
+        setTimeout(() => {
+          const id = "modal-" + d.nome.toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
+          const modal = document.getElementById(id);
+          if (modal) modal.style.display = "flex";
+          else console.log("❌ Modal não encontrado:", id);
+        }, 400);
+      };
+
+      return container;
+    });
+
+  globe.controls().enableZoom = false;
+  const canvasEl = container.querySelector('canvas');
+  if (canvasEl) canvasEl.style.pointerEvents = 'none';
+
+  window.addEventListener("resize", () => {
+    globe.width(container.clientWidth);
+  });
+}
 
 
   globe
@@ -414,8 +432,7 @@ function iniciarGlobo() {
     window.addEventListener("resize", () => {
       globe.width(container.clientWidth);
     });
-  }
-
+  
 // ==========================
 // SOBRE NÓS 
 // ==========================
