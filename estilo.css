@@ -889,7 +889,10 @@ header {
   color: #000000;
   border-color: #333;
 }
-/* AUDIO */
+
+/* ===========================
+    AUDIO E DESTAQUE FALA
+=========================== */
 
 .botao-audio {
   display: flex;
@@ -897,7 +900,7 @@ header {
   gap: 8px;
 }
 
-/* animação 🔥 */
+
 .botao-audio.tocando .icone {
   animation: pulse 1s infinite;
 }

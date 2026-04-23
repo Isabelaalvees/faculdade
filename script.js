@@ -583,6 +583,11 @@ function toggleNarracao(pais) {
     speechSynthesis.cancel();
     btn.classList.remove("tocando");
     textoBtn.innerText = "Ouvir";
+
+    // ← limpa todos os destaques ao parar
+    document.querySelectorAll(`#modal-${pais} .modal-texto`)
+      .forEach(t => t.classList.remove("ativo"));
+
     return;
   }
 
@@ -595,6 +600,11 @@ function toggleNarracao(pais) {
     if (!speechSynthesis.speaking) {
       btn.classList.remove("tocando");
       textoBtn.innerText = "Ouvir";
+
+      // ← limpa destaques quando termina naturalmente
+      document.querySelectorAll(`#modal-${pais} .modal-texto`)
+        .forEach(t => t.classList.remove("ativo"));
+
       clearInterval(intervalo);
     }
   }, 500);
