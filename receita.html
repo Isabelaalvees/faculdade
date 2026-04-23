@@ -86,6 +86,28 @@
   </div>
 </div>
 
+<!-- Card: Frango Tikka Masala - Índia -->
+<div class="card" data-pais="india">
+  <img src="imagens/receita/frango-tikka-masala.png" alt="Frango Tikka Masala">
+  <h3>Frango Tikka Masala</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>País:</strong> Índia</p>
+    <p><strong>Tipo:</strong> Prato típico</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('receita-frango-tikka-masala')">Ver receita</button>
+  </div>
+</div>
+
+<!-- Card: Pavlova - Nova Zelândia -->
+<div class="card" data-pais="nova-zelandia">
+  <img src="imagens/receita/pavlova.png" alt="Pavlova">
+  <h3>Pavlova</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>País:</strong> Nova Zelândia</p>
+    <p><strong>Tipo:</strong> Prato típico</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('receita-pavlova')">Ver receita</button>
+  </div>
+</div>
+
 <!---------------------------------------------------------------------------------------- MODAIS ----------------------------------------------------------------------------------------------------->
 
 
@@ -449,6 +471,83 @@
     </div>
     <div class="modal-voltar">
       <button class="botao" onclick="fecharModal('receita-kimchi')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Frango Tikka Masala -->
+<div id="modal-receita-frango-tikka-masala" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Frango Tikka Masala</h2>
+    <h3 class="modal-subtitulo">O que é?</h3>
+    <div class="modal-bloco">
+      <img src="imagens/receita/frango-tikka-masala.png" alt="Frango Tikka Masala" class="modal-img-direita">
+      <p class="modal-texto">Frango Tikka Masala é um prato indiano popular, feito com pedaços de frango grelhado em uma salsa cremosa e especiada. É conhecido por sua combinação de sabores picantes e ricos.</p>
+    </div>
+
+    <h3 class="modal-subtitulo">Ingredientes</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        • 500g de peito de frango em cubos;<br>
+        • Iogurte natural;<br>
+        • Suco de limão;<br>
+        • Especiarias (garam masala, cominho, cúrcuma);<br>
+        • Molho de tomate e creme de leite.
+      </p>
+    </div>
+    <h3 class="modal-subtitulo">Modo de preparo</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        1. Marine o frango no iogurte com limão e metade das especiarias por 1 hora.<br>
+        2. Grelhe o frango em uma frigideira bem quente até dourar.<br>
+        3. Em outra panela, refogue cebola, alho e o restante das especiarias; adicione
+        o molho de tomate.<br>
+        4. Junte o frango ao molho e deixe cozinhar por 10 minutos.<br>
+        5. Finalize com creme de leite para dar cremosidade e sirva com arroz basmati
+        ou pão naan.
+      </p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('receita-frango-tikka-masala')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Pavlova -->
+<div id="modal-receita-pavlova" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Pavlova</h2>
+    <h3 class="modal-subtitulo">O que é?</h3>
+    <div class="modal-bloco">
+      <img src="imagens/receita/pavlova.png" alt="Pavlova" class="modal-img-direita">
+      <p class="modal-texto">A Pavlova é um doce australiano/novozelandês, feito com meringue recheado com creme de leite e frutas frescas. É conhecida por sua textura crocante por fora e macia por dentro, sendo um prato popular em ocasiões especiais e festas.</p>
+    </div>
+
+    <h3 class="modal-subtitulo">Ingredientes</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        • 4 claras de ovo;<br>
+        • 1 xícara de açúcar;<br>
+        • 1 colher de chá de vinagre branco;<br>
+        • 1 colher de chá de amido de milho;<br>
+        • Chantilly e frutas frescas (kiwi e morango).
+      </p>
+    </div>
+    <h3 class="modal-subtitulo">Modo de preparo</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        1. Bata as claras em neve até formarem picos firmes; adicione o açúcar aos
+        poucos, batendo até brilhar.<br>
+        2. Incorpore delicadamente o vinagre e o amido de milho.<br>
+        3. Molde um círculo alto com o merengue em uma assadeira forrada.<br>
+        4. Asse em forno muito baixo (120°C) por cerca de 1 hora e meia, até que o
+        exterior esteja seco e crocante.<br>
+        5. Deixe esfriar no forno, cubra com chantilly e decore com as frutas antes de
+        servir.
+      </p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('receita-pavlova')">← Voltar</button>
     </div>
   </div>
 </div>

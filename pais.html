@@ -82,8 +82,25 @@
   </div>
   </div>
 
+  <div class="card" data-bandeira="�🇸">  <!-- INDIA -->
+      <img src="imagens/pais/india.png" alt="India">
+      <h3>India</h3>
+      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <p><strong>Região:</strong> Ásia</p>
+      <p><strong>Pratos típicos:</strong> Biryani, Curry, Naan</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('india')">Me aventurar</button>
   </div>
-</main>
+  </div>
+
+  <div class="card" data-bandeira="�🇸">  <!-- Nova Zelândia -->
+      <img src="imagens/pais/nova-zelandia.png" alt="Nova Zelândia">
+      <h3>Nova Zelândia</h3>
+      <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+      <p><strong>Região:</strong> Oceania</p>
+      <p><strong>Pratos típicos:</strong> Pavlova, Hangi, Silver Fern</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('india')">Me aventurar</button>
+  </div>
+  </div>
 
   </div>
 </main>
@@ -334,6 +351,83 @@
     <div class="modal-voltar">
       <button class="botao" onclick="verReceitas('coreia-do-sul')">🍽️ Ver receitas</button>
       <button class="botao" onclick="fecharModal('coreia-do-sul')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal-india" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Índia</h2>
+
+    <h3 class="modal-subtitulo">Dados gerais</h3>
+    <div class="modal-bloco">
+      <img src="imagens/pais/india.png" alt="India" class="modal-img-direita">
+      <p class="modal-texto">Localizada no sul da Ásia, a Índia é o país mais populoso do mundo, com mais
+        de 1,4 bilhão de habitantes. Nova Deli é a capital, enquanto Mumbai é o
+        principal centro financeiro. É uma democracia federal conhecida por sua
+        diversidade espiritual, festivais coloridos, indústria cinematográfica (Bollywood)
+        e uma economia em rápido crescimento tecnológico.</p>
+    </div>
+
+    <h3 class="modal-subtitulo">Ponto turístico: Taj Mahal</h3>
+    <div class="modal-bloco">
+      <img src="imagens/ponto-turistico/taj-mahal.png" alt="Taj Mahal" class="modal-img-esquerda">
+      <p class="modal-texto">Situado em Agra, este mausoléu de mármore branco é considerado a maior
+      prova de amor do mundo, construído pelo imperador Shah Jahan em memória
+      de sua esposa. É uma obra-prima da arquitetura mogol, reconhecida
+      mundialmente por sua simetria perfeita e detalhes em pedras semipreciosas.</p>
+    </div>
+
+    <h3 class="modal-subtitulo">Culinária: Frango Tikka Masala</h3>
+    <div class="modal-bloco">
+      <img src="imagens/receita/frango-tikka-masala.png" alt="Frango Tikka Masala" class="modal-img-direita">
+      <p class="modal-texto">Frango Tikka Masala é um prato indiano popular, feito com pedaços de frango grelhado em uma salsa cremosa e especiada. É conhecido por sua combinação de sabores picantes e ricos.</p>
+    </div>
+
+    <div class="modal-voltar">
+      <button class="botao" onclick="verReceitas('india')">🍽️ Ver receitas</button>
+      <button class="botao" onclick="fecharModal('india')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal-nova-zelandia" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Nova Zelândia</h2>
+    
+    <button id="btn-audio-nova-zelandia" class="botao-audio" onclick="toggleNarracao('nova-zelandia')">
+      <span class="icone">🔊</span>
+      <span class="texto">Ouvir</span>
+    </button>
+          
+    <h3 class="modal-subtitulo">Dados gerais</h3>
+    <div class="modal-bloco">
+      <img src="imagens/pais/nova-zelandia.png" alt="Nova Zelândia" class="modal-img-direita">
+      <p class="modal-texto">Localizada no sudoeste do Oceano Pacífico, é um país insular desenvolvido
+      com cerca de 5 milhões de habitantes. Wellington é a capital e Auckland a maior
+      cidade. Conhecida por suas paisagens naturais deslumbrantes (montanhas,
+      fiordes e pastagens), é uma monarquia constitucional famosa pela cultura
+      Maori e por ser o cenário de grandes produções cinematográficas.</p>
+    </div>
+
+    <h3 class="modal-subtitulo">Ponto turístico: Milford Sound</h3>
+    <div class="modal-bloco">
+      <img src="imagens/ponto-turistico/milford-sound.png" alt="Milford Sound" class="modal-img-esquerda">
+      <p class="modal-texto">Localizado na Ilha do Sul, é um fiorde esculpido por geleiras, descrito por
+      Rudyard Kipling como a "oitava maravilha do mundo". É cercado por falésias
+      íngremes e cachoeiras que jorram centenas de metros abaixo, sendo o destino
+      principal para passeios de barco e amantes da natureza selvagem.</p>
+    </div>
+
+    <h3 class="modal-subtitulo">Culinária: Pavlova</h3>
+    <div class="modal-bloco">
+      <img src="imagens/receita/pavlova.png" alt="Pavlova" class="modal-img-direita">
+      <p class="modal-texto">A Pavlova é um doce australiano/novozelandês, feito com meringue recheado com creme de leite e frutas frescas. É conhecida por sua textura crocante por fora e macia por dentro, sendo um prato popular em ocasiões especiais e festas.</p>
+    </div>
+
+    <div class="modal-voltar">
+      <button class="botao" onclick="verReceitas('nova-zelandia')">🍽️ Ver receitas</button>
+      <button class="botao" onclick="fecharModal('nova-zelandia')">← Voltar</button>
     </div>
   </div>
 </div>
