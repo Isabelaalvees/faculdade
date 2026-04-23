@@ -395,32 +395,26 @@ function iniciarGlobo() {
 
       container.onclick = () => {
         globe.controls().autoRotate = false;
+        globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.3 }, 1000);
 
-        globe.pointOfView(
-          { lat: d.lat, lng: d.lng, altitude: 1.3 },
-          1000
-        );
+      carregarPagina('pais');
 
-        setTimeout(() => {
-          const id = "modal-" + d.nome.toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .trim();
+      setTimeout(() => {
+        const id = "modal-" + d.nome.toLowerCase()
+          .normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+        const modal = document.getElementById(id);
+        if (modal) modal.style.display = "flex";
+        else console.log("❌ Modal não encontrado:", id);
+      }, 400); 
+    };
 
-          const modal = document.getElementById(id);
-
-          if (modal) modal.style.display = "flex";
-          else console.log("❌ Modal não encontrado:", id);
-        }, 100);
-      };
-
-      return container;
-    });
-
-  window.addEventListener("resize", () => {
-    globe.width(container.clientWidth);
+    return container;
   });
-}
+
+    window.addEventListener("resize", () => {
+      globe.width(container.clientWidth);
+    });
+  }
 
 // ==========================
 // SOBRE NÓS 
@@ -444,9 +438,6 @@ function fecharQuemSomos() {
   let el = document.getElementById("modal-quem-somos");
   if (el) el.style.display = "none";
 }
-
-
-
 
 
 // ==========================
