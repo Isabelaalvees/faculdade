@@ -311,7 +311,7 @@ function iniciarGlobo() {
     .globeImageUrl('https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg')
     .backgroundColor('rgba(0,0,0,0)')
     .width(container.clientWidth)
-    .height(300)
+    .height(container.clientWidth)
     (container);
 
   globe.atmosphereColor("#CF6940").atmosphereAltitude(0.15);
@@ -338,14 +338,14 @@ function iniciarGlobo() {
       el.style.flexDirection = "column";
       el.style.alignItems = "center";
       el.style.cursor = "pointer";
-      el.style.pointerEvents = "auto";  // ← o elemento recebe cliques
+      el.style.pointerEvents = "auto";  
 
       const flag = document.createElement("img");
       flag.src = d.bandeira;
       flag.style.width = "26px";
       flag.style.height = "18px";
       flag.style.borderRadius = "3px";
-      flag.style.pointerEvents = "none"; // ← evita conflito com a img filha
+      flag.style.pointerEvents = "none"; 
 
       const pin = document.createElement("div");
       pin.style.width = "6px";
@@ -353,13 +353,13 @@ function iniciarGlobo() {
       pin.style.background = "#CF6940";
       pin.style.borderRadius = "50%";
       pin.style.marginTop = "2px";
-      pin.style.pointerEvents = "none"; // ← evita conflito com o pin filho
+      pin.style.pointerEvents = "none";
 
       el.appendChild(flag);
       el.appendChild(pin);
 
       el.addEventListener('pointerdown', (e) => {
-        e.stopPropagation(); // ← impede que o canvas capture o evento
+        e.stopPropagation(); 
       });
 
       el.addEventListener('click', (e) => {
@@ -386,6 +386,7 @@ function iniciarGlobo() {
 
   window.addEventListener("resize", () => {
     globe.width(container.clientWidth);
+    globe.height(container.clientWidth);
   });
 }
   
