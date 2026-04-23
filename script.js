@@ -318,6 +318,7 @@ function iniciarGlobo() {
   globe.pointOfView({ lat: -10, lng: -60, altitude: 2 }, 0);
   globe.controls().autoRotate = true;
   globe.controls().autoRotateSpeed = 0.5;
+  globe.controls().enableZoom = false;
 
   const locais = [
     { nome: "Brasil",    lat: -14.2, lng: -51.9,  bandeira: "https://flagcdn.com/w40/br.png" },
@@ -337,13 +338,14 @@ function iniciarGlobo() {
       el.style.flexDirection = "column";
       el.style.alignItems = "center";
       el.style.cursor = "pointer";
+      el.style.pointerEvents = "auto";  // ← o elemento recebe cliques
 
       const flag = document.createElement("img");
       flag.src = d.bandeira;
       flag.style.width = "26px";
       flag.style.height = "18px";
       flag.style.borderRadius = "3px";
-      flag.style.pointerEvents = "auto";
+      flag.style.pointerEvents = "none"; // ← evita conflito com a img filha
 
       const pin = document.createElement("div");
       pin.style.width = "6px";
@@ -351,11 +353,18 @@ function iniciarGlobo() {
       pin.style.background = "#CF6940";
       pin.style.borderRadius = "50%";
       pin.style.marginTop = "2px";
+      pin.style.pointerEvents = "none"; // ← evita conflito com o pin filho
 
       el.appendChild(flag);
       el.appendChild(pin);
 
-      el.onclick = () => {
+      el.addEventListener('pointerdown', (e) => {
+        e.stopPropagation(); // ← impede que o canvas capture o evento
+      });
+
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+
         globe.controls().autoRotate = false;
         globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.3 }, 1000);
 
@@ -370,15 +379,10 @@ function iniciarGlobo() {
           if (modal) modal.style.display = "flex";
           else console.log("❌ Modal não encontrado:", id);
         }, 400);
-      };
+      });
 
       return el;
     });
-
-  globe.controls().enableZoom = false;
-
-  const canvasEl = container.querySelector('canvas');
-  if (canvasEl) canvasEl.style.pointerEvents = 'none';
 
   window.addEventListener("resize", () => {
     globe.width(container.clientWidth);
