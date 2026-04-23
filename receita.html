@@ -75,6 +75,19 @@
   </div>
 </div>
 
+<!-- Card: Kimchi - Coreia do Sul -->
+<div class="card" data-pais="coreia-do-sul">
+  <img src="imagens/receita/kimchi.png" alt="Kimchi">
+  <h3>Kimchi</h3>
+  <div style="padding: 0 15px 20px; text-align: center; font-size: 14px; color: #555;">
+    <p><strong>País:</strong> Coreia do Sul</p>
+    <p><strong>Tipo:</strong> Prato típico</p>
+    <button class="botao" style="margin-top:10px; padding:8px 15px; font-size:14px;" onclick="abrirModal('receita-kimchi')">Ver receita</button>
+  </div>
+</div>
+
+<!---------------------------------------------------------------------------------------- MODAIS ----------------------------------------------------------------------------------------------------->
+
 
 <!-- Modal: Takoyaki -->
 <div id="modal-receita-takoyaki" class="modal">
@@ -384,7 +397,7 @@
        Pega a cebola junto com o óleo e coloque numa frigideira, ligue o fogo e deixe ela fritar até dourar (não aqueça o óleo antes, junte a cebola com o óleo frio). Quando a cebola estiver dourada retire do óleo e deixe secar num papel toalha.<br>
 
 	<strong>Montagem do prato</strong><br>
-Há quem prefira servir as porções separadas na mesa e cada um monta seu prato do jeito que preferir. Mas a maneira tradicional é servir o prato já feito. A montagem do prato de koshari é bem fácil, basta colocar cada coisa uma em cima da outra, mas seguindo uma determinada ordem: <br>
+  Há quem prefira servir as porções separadas na mesa e cada um monta seu prato do jeito que preferir. Mas a maneira tradicional é servir o prato já feito. A montagem do prato de koshari é bem fácil, basta colocar cada coisa uma em cima da outra, mas seguindo uma determinada ordem: <br>
 	1. Arroz com macarrão cabelo de anjo<br>
 	2. Lentilha<br>
 	3. Os dois tipos de macarrão<br>
@@ -396,6 +409,46 @@ Há quem prefira servir as porções separadas na mesa e cada um monta seu prato
     </div>
     <div class="modal-voltar">
       <button class="botao" onclick="fecharModal('receita-koshari')">← Voltar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal: Kimchi -->
+<div id="modal-receita-kimchi" class="modal">
+  <div class="modal-conteudo">
+    <h2 class="modal-titulo">Kimchi</h2>
+    <h3 class="modal-subtitulo">O que é?</h3>
+    <div class="modal-bloco">
+      <img src="imagens/receita/kimchi.png" alt="Kimchi" class="modal-img-direita">
+      <p class="modal-texto">Kimchi é um alimento fermentado coreano, feito principalmente com repolho, cenoura e pimenta. É uma parte essencial da dieta coreana e é conhecido por seus benefícios para a saúde digestiva.</p>
+    </div>
+
+    <h3 class="modal-subtitulo">Ingredientes</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+       • 1 acelga grande;<br>
+       • Sal grosso;<br>
+       • 1 Nabo;<br>
+       • Cebolinha;<br>
+       • 4 dentes de alho picados;<br>
+       • Gengibre ralado;<br>
+       • Pimenta coreana em pó (Gochugaru).<br>
+      
+      </p>
+    </div>
+    <h3 class="modal-subtitulo">Modo de preparo</h3>
+    <div class="modal-bloco">
+      <p class="modal-texto">
+        1. Corte a acelga em pedaços e deixe de molho em sal grosso por 2 horas para desidratar.<br>
+        2. Enxágue bem a acelga para remover o excesso de sal.<br>
+        3. Misture o alho, gengibre, nabo fatiado, cebolinha e a pimenta até formar uma pasta.<br>
+        4. Esfregue a pasta em cada folha de acelga..<br>
+        5. Coloque em um pote hermético e deixe fermentar fora da geladeira por 1 a 2 dias antes de refrigerar.<br>
+      </p>
+    </div>
+    <div class="modal-voltar">
+      <button class="botao" onclick="fecharModal('receita-kimchi')">← Voltar</button>
     </div>
   </div>
 </div>
