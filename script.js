@@ -338,12 +338,14 @@ function iniciarGlobo() {
       el.style.flexDirection = "column";
       el.style.alignItems = "center";
       el.style.cursor = "pointer";
+      el.style.pointerEvents = "auto";  // ← o elemento recebe cliques
 
       const flag = document.createElement("img");
       flag.src = d.bandeira;
       flag.style.width = "26px";
       flag.style.height = "18px";
       flag.style.borderRadius = "3px";
+      flag.style.pointerEvents = "none"; // ← evita conflito com a img filha
 
       const pin = document.createElement("div");
       pin.style.width = "6px";
@@ -351,19 +353,21 @@ function iniciarGlobo() {
       pin.style.background = "#CF6940";
       pin.style.borderRadius = "50%";
       pin.style.marginTop = "2px";
+      pin.style.pointerEvents = "none"; // ← evita conflito com o pin filho
 
       el.appendChild(flag);
       el.appendChild(pin);
 
-      let mouseMoveu = false;
+      el.addEventListener('pointerdown', (e) => {
+        e.stopPropagation(); // ← impede que o canvas capture o evento
+      });
 
-      el.addEventListener('mousedown', () => { mouseMoveu = false; });
-      el.addEventListener('mousemove', () => { mouseMoveu = true; });
-      el.addEventListener('mouseup', () => {
-        if (mouseMoveu) return; // foi arrasto, ignora
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
 
         globe.controls().autoRotate = false;
         globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.3 }, 1000);
+
         carregarPagina('pais');
 
         setTimeout(() => {
