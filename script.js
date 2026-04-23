@@ -548,73 +548,20 @@ document.addEventListener("click", function (e) {
 // AUDIO
 // ==========================
 
-let paisAtual = null;
-
-function toggleNarracao(pais) {
-  const btn = document.getElementById(`btn-audio-${pais}`);
-
-  if (speechSynthesis.speaking && !speechSynthesis.paused) {
-    speechSynthesis.pause();
-    btn.innerText = "▶️ Continuar";
-    return;
-  }
-
- 
-  if (speechSynthesis.paused) {
-    speechSynthesis.resume();
-    btn.innerText = "⏸️ Pausar";
-    return;
-  }
-
-  const modal = document.getElementById(`modal-${pais}`);
-  if (!modal) return;
-
-  const textos = modal.querySelectorAll(".modal-texto");
-
-  let textoFinal = "";
-
-  textos.forEach(t => {
-    textoFinal += t.innerText + " ";
-  });
-
-  const fala = new SpeechSynthesisUtterance(textoFinal);
-
-  fala.lang = "pt-BR";
-  fala.rate = 0.9;
-
-  fala.onend = () => {
-    btn.innerText = "▶️ Ouvir";
-  };
-
-  speechSynthesis.cancel();
-  speechSynthesis.speak(fala);
-
-  paisAtual = pais;
-
-  btn.innerText = "⏸️ Pausar";
-
-  btn.classList.add("tocando"); // quando começa
-  btn.classList.remove("tocando");
-}
-
 function falarComDestaque(pais) {
   const textos = document.querySelectorAll(`#modal-${pais} .modal-texto`);
-
   let i = 0;
 
   function lerProximo() {
-    if (i > 0) {
-      textos[i - 1].classList.remove("ativo");
-    }
-
+    if (i > 0) textos[i - 1].classList.remove("ativo");
     if (i >= textos.length) return;
 
     const texto = textos[i];
-
     texto.classList.add("ativo");
 
     const fala = new SpeechSynthesisUtterance(texto.innerText);
-    fala.lang = getIdioma(pais);
+    fala.lang = "pt-BR"; 
+    fala.rate = 0.9;
 
     fala.onend = () => {
       i++;
@@ -644,8 +591,11 @@ function toggleNarracao(pais) {
 
   falarComDestaque(pais);
 
-  setTimeout(() => {
-    btn.classList.remove("tocando");
-    textoBtn.innerText = "Ouvir";
-  }, 10000); // ajuste depois
+  const intervalo = setInterval(() => {
+    if (!speechSynthesis.speaking) {
+      btn.classList.remove("tocando");
+      textoBtn.innerText = "Ouvir";
+      clearInterval(intervalo);
+    }
+  }, 500);
 }
