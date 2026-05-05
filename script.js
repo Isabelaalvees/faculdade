@@ -195,14 +195,13 @@ function fecharModal(id) {
   let modal = document.getElementById('modal-' + id);
   if (modal) modal.style.display = 'none';
 
-   speechSynthesis.cancel();
+  speechSynthesis.cancel();
 
-  const btn = document.getElementById(`btn-audio-${pais}`);
+  const btn = document.getElementById(`btn-audio-${id}`);
   if (btn) {
     btn.innerText = "▶️ Ouvir";
   }
 }
-
 
 // ==========================
 // LOGO VOLTAR HOME 
@@ -451,19 +450,6 @@ window.onload = function () {
   iniciarGlobo();
 
   });
-
-  fetch('continente.html').then(r => r.text()).then(h => {
-    document.getElementById('conteudo-continentes').innerHTML = '<div class="cards">' + h + '</div>';
-  });
-
-  fetch('cultura.html').then(r => r.text()).then(h => {
-    document.getElementById('conteudo-culturas').innerHTML = '<div class="cards">' + h + '</div>';
-  });
-
-  fetch('receita.html').then(r => r.text()).then(h => {
-    document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + h + '</div>';
-  });
-
 };
 
 // ==========================
@@ -482,10 +468,6 @@ function toggleDarkMode() {
     localStorage.setItem("tema", "light");
     if (botao) botao.textContent = "🌙";
   }
-
-  setTimeout(() => {
-    iniciarGlobo();
-  }, 200);
 }
 
 // ==========================
@@ -587,7 +569,6 @@ function toggleNarracao(pais) {
     btn.classList.remove("tocando");
     textoBtn.innerText = "Ouvir";
 
-    // ← limpa todos os destaques ao parar
     document.querySelectorAll(`#modal-${pais} .modal-texto`)
       .forEach(t => t.classList.remove("ativo"));
 
