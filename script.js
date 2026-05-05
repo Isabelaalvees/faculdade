@@ -327,7 +327,10 @@ function iniciarGlobo() {
     { nome: "EUA",       lat: 37.1,  lng: -95.7,  bandeira: "https://flagcdn.com/w40/us.png" },
     { nome: "Austrália", lat: -25.3, lng: 133.8,  bandeira: "https://flagcdn.com/w40/au.png" },
     { nome: "França",    lat: 46.2,  lng: 2.2,    bandeira: "https://flagcdn.com/w40/fr.png" },
-    { nome: "Egito",     lat: 26.8,  lng: 30.8,   bandeira: "https://flagcdn.com/w40/eg.png" }
+    { nome: "Egito",     lat: 26.8,  lng: 30.8,   bandeira: "https://flagcdn.com/w40/eg.png" },
+    { nome: "Índia",     lat: 20.6,  lng: 78.9,   bandeira: "https://flagcdn.com/w40/in.png" },
+    { nome: "Coreia do Sul",lat: 35.9,  lng: 127.8,  bandeira: "https://flagcdn.com/w40/kr.png" },
+    { nome: "Nova Zelândia",lat: -40.9, lng: 174.9,  bandeira: "https://flagcdn.com/w40/nz.png" },
   ];
 
   globe
