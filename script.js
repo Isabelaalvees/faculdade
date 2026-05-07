@@ -428,13 +428,6 @@ window.onload = function () {
   let botao = document.querySelector(".btn-dark");
   let tema = localStorage.getItem("tema");
 
-  if (tema === "dark") {
-    document.body.classList.add("dark");
-    if (botao) botao.textContent = "☀️";
-  } else {
-    if (botao) botao.textContent = "🌙";
-  }
-
   function injetarComScripts(containerId, html) {
     const container = document.getElementById(containerId);
     if (!container) return;
