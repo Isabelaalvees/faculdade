@@ -40,8 +40,9 @@ function carregarPagina(pagina) {
 }
 
 // ==========================
-// IDIOMA
+// IDIOMA - UTILIZAMOS A IA COMO APOIO PARA ERROS 
 // ==========================
+
 function mudarIdioma(idioma) {
   localStorage.setItem("idioma", idioma);
 
@@ -89,6 +90,10 @@ function mudarIdioma(idioma) {
   set('menuContinente', t.menuContinente);
   set('menuCultura', t.menuCultura);
   set('menuReceita', t.menuReceita);
+
+  // Aplica traduções dos arquivos externos se já estiverem carregados
+  if (typeof aplicarTraducoesPais === 'function') aplicarTraducoesPais(idioma);
+  if (typeof aplicarTraducoes === 'function') aplicarTraducoes(idioma);
 }
 
 // ==========================
@@ -195,13 +200,14 @@ function fecharModal(id) {
   let modal = document.getElementById('modal-' + id);
   if (modal) modal.style.display = 'none';
 
-  speechSynthesis.cancel();
+   speechSynthesis.cancel();
 
-  const btn = document.getElementById(`btn-audio-${id}`);
+  const btn = document.getElementById(`btn-audio-${pais}`);
   if (btn) {
     btn.innerText = "▶️ Ouvir";
   }
 }
+
 
 // ==========================
 // LOGO VOLTAR HOME 
@@ -294,7 +300,7 @@ function iniciarSliders() {
 }
 
 // ==========================
-// GLOBO 3D 
+// GLOBO 3D - UTILIZAMOS A IA COMO APOIO PARA FAZER A FUNÇÃO
 // ==========================
 
 let globe;
@@ -326,10 +332,7 @@ function iniciarGlobo() {
     { nome: "EUA",       lat: 37.1,  lng: -95.7,  bandeira: "https://flagcdn.com/w40/us.png" },
     { nome: "Austrália", lat: -25.3, lng: 133.8,  bandeira: "https://flagcdn.com/w40/au.png" },
     { nome: "França",    lat: 46.2,  lng: 2.2,    bandeira: "https://flagcdn.com/w40/fr.png" },
-    { nome: "Egito",     lat: 26.8,  lng: 30.8,   bandeira: "https://flagcdn.com/w40/eg.png" },
-    { nome: "Índia",     lat: 20.6,  lng: 78.9,   bandeira: "https://flagcdn.com/w40/in.png" },
-    { nome: "Coreia do Sul",lat: 35.9,  lng: 127.8,  bandeira: "https://flagcdn.com/w40/kr.png" },
-    { nome: "Nova Zelândia",lat: -40.9, lng: 174.9,  bandeira: "https://flagcdn.com/w40/nz.png" },
+    { nome: "Egito",     lat: 26.8,  lng: 30.8,   bandeira: "https://flagcdn.com/w40/eg.png" }
   ];
 
   globe
@@ -419,6 +422,7 @@ function fecharQuemSomos() {
 // ==========================
 // INIT 
 // ==========================
+
 window.onload = function () {
 
   let botao = document.querySelector(".btn-dark");
@@ -428,28 +432,43 @@ window.onload = function () {
     document.body.classList.add("dark");
     if (botao) botao.textContent = "☀️";
   } else {
-   if (botao) botao.textContent = "🌙";
-}
+    if (botao) botao.textContent = "🌙";
+  }
+
+  function injetarComScripts(containerId, html) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = html;
+    container.querySelectorAll('script').forEach(scriptAntigo => {
+      const scriptNovo = document.createElement('script');
+      scriptNovo.textContent = scriptAntigo.textContent;
+      document.body.appendChild(scriptNovo);
+    });
+  }
 
   mudarIdioma(localStorage.getItem("idioma") || "pt");
 
- Promise.all([
-  fetch('pais.html').then(r => r.text()),
-  fetch('continente.html').then(r => r.text()),
-  fetch('cultura.html').then(r => r.text()),
-  fetch('receita.html').then(r => r.text())
-])
-.then(([pais, continente, cultura, receita]) => {
+  Promise.all([
+    fetch('pais.html').then(r => r.text()),
+    fetch('continente.html').then(r => r.text()),
+    fetch('cultura.html').then(r => r.text()),
+    fetch('receita.html').then(r => r.text())
+  ])
+  .then(([pais, continente, cultura, receita]) => {
 
-  document.getElementById('conteudo-pais').innerHTML = pais;
-  document.getElementById('conteudo-continentes').innerHTML = '<div class="cards">' + continente + '</div>';
-  document.getElementById('conteudo-culturas').innerHTML = '<div class="cards">' + cultura + '</div>';
-  document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + receita + '</div>';
+    injetarComScripts('conteudo-pais', pais);
+    document.getElementById('conteudo-continentes').innerHTML = '<div class="cards">' + continente + '</div>';
+    injetarComScripts('conteudo-culturas', '<div class="cards">' + cultura + '</div>');
+    document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + receita + '</div>';
 
-  iniciarSliders();
-  iniciarGlobo();
+    iniciarSliders();
+    iniciarGlobo();
 
+    const idioma = localStorage.getItem("idioma") || "pt";
+    if (typeof aplicarTraducoesPais === 'function') aplicarTraducoesPais(idioma);
+    if (typeof aplicarTraducoes === 'function') aplicarTraducoes(idioma);
   });
+
 };
 
 // ==========================
@@ -468,6 +487,10 @@ function toggleDarkMode() {
     localStorage.setItem("tema", "light");
     if (botao) botao.textContent = "🌙";
   }
+
+  setTimeout(() => {
+    iniciarGlobo();
+  }, 200);
 }
 
 // ==========================
@@ -530,7 +553,7 @@ document.addEventListener("click", function (e) {
 });
 
 // ==========================
-// AUDIO
+// AUDIO - UTILIZAMOS A IA COMO APOIO PARA FAZER ESSA FUNÇÃO
 // ==========================
 
 function falarComDestaque(pais) {
@@ -585,7 +608,6 @@ function toggleNarracao(pais) {
       btn.classList.remove("tocando");
       textoBtn.innerText = "Ouvir";
 
-      // ← limpa destaques quando termina naturalmente
       document.querySelectorAll(`#modal-${pais} .modal-texto`)
         .forEach(t => t.classList.remove("ativo"));
 
