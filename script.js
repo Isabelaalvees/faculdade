@@ -40,7 +40,7 @@ function carregarPagina(pagina) {
 }
 
 // ==========================
-// IDIOMA - UTILIZAMOS A IA COMO APOIO PARA ERROS 
+// IDIOMA
 // ==========================
 
 function mudarIdioma(idioma) {
@@ -54,7 +54,20 @@ function mudarIdioma(idioma) {
       menuPais: "País",
       menuContinente: "Continente",
       menuCultura: "Cultura",
-      menuReceita: "Receitas"
+      menuReceita: "Receitas",
+      
+      paisesMaisViajados: "Países mais viajados", 
+      paises: "Países", 
+      destinosVisitados: "Os destinos mais visitados",
+      destinosPopulares: "Destinos Populares",
+      continentes: "Continentes",
+      continente: "Continente", 
+      maisViajados: "Mais Viajados", 
+      destinosContinente: "Destinos por Continente", 
+      conhecaCulturas: "Conheça as Culturas",
+      receitas: "Receitas",
+      viajeCasa: "Viaje sem sair de casa",
+      experimente: "Experimente"
     },
     en: {
       titulo: "Where do you want to travel?",
@@ -63,7 +76,20 @@ function mudarIdioma(idioma) {
       menuPais: "Country",
       menuContinente: "Continent",
       menuCultura: "Culture",
-      menuReceita: "Recipes"
+      menuReceita: "Recipes",
+
+      paisesMaisViajados: "Most Traveled Countries",
+      paises: "Countries", 
+      destinosVisitados: "The most visited destinations",
+      destinosPopulares: "Popular Destinations",
+      continentes: "Continents",
+      continente: "Continent",
+      maisViajados: "Most traveled",
+      destinosContinente: "Destinations by Continent",
+      conhecaCulturas: "Discover Cultures",
+      receitas: "Recipes",
+      viajeCasa: "Travel without leaving home",
+      experimente: "Try It"
     },
     es: {
       titulo: "¿A dónde quieres viajar?",
@@ -72,7 +98,20 @@ function mudarIdioma(idioma) {
       menuPais: "País",
       menuContinente: "Continente",
       menuCultura: "Cultura",
-      menuReceita: "Recetas"
+      menuReceita: "Recetas",
+
+      paisesMaisViajados: "Países más visitados",
+      paises: "Países", 
+      destinosVisitados: "Los destinos más visitados",
+      destinosPopulares: "Destinos Populares",
+      continentes: "Continentes",
+      continente: "Continente",
+      maisViajados: "Más visitados",
+      destinosContinente: "Destinos por Continente",
+      conhecaCulturas: "Conoce las Culturas",
+      receitas: "Recetas",
+      viajeCasa: "Viaja sin salir de casa",
+      experimente: "Prueba"
     }
   };
 
@@ -86,14 +125,20 @@ function mudarIdioma(idioma) {
   set('titulo', t.titulo);
   set('busca', t.placeholder, "placeholder");
   set('botaoBusca', t.botao);
-  set('menuPais', t.menuPais);
-  set('menuContinente', t.menuContinente);
-  set('menuCultura', t.menuCultura);
-  set('menuReceita', t.menuReceita);
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const chave = el.dataset.i18n;
+
+    if (t[chave]) {
+      el.textContent = t[chave];
+    }
+  });
 
   // Aplica traduções dos arquivos externos se já estiverem carregados
   if (typeof aplicarTraducoesPais === 'function') aplicarTraducoesPais(idioma);
   if (typeof aplicarTraducoes === 'function') aplicarTraducoes(idioma);
+  if (typeof aplicarTraducoesContinente === 'function') aplicarTraducoesContinente(idioma);
+  if (typeof aplicarTraducoesReceita === 'function') aplicarTraducoesReceita(idioma);
 }
 
 // ==========================
@@ -300,7 +345,7 @@ function iniciarSliders() {
 }
 
 // ==========================
-// GLOBO 3D - UTILIZAMOS A IA COMO APOIO PARA FAZER A FUNÇÃO
+// GLOBO 3D 
 // ==========================
 
 let globe;
@@ -428,6 +473,13 @@ window.onload = function () {
   let botao = document.querySelector(".btn-dark");
   let tema = localStorage.getItem("tema");
 
+  if (tema === "dark") {
+    document.body.classList.add("dark");
+    if (botao) botao.textContent = "☀️";
+  } else {
+    if (botao) botao.textContent = "🌙";
+  }
+
   function injetarComScripts(containerId, html) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -450,9 +502,9 @@ window.onload = function () {
   .then(([pais, continente, cultura, receita]) => {
 
     injetarComScripts('conteudo-pais', pais);
-    document.getElementById('conteudo-continentes').innerHTML = '<div class="cards">' + continente + '</div>';
+    injetarComScripts('conteudo-continentes', '<div class="cards">' + continente + '</div>');
     injetarComScripts('conteudo-culturas', '<div class="cards">' + cultura + '</div>');
-    document.getElementById('conteudo-receita').innerHTML = '<div class="cards">' + receita + '</div>';
+    injetarComScripts('conteudo-receita', '<div class="cards">' + receita + '</div>');
 
     iniciarSliders();
     iniciarGlobo();
@@ -460,6 +512,8 @@ window.onload = function () {
     const idioma = localStorage.getItem("idioma") || "pt";
     if (typeof aplicarTraducoesPais === 'function') aplicarTraducoesPais(idioma);
     if (typeof aplicarTraducoes === 'function') aplicarTraducoes(idioma);
+    if (typeof aplicarTraducoesContinente === 'function') aplicarTraducoesContinente(idioma);
+    if (typeof aplicarTraducoesReceita === 'function') aplicarTraducoesReceita(idioma);
   });
 
 };
@@ -546,7 +600,7 @@ document.addEventListener("click", function (e) {
 });
 
 // ==========================
-// AUDIO - UTILIZAMOS A IA COMO APOIO PARA FAZER ESSA FUNÇÃO
+// AUDIO
 // ==========================
 
 function falarComDestaque(pais) {
@@ -585,6 +639,7 @@ function toggleNarracao(pais) {
     btn.classList.remove("tocando");
     textoBtn.innerText = "Ouvir";
 
+    // ← limpa todos os destaques ao parar
     document.querySelectorAll(`#modal-${pais} .modal-texto`)
       .forEach(t => t.classList.remove("ativo"));
 
@@ -601,6 +656,7 @@ function toggleNarracao(pais) {
       btn.classList.remove("tocando");
       textoBtn.innerText = "Ouvir";
 
+      // ← limpa destaques quando termina naturalmente
       document.querySelectorAll(`#modal-${pais} .modal-texto`)
         .forEach(t => t.classList.remove("ativo"));
 
