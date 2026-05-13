@@ -41,8 +41,8 @@ header {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
   padding: 15px 20px;
 }
 
@@ -919,4 +919,21 @@ header {
   background: #fff3cd;
   padding: 5px;
   border-radius: 6px;
+}
+
+.modal-conteudo {
+  text-align: center;
+}
+
+.modal-bloco {
+  text-align: left;
+}
+
+.modal-texto {
+  text-align: left;
+}
+
+.modal-titulo,
+.modal-subtitulo {
+  text-align: center;
 }
